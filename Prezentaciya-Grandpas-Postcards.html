@@ -1,0 +1,1034 @@
+<!doctype html>
+<html lang="ru"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Grandpa's Postcards — открытки дедушки</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Manrope:wght@400;500;700;800&family=Caveat:wght@500;700&display=swap">
+<style>
+*{box-sizing:border-box}
+html,body{margin:0;height:100%;background:#05080F;overflow:hidden;font-family:'Manrope',Arial,sans-serif;-webkit-tap-highlight-color:transparent}
+#stage{position:absolute;left:50%;top:50%;width:1920px;height:1080px;transform-origin:center center;overflow:hidden;background:#13233F}
+.slide{position:absolute;left:0;top:0;width:1920px;height:1080px;overflow:hidden;opacity:0;visibility:hidden;transition:opacity .6s ease,visibility 0s linear .6s}
+.slide.active{opacity:1;visibility:visible;transition:opacity .6s ease}
+.slide p,.slide h1,.slide h2,.slide h3{margin:0}
+.slide h1{font-size:96px;font-weight:600;line-height:1.1}
+.slide h2{font-size:64px;font-weight:600;line-height:1.15}
+.slide h3{font-size:44px;font-weight:600;line-height:1.2}
+.slide p{font-size:32px;line-height:1.4}
+.slide hr{border:0;margin:0;height:0}
+.slide aside{display:none}
+.emb{pointer-events:none;background:transparent}
+.anim{transition:opacity .6s ease,translate .75s cubic-bezier(.2,.8,.2,1),scale .55s cubic-bezier(.34,1.56,.64,1)}
+.noanim{transition:none!important}
+.bh{opacity:0!important}
+.bi-rise.bh{translate:0 50px}.bi-drop.bh{translate:0 -80px}.bi-pop.bh{scale:.75}.bi-scale.bh{scale:.6}
+.bi-left.bh{translate:-90px 0}.bi-right.bh{translate:90px 0}
+#count{position:fixed;right:14px;bottom:10px;font:600 13px Manrope,Arial,sans-serif;color:rgba(255,255,255,.35);z-index:5;pointer-events:none}
+#help{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:rgba(10,16,30,.85);color:#F4EEE2;font:500 15px Manrope,Arial,sans-serif;padding:10px 18px;border-radius:999px;z-index:6;transition:opacity 1s;pointer-events:none;white-space:nowrap}
+#notes{position:fixed;left:0;right:0;bottom:0;max-height:40%;overflow:auto;background:rgba(10,16,30,.94);color:#F4EEE2;font:400 18px/1.5 Manrope,Arial,sans-serif;padding:18px 26px;z-index:7;display:none;white-space:pre-line}
+</style></head><body>
+<div id="stage">
+<section class="slide" id="cover" data-transition="fade" style="background:radial-gradient(circle at 78% 28%, #22396A 0%, #13233F 55%, #0C172C 100%);color:#F4EEE2;font-family:'Manrope', Arial, sans-serif;padding:128px;display:flex;flex-direction:column">
+<iframe class="emb" sandbox="allow-scripts" style="position:absolute;left:840px;top:60px;width:1040px;height:600px;border:0" data-src="&lt;meta charset=&quot;utf-8&quot;&gt;&lt;style&gt;html,body{margin:0;overflow:hidden}&lt;/style&gt;&lt;canvas id=&quot;c&quot; width=&quot;1040&quot; height=&quot;600&quot; style=&quot;position:fixed;left:0;top:0;width:100%;height:100%&quot;&gt;&lt;/canvas&gt;
+&lt;script&gt;
+const c=document.getElementById(&#x27;c&#x27;),x=c.getContext(&#x27;2d&#x27;);const BG=x.createRadialGradient(658,242,0,658,242,1688);BG.addColorStop(0,&#x27;#22396A&#x27;);BG.addColorStop(.55,&#x27;#13233F&#x27;);BG.addColorStop(1,&#x27;#0C172C&#x27;);
+const S=[];for(let i=0;i&lt;80;i++)S.push({x:Math.random()*1040,y:Math.random()*600,r:Math.random()*1.8+.4,p:Math.random()*6});
+const A=[80,520],B=[520,-80],C=[960,330];
+function q(t){const a=1-t;return[a*a*A[0]+2*a*t*B[0]+t*t*C[0],a*a*A[1]+2*a*t*B[1]+t*t*C[1]]}
+function plane(px,py,r){x.save();x.translate(px,py);x.rotate(r);x.fillStyle=&#x27;#F4EEE2&#x27;;
+x.beginPath();x.moveTo(32,0);x.lineTo(16,-6);x.lineTo(-26,-6);x.lineTo(-32,0);x.lineTo(-26,6);x.lineTo(16,6);x.closePath();x.fill();
+x.beginPath();x.moveTo(8,-5);x.lineTo(-10,-34);x.lineTo(-18,-34);x.lineTo(-8,-5);x.closePath();x.fill();
+x.beginPath();x.moveTo(8,5);x.lineTo(-10,34);x.lineTo(-18,34);x.lineTo(-8,5);x.closePath();x.fill();
+x.beginPath();x.moveTo(-20,-5);x.lineTo(-29,-16);x.lineTo(-34,-16);x.lineTo(-29,-4);x.closePath();x.fill();
+x.beginPath();x.moveTo(-20,5);x.lineTo(-29,16);x.lineTo(-34,16);x.lineTo(-29,4);x.closePath();x.fill();x.restore()}
+const t0=performance.now();
+function f(n){x.fillStyle=BG;x.fillRect(0,0,1040,600);
+for(const s of S){x.globalAlpha=.3+.35*Math.sin(n/700+s.p);x.fillStyle=&#x27;#F4EEE2&#x27;;x.beginPath();x.arc(s.x,s.y,s.r,0,7);x.fill()}
+x.globalAlpha=1;const T=(Math.max(0,n-t0)/7000)%1;const e=T&lt;.5?2*T*T:1-Math.pow(-2*T+2,2)/2;
+x.setLineDash([10,14]);x.lineWidth=3;x.strokeStyle=&#x27;rgba(201,162,77,.7)&#x27;;x.beginPath();
+for(let i=0;i&lt;=70;i++){const p=q(i/70*e);i?x.lineTo(p[0],p[1]):x.moveTo(p[0],p[1])}x.stroke();x.setLineDash([]);
+x.fillStyle=&#x27;#C9A24D&#x27;;[A,C].forEach(p=&gt;{x.beginPath();x.arc(p[0],p[1],8,0,7);x.fill()});
+x.strokeStyle=&#x27;rgba(201,162,77,.5)&#x27;;x.lineWidth=2;x.beginPath();x.arc(C[0],C[1],10+(n/40%24),0,7);x.stroke();
+const p=q(e),p2=q(Math.min(e+.01,1));plane(p[0],p[1],Math.atan2(p2[1]-p[1],p2[0]-p[0]));requestAnimationFrame(f)}
+requestAnimationFrame(f);
+&lt;/script&gt;"></iframe>
+<p data-build-in="fade 1 auto" style="position:absolute;left:128px;top:250px;width:900px;font-size:26px;font-weight:700;letter-spacing:5px;text-transform:uppercase;color:#C9A24D">Урок английского в пяти открытках</p>
+<h1 data-build-in="rise 2 auto" style="position:absolute;left:128px;top:300px;width:1000px;font-family:'Cormorant Garamond', Georgia, serif;font-size:150px;font-weight:600;line-height:0.95;color:#F4EEE2">Открытки<br>дедушки</h1>
+<p data-build-in="fade 3 auto" style="position:absolute;left:128px;top:595px;width:800px;font-family:'Caveat', 'Brush Script MT', cursive;font-size:52px;font-weight:700;line-height:1.1;color:#C9A24D">Grandpa's Postcards</p>
+<p data-build-in="rise 4 auto" style="position:absolute;left:128px;top:680px;width:780px;font-size:32px;line-height:1.4;color:#C9D2E0">Путешествие по англоязычному миру — от входа в аэропорт до выхода.</p>
+<hr data-build-in="fade 5 auto" style="position:absolute;left:128px;top:810px;width:120px;border-top:3px solid #C9A24D">
+<p data-build-in="fade 5 auto" style="position:absolute;left:128px;top:836px;width:800px;font-size:26px;letter-spacing:3px;text-transform:uppercase;color:#8FA0BD">Рейс EN 2026 · Посадка началась</p>
+<div data-build-in="pop 6 auto" style="position:absolute;left:1150px;top:600px;width:600px;transform:rotate(5deg);background:repeating-linear-gradient(45deg, #A63D2F 0px, #A63D2F 22px, #FBF7EF 22px, #FBF7EF 44px, #2B4C7E 44px, #2B4C7E 66px, #FBF7EF 66px, #FBF7EF 88px);padding:16px;border-radius:10px;box-shadow:0 30px 60px rgba(5,10,25,0.5)">
+<div style="background:#FBF7EF;padding:32px 36px;border-radius:4px;display:flex;flex-direction:row;gap:28px;align-items:start">
+<p style="flex:1;font-family:'Caveat', 'Brush Script MT', cursive;font-size:38px;line-height:1.15;color:#2B4C7E">Дорогая Мия,<br>следуй за моими открытками и посмотри мир!<br>— Дедушка Джек</p>
+<div style="width:120px;height:150px;background:#3E7C59;border:6px dashed #FBF7EF;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px">
+<svg viewBox="0 0 24 24" style="color:#FBF7EF;width:56px;height:56px" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 3L3 10.5l7 2.5 2.5 7L21 3z"/><path d="M10 13l11-10"/></svg>
+<p style="font-size:24px;font-weight:700;color:#FBF7EF">25c</p>
+</div>
+</div>
+</div>
+<aside class="notes">~1 мин. Поприветствуйте класс: сегодня мы отправимся в путешествие по англоязычному миру. Разминка (вопросы на английском): Have you ever flown on a plane? Where did you fly? Do you like airports? Затем коротко: старая коробка, дедушка-пилот и пять открыток.</aside>
+</section>
+<section class="slide" id="attic" data-transition="fade" style="background:#F4EEE2;color:#13233F;font-family:'Manrope', Arial, sans-serif;padding:128px;display:flex;flex-direction:column">
+<p style="position:absolute;left:128px;top:128px;width:800px;font-size:26px;font-weight:700;letter-spacing:5px;text-transform:uppercase;color:#A63D2F">Глава 1 · Чердак</p>
+<h2 style="position:absolute;left:128px;top:175px;width:840px;font-family:'Cormorant Garamond', Georgia, serif;font-size:84px;font-weight:600;line-height:1.05;color:#13233F">Всё началось со старой коробки.</h2>
+<p data-build-in="fade 1 auto" style="position:absolute;left:128px;top:390px;width:800px;font-size:30px;line-height:1.45;color:#4A4A55">Мие шестнадцать. Однажды дождливым воскресеньем она находит на чердаке пыльную коробку. Внутри — пять старых открыток от дедушки Джека, пилота, который облетел весь мир.</p>
+<div data-build-in="drop 2 auto" style="position:absolute;left:1060px;top:170px;width:440px;height:250px;transform:rotate(-8deg);background:#FBF7EF;border-radius:10px;box-shadow:0 20px 40px rgba(19,35,63,0.18);padding:28px;display:flex;flex-direction:row;gap:24px">
+<div style="flex:1;display:flex;flex-direction:column;gap:22px"><p style="font-family:'Caveat', 'Brush Script MT', cursive;font-size:40px;line-height:1.1;color:#2B4C7E">Greetings from…</p><hr style="border-top:2px solid #D9CFBE"><hr style="border-top:2px solid #D9CFBE"><hr style="border-top:2px solid #D9CFBE"></div>
+<div style="width:100px;height:120px;background:#3E7C59;border:5px dashed #FBF7EF;display:flex;align-items:center;justify-content:center"><p style="font-family:'Cormorant Garamond', Georgia, serif;font-size:64px;font-weight:700;line-height:1;color:#FBF7EF">?</p></div>
+</div>
+<div data-build-in="drop 3 auto" style="position:absolute;left:1270px;top:260px;width:440px;height:250px;transform:rotate(5deg);background:#FBF7EF;border-radius:10px;box-shadow:0 20px 40px rgba(19,35,63,0.18);padding:28px;display:flex;flex-direction:row;gap:24px">
+<div style="flex:1;display:flex;flex-direction:column;gap:22px"><p style="font-family:'Caveat', 'Brush Script MT', cursive;font-size:40px;line-height:1.1;color:#2B4C7E">Greetings from…</p><hr style="border-top:2px solid #D9CFBE"><hr style="border-top:2px solid #D9CFBE"><hr style="border-top:2px solid #D9CFBE"></div>
+<div style="width:100px;height:120px;background:#A63D2F;border:5px dashed #FBF7EF;display:flex;align-items:center;justify-content:center"><p style="font-family:'Cormorant Garamond', Georgia, serif;font-size:64px;font-weight:700;line-height:1;color:#FBF7EF">?</p></div>
+</div>
+<div data-build-in="drop 4 auto" style="position:absolute;left:1090px;top:430px;width:440px;height:250px;transform:rotate(-3deg);background:#FBF7EF;border-radius:10px;box-shadow:0 20px 40px rgba(19,35,63,0.18);padding:28px;display:flex;flex-direction:row;gap:24px">
+<div style="flex:1;display:flex;flex-direction:column;gap:22px"><p style="font-family:'Caveat', 'Brush Script MT', cursive;font-size:40px;line-height:1.1;color:#2B4C7E">Greetings from…</p><hr style="border-top:2px solid #D9CFBE"><hr style="border-top:2px solid #D9CFBE"><hr style="border-top:2px solid #D9CFBE"></div>
+<div style="width:100px;height:120px;background:#C9A24D;border:5px dashed #FBF7EF;display:flex;align-items:center;justify-content:center"><p style="font-family:'Cormorant Garamond', Georgia, serif;font-size:64px;font-weight:700;line-height:1;color:#13233F">?</p></div>
+</div>
+<div data-build-in="drop 5 auto" style="position:absolute;left:1300px;top:540px;width:440px;height:250px;transform:rotate(7deg);background:#FBF7EF;border-radius:10px;box-shadow:0 20px 40px rgba(19,35,63,0.18);padding:28px;display:flex;flex-direction:row;gap:24px">
+<div style="flex:1;display:flex;flex-direction:column;gap:22px"><p style="font-family:'Caveat', 'Brush Script MT', cursive;font-size:40px;line-height:1.1;color:#2B4C7E">Greetings from…</p><hr style="border-top:2px solid #D9CFBE"><hr style="border-top:2px solid #D9CFBE"><hr style="border-top:2px solid #D9CFBE"></div>
+<div style="width:100px;height:120px;background:#2F7F86;border:5px dashed #FBF7EF;display:flex;align-items:center;justify-content:center"><p style="font-family:'Cormorant Garamond', Georgia, serif;font-size:64px;font-weight:700;line-height:1;color:#FBF7EF">?</p></div>
+</div>
+<div data-build-in="drop 6 auto" style="position:absolute;left:1120px;top:660px;width:440px;height:250px;transform:rotate(-6deg);background:#FBF7EF;border-radius:10px;box-shadow:0 20px 40px rgba(19,35,63,0.18);padding:28px;display:flex;flex-direction:row;gap:24px">
+<div style="flex:1;display:flex;flex-direction:column;gap:22px"><p style="font-family:'Caveat', 'Brush Script MT', cursive;font-size:40px;line-height:1.1;color:#2B4C7E">Greetings from…</p><hr style="border-top:2px solid #D9CFBE"><hr style="border-top:2px solid #D9CFBE"><hr style="border-top:2px solid #D9CFBE"></div>
+<div style="width:100px;height:120px;background:#2B4C7E;border:5px dashed #FBF7EF;display:flex;align-items:center;justify-content:center"><p style="font-family:'Cormorant Garamond', Georgia, serif;font-size:64px;font-weight:700;line-height:1;color:#FBF7EF">?</p></div>
+</div>
+<div data-build-in="rise 7" style="position:absolute;left:128px;top:660px;width:800px;transform:rotate(-1.5deg);background:#FBF7EF;padding:32px 40px;border-radius:6px;border-left:6px solid #A63D2F;box-shadow:0 24px 48px rgba(19,35,63,0.18)">
+<p style="font-family:'Caveat', 'Brush Script MT', cursive;font-size:42px;line-height:1.2;color:#2B4C7E">«Мия, каждая открытка — загадка. Угадай страну и отправляйся туда! Твой дедушка Джек»</p>
+</div>
+<aside class="notes">~1.5 мин. Расскажите историю или попросите ученика прочитать. Кликните — появится записка дедушки. Вопросы классу (на английском): Have you ever found something old and interesting at home? What would you do if you found these postcards? Would you go on this trip alone?</aside>
+</section>
+<section class="slide" id="route" data-transition="fade" style="background:radial-gradient(circle at 50% 40%, #1A2E52 0%, #13233F 60%, #0D1830 100%);color:#F4EEE2;font-family:'Manrope', Arial, sans-serif;padding:128px;display:flex;flex-direction:column">
+<iframe class="emb" sandbox="allow-scripts" style="position:absolute;left:128px;top:250px;width:1664px;height:640px;border:0" data-src="&lt;meta charset=&quot;utf-8&quot;&gt;&lt;style&gt;html,body{margin:0;overflow:hidden}&lt;/style&gt;&lt;canvas id=&quot;c&quot; width=&quot;1664&quot; height=&quot;640&quot; style=&quot;position:fixed;left:0;top:0;width:100%;height:100%&quot;&gt;&lt;/canvas&gt;
+&lt;script&gt;
+const cv=document.getElementById(&#x27;c&#x27;),g=cv.getContext(&#x27;2d&#x27;),W=1664,H=640;const BG=g.createRadialGradient(832,182,0,832,182,1158);BG.addColorStop(0,&#x27;#1A2E52&#x27;);BG.addColorStop(.6,&#x27;#13233F&#x27;);BG.addColorStop(1,&#x27;#0D1830&#x27;);
+const LB=[[&#x27;\u0414\u043e\u043c&#x27;,902,50,&#x27;left&#x27;],[&#x27;1 \u00b7 \u0414\u0443\u0431\u043b\u0438\u043d&#x27;,580,63,&#x27;right&#x27;],[&#x27;2 \u00b7 \u0422\u043e\u0440\u043e\u043d\u0442\u043e&#x27;,132,84,&#x27;center&#x27;],[&#x27;3 \u00b7 \u041a\u0435\u0439\u043f\u0442\u0430\u0443\u043d&#x27;,758,576,&#x27;center&#x27;],[&#x27;4 \u00b7 \u0421\u0438\u043d\u0433\u0430\u043f\u0443\u0440&#x27;,1304,383,&#x27;center&#x27;],[&#x27;5 \u00b7 \u0421\u0438\u0434\u043d\u0435\u0439&#x27;,1660,576,&#x27;right&#x27;]];
+const P=[[880.6,50.5],[599.9,63.5],[132,116.5],[757.9,539.6],[1304.4,347.2],[1607.7,539.3]];
+const L=[];for(let i=0;i&lt;5;i++){const a=P[i],b=P[i+1],mx=(a[0]+b[0])/2,my=(a[1]+b[1])/2,dx=b[0]-a[0],dy=b[1]-a[1],d=Math.hypot(dx,dy);let px=dy/d,py=-dx/d;if(py&gt;0){px=-px;py=-py}const k=Math.min(.28*d,170);L.push([a,[mx+px*k,my+py*k],b])}
+function pt(l,t){const a=1-t;return[a*a*l[0][0]+2*a*t*l[1][0]+t*t*l[2][0],a*a*l[0][1]+2*a*t*l[1][1]+t*t*l[2][1]]}
+function grid(){g.lineWidth=1;g.setLineDash([2,9]);g.strokeStyle=&#x27;rgba(201,210,224,.16)&#x27;;
+for(let lon=-100;lon&lt;=160;lon+=20){const x=(lon+100)*6.4;g.beginPath();g.moveTo(x,0);g.lineTo(x,H);g.stroke()}
+for(let lat=60;lat&gt;=-40;lat-=20){const y=(65-lat)*5.4545;g.beginPath();g.moveTo(0,y);g.lineTo(W,y);g.stroke()}
+g.setLineDash([6,8]);g.strokeStyle=&#x27;rgba(201,162,77,.22)&#x27;;const e=65*5.4545;g.beginPath();g.moveTo(0,e);g.lineTo(W,e);g.stroke();g.setLineDash([])}
+function plane(px,py,r){g.save();g.translate(px,py);g.rotate(r);g.fillStyle=&#x27;#F4EEE2&#x27;;
+g.beginPath();g.moveTo(28,0);g.lineTo(14,-5);g.lineTo(-22,-5);g.lineTo(-28,0);g.lineTo(-22,5);g.lineTo(14,5);g.closePath();g.fill();
+g.beginPath();g.moveTo(7,-4);g.lineTo(-9,-30);g.lineTo(-16,-30);g.lineTo(-7,-4);g.closePath();g.fill();
+g.beginPath();g.moveTo(7,4);g.lineTo(-9,30);g.lineTo(-16,30);g.lineTo(-7,4);g.closePath();g.fill();
+g.beginPath();g.moveTo(-18,-4);g.lineTo(-25,-14);g.lineTo(-30,-14);g.lineTo(-26,-3);g.closePath();g.fill();
+g.beginPath();g.moveTo(-18,4);g.lineTo(-25,14);g.lineTo(-30,14);g.lineTo(-26,3);g.closePath();g.fill();g.restore()}
+const LEG=2300,HOLD=3000,CYC=5*LEG+HOLD,s=performance.now();
+function frame(n){const e=Math.max(0,n-s)%CYC;g.fillStyle=BG;g.fillRect(0,0,W,H);grid();
+const cur=Math.min(Math.floor(e/LEG),5);const t=cur&lt;5?(e-cur*LEG)/LEG:1;const k=t&lt;.5?2*t*t:1-Math.pow(-2*t+2,2)/2;
+g.setLineDash([12,12]);g.lineWidth=3;g.strokeStyle=&#x27;rgba(201,162,77,.95)&#x27;;
+for(let i=0;i&lt;=Math.min(cur,4);i++){const lim=i&lt;cur?1:k;g.beginPath();for(let j=0;j&lt;=50;j++){const p=pt(L[i],j/50*lim);j?g.lineTo(p[0],p[1]):g.moveTo(p[0],p[1])}g.stroke()}
+g.setLineDash([]);
+P.forEach((p,i)=&gt;{const v=i&lt;=cur;g.beginPath();g.arc(p[0],p[1],9,0,7);if(v){g.fillStyle=&#x27;#C9A24D&#x27;;g.fill()}else{g.lineWidth=2.5;g.strokeStyle=&#x27;#F4EEE2&#x27;;g.stroke()}
+if(i===cur||(cur===5&amp;&amp;i===5)){g.strokeStyle=&#x27;rgba(201,162,77,.55)&#x27;;g.lineWidth=2;g.beginPath();g.arc(p[0],p[1],12+(n/40%26),0,7);g.stroke()}});
+g.font=&#x27;700 28px Manrope,&quot;Segoe UI&quot;,Arial,sans-serif&#x27;;g.textBaseline=&#x27;middle&#x27;;
+LB.forEach((l,i)=&gt;{const v=i&lt;=cur;g.textAlign=l[3];g.fillStyle=v?&#x27;#C9A24D&#x27;:&#x27;rgba(244,238,226,.8)&#x27;;g.fillText(l[0],l[1],l[2])});
+if(cur&lt;5){const p=pt(L[cur],k),q=pt(L[cur],Math.min(k+.01,1));plane(p[0],p[1],Math.atan2(q[1]-p[1],q[0]-p[0]))}
+requestAnimationFrame(frame)}
+requestAnimationFrame(frame);
+&lt;/script&gt;"></iframe>
+<p style="position:absolute;left:128px;top:110px;width:900px;font-size:26px;font-weight:700;letter-spacing:6px;text-transform:uppercase;color:#C9A24D">Глава 2 · Маршрут</p>
+<h2 style="position:absolute;left:128px;top:150px;width:1664px;font-family:'Cormorant Garamond', Georgia, serif;font-size:72px;font-weight:600;line-height:1.1;color:#F4EEE2">Пять открыток. Пять стран. Один язык.</h2>
+<aside class="notes">~1 мин. Покажите маршрут Мии (самолётик пролетит его сам). Вопросы классу (на английском): Which of these cities do you know? In which countries are they? What language do people speak there? Which place would YOU like to visit first, and why?</aside>
+</section>
+<section class="slide" id="by-transport" data-transition="fade" style="background:#13233F;color:#F4EEE2;font-family:'Manrope', Arial, sans-serif;padding:128px;display:flex;flex-direction:column">
+<p style="position:absolute;left:128px;top:128px;width:1200px;font-size:26px;font-weight:700;letter-spacing:5px;text-transform:uppercase;color:#C9A24D">Грамматика · Как Мия будет путешествовать?</p>
+<h2 data-build-in="rise 1 auto" style="position:absolute;left:128px;top:170px;width:1664px;font-family:'Cormorant Garamond', Georgia, serif;font-size:116px;font-weight:600;line-height:1.05;color:#F4EEE2">Mia travels <span style="color:#C9A24D">by</span> plane.</h2>
+<p data-build-in="fade 2" style="position:absolute;left:128px;top:320px;width:1640px;font-size:34px;line-height:1.4;color:#C9D2E0">Но когда она сидит внутри, она уже <b><span style="color:#C9A24D">on</span></b> the plane — «в самолёте».</p>
+<div data-build-in="rise 3" style="position:absolute;left:128px;top:430px;width:800px;background:#1C3157;border:1px solid #34507F;border-radius:24px;padding:40px 44px;display:flex;flex-direction:column;gap:18px">
+<h3 style="font-size:40px;font-weight:800;color:#C9A24D">BY + транспорт</h3>
+<p style="font-size:28px;line-height:1.35;color:#C9D2E0">= КАК ты добираешься (без «the»!)</p>
+<div style="display:flex;flex-direction:row;flex-wrap:wrap;gap:14px">
+<p style="font-size:30px;background:#27406B;color:#F4EEE2;padding:10px 24px;border-radius:999px">by plane</p>
+<p style="font-size:30px;background:#27406B;color:#F4EEE2;padding:10px 24px;border-radius:999px">by train</p>
+<p style="font-size:30px;background:#27406B;color:#F4EEE2;padding:10px 24px;border-radius:999px">by car</p>
+<p style="font-size:30px;background:#27406B;color:#F4EEE2;padding:10px 24px;border-radius:999px">by bus</p>
+<p style="font-size:30px;background:#27406B;color:#F4EEE2;padding:10px 24px;border-radius:999px">by ship</p>
+</div>
+</div>
+<div data-build-in="rise 4" style="position:absolute;left:992px;top:430px;width:800px;background:#1C3157;border:1px solid #34507F;border-radius:24px;padding:40px 44px;display:flex;flex-direction:column;gap:18px">
+<h3 style="font-size:40px;font-weight:800;color:#E3C27A">ON / IN + the + транспорт</h3>
+<p style="font-size:28px;line-height:1.35;color:#C9D2E0">= ГДЕ ты находишься (внутри)</p>
+<div style="display:flex;flex-direction:row;flex-wrap:wrap;gap:14px">
+<p style="font-size:30px;background:#27406B;color:#F4EEE2;padding:10px 24px;border-radius:999px">on the plane</p>
+<p style="font-size:30px;background:#27406B;color:#F4EEE2;padding:10px 24px;border-radius:999px">on the bus</p>
+<p style="font-size:30px;background:#27406B;color:#F4EEE2;padding:10px 24px;border-radius:999px">on the train</p>
+<p style="font-size:30px;background:#27406B;color:#F4EEE2;padding:10px 24px;border-radius:999px">in the car</p>
+<p style="font-size:30px;background:#27406B;color:#F4EEE2;padding:10px 24px;border-radius:999px">in a taxi</p>
+</div>
+</div>
+<p data-build-in="pop 5" style="position:absolute;left:128px;top:850px;width:900px;font-size:32px;font-weight:800;background:#C9A24D;color:#13233F;padding:16px 36px;border-radius:999px">Ловушка: пешком — on foot, а не «by foot»!</p>
+<aside class="notes">~1.5 мин. Все обычно говорят «on the plane», но BY — это слово для того, КАК мы путешествуем. По кликам: by + транспорт (без артикля), затем on/in + the (где ты находишься), затем ловушка «on foot». Быстрый круг вопросов: How do you get to school? Ученики отвечают полным предложением: I go to school by bus / on foot. Ещё вопрос: Where are you when you read on your way to school? — On the bus!</aside>
+</section>
+<section class="slide" id="checkin" data-transition="magic" style="background:#F4EEE2;color:#13233F;font-family:'Manrope', Arial, sans-serif;padding:128px;display:flex;flex-direction:column">
+<div id="jpill" style="position:absolute;left:128px;top:80px;width:475px;height:53px;background:#A63D2F;border-radius:999px"></div>
+<hr style="position:absolute;left:128px;top:150px;width:1664px;border-top:3px solid #DDD3C2">
+<hr id="jprog" style="position:absolute;left:128px;top:150px;width:475px;border-top:3px solid #A63D2F">
+<div style="position:absolute;left:128px;top:80px;width:1664px;display:flex;flex-direction:row">
+<p style="flex:1;font-size:24px;line-height:1.2;padding:12px 0;text-align:center;font-weight:700;color:#F4EEE2">Вход</p>
+<p style="flex:1;font-size:24px;line-height:1.2;padding:12px 0;text-align:center;font-weight:700;color:#F4EEE2">Регистрация</p>
+<p style="flex:1;font-size:24px;line-height:1.2;padding:12px 0;text-align:center;color:#6E685B">Досмотр</p>
+<p style="flex:1;font-size:24px;line-height:1.2;padding:12px 0;text-align:center;color:#6E685B">Паспорт</p>
+<p style="flex:1;font-size:24px;line-height:1.2;padding:12px 0;text-align:center;color:#6E685B">Гейт</p>
+<p style="flex:1;font-size:24px;line-height:1.2;padding:12px 0;text-align:center;color:#6E685B">На борту</p>
+<p style="flex:1;font-size:24px;line-height:1.2;padding:12px 0;text-align:center;color:#6E685B">Прилёт</p>
+</div>
+<p style="position:absolute;left:128px;top:195px;width:900px;font-size:26px;font-weight:700;letter-spacing:5px;text-transform:uppercase;color:#A63D2F">В аэропорту · Шаг 1</p>
+<h2 style="position:absolute;left:128px;top:235px;width:1664px;font-family:'Cormorant Garamond', Georgia, serif;font-size:80px;font-weight:600;line-height:1.1;color:#13233F">Регистрация: «Window or aisle?»</h2>
+<div data-build-in="fade 1 auto" style="position:absolute;left:128px;top:380px;width:840px;display:grid;grid-template-columns:1fr 1fr;gap:20px">
+<div style="background:#FBF7EF;border:1px solid #E3D9C6;border-radius:18px;padding:22px 26px;display:flex;flex-direction:column;gap:6px"><p style="font-size:34px;font-weight:800;line-height:1.2;color:#13233F">departures</p><p style="font-size:26px;line-height:1.35;color:#5A5650">зал вылета</p></div>
+<div style="background:#FBF7EF;border:1px solid #E3D9C6;border-radius:18px;padding:22px 26px;display:flex;flex-direction:column;gap:6px"><p style="font-size:34px;font-weight:800;line-height:1.2;color:#13233F">check-in desk</p><p style="font-size:26px;line-height:1.35;color:#5A5650">стойка регистрации</p></div>
+<div style="background:#FBF7EF;border:1px solid #E3D9C6;border-radius:18px;padding:22px 26px;display:flex;flex-direction:column;gap:6px"><p style="font-size:34px;font-weight:800;line-height:1.2;color:#13233F">boarding pass</p><p style="font-size:26px;line-height:1.35;color:#5A5650">посадочный талон</p></div>
+<div style="background:#FBF7EF;border:1px solid #E3D9C6;border-radius:18px;padding:22px 26px;display:flex;flex-direction:column;gap:6px"><p style="font-size:34px;font-weight:800;line-height:1.2;color:#13233F">hand luggage</p><p style="font-size:26px;line-height:1.35;color:#5A5650">ручная кладь</p></div>
+<div style="background:#FBF7EF;border:1px solid #E3D9C6;border-radius:18px;padding:22px 26px;display:flex;flex-direction:column;gap:6px"><p style="font-size:34px;font-weight:800;line-height:1.2;color:#13233F">checked bag</p><p style="font-size:26px;line-height:1.35;color:#5A5650">багаж, который сдают</p></div>
+<div style="background:#FBF7EF;border:1px solid #E3D9C6;border-radius:18px;padding:22px 26px;display:flex;flex-direction:column;gap:6px"><p style="font-size:34px;font-weight:800;line-height:1.2;color:#13233F">aisle seat</p><p style="font-size:26px;line-height:1.35;color:#5A5650">место у прохода</p></div>
+</div>
+<p data-build-in="fade 2 auto" style="position:absolute;left:128px;top:830px;width:840px;font-size:24px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:#6E685B">Полезная фраза</p>
+<p data-build-in="fade 2 auto" style="position:absolute;left:128px;top:866px;width:840px;font-family:'Caveat', 'Brush Script MT', cursive;font-size:44px;line-height:1.1;color:#A63D2F">“Can I take this bag on board?”</p>
+<div data-build-in="rise 3 auto" style="position:absolute;left:1020px;top:360px;width:772px;height:590px;background:#FBF7EF;border:1px solid #E3D9C6;border-radius:24px;box-shadow:0 30px 60px rgba(19,35,63,0.16);display:flex;flex-direction:column">
+<p style="font-size:24px;font-weight:700;letter-spacing:2px;text-transform:uppercase;background:#13233F;color:#F4EEE2;padding:22px 36px;border-radius:24px 24px 0 0">Диалог у стойки · читаем по ролям</p>
+</div>
+<p data-build-in="rise 4" style="position:absolute;left:1064px;top:450px;width:690px;font-size:30px;line-height:1.3;color:#2F2F38"><span style="color:#A63D2F"><b>Agent:</b></span> Good morning! Passport, please.</p>
+<p data-build-in="rise 5" style="position:absolute;left:1064px;top:512px;width:690px;font-size:30px;line-height:1.3;color:#2F2F38"><span style="color:#2B4C7E"><b>Mia:</b></span> Here you are. I'm flying to Dublin.</p>
+<p data-build-in="rise 6" style="position:absolute;left:1064px;top:574px;width:690px;font-size:30px;line-height:1.3;color:#2F2F38"><span style="color:#A63D2F"><b>Agent:</b></span> Any bags to check in?</p>
+<p data-build-in="rise 7" style="position:absolute;left:1064px;top:636px;width:690px;font-size:30px;line-height:1.3;color:#2F2F38"><span style="color:#2B4C7E"><b>Mia:</b></span> Just this suitcase.</p>
+<p data-build-in="rise 8" style="position:absolute;left:1064px;top:698px;width:690px;font-size:30px;line-height:1.3;color:#2F2F38"><span style="color:#A63D2F"><b>Agent:</b></span> Window or aisle?</p>
+<p data-build-in="rise 9" style="position:absolute;left:1064px;top:760px;width:690px;font-size:30px;line-height:1.3;color:#2F2F38"><span style="color:#2B4C7E"><b>Mia:</b></span> A seat <b><span style="color:#A63D2F">by</span></b> the window, please!</p>
+<p data-build-in="pop 10" style="position:absolute;left:1064px;top:850px;width:460px;font-size:28px;font-weight:800;background:#A63D2F;color:#F4EEE2;padding:12px 28px;border-radius:999px">by the window = у окна</p>
+<aside class="notes">~2 мин. Мия входит в зал вылета. Разберите слова: сначала пусть ученики сами переведут, потом сверьтесь со слайдом. Затем по кликам открывайте диалог — двое учеников читают по ролям (сотрудник и Мия). Обратите внимание: «a seat BY the window» — by = рядом, у. Вопрос классу: Which seat do you prefer — window or aisle? Why?</aside>
+</section>
+<section class="slide" id="security" data-transition="magic" style="background:#F4EEE2;color:#13233F;font-family:'Manrope', Arial, sans-serif;padding:128px;display:flex;flex-direction:column">
+<div id="jpill" style="position:absolute;left:603px;top:80px;width:476px;height:53px;background:#A63D2F;border-radius:999px"></div>
+<hr style="position:absolute;left:128px;top:150px;width:1664px;border-top:3px solid #DDD3C2">
+<hr id="jprog" style="position:absolute;left:128px;top:150px;width:951px;border-top:3px solid #A63D2F">
+<div style="position:absolute;left:128px;top:80px;width:1664px;display:flex;flex-direction:row">
+<p style="flex:1;font-size:24px;line-height:1.2;padding:12px 0;text-align:center;color:#6E685B">Вход</p>
+<p style="flex:1;font-size:24px;line-height:1.2;padding:12px 0;text-align:center;color:#6E685B">Регистрация</p>
+<p style="flex:1;font-size:24px;line-height:1.2;padding:12px 0;text-align:center;font-weight:700;color:#F4EEE2">Досмотр</p>
+<p style="flex:1;font-size:24px;line-height:1.2;padding:12px 0;text-align:center;font-weight:700;color:#F4EEE2">Паспорт</p>
+<p style="flex:1;font-size:24px;line-height:1.2;padding:12px 0;text-align:center;color:#6E685B">Гейт</p>
+<p style="flex:1;font-size:24px;line-height:1.2;padding:12px 0;text-align:center;color:#6E685B">На борту</p>
+<p style="flex:1;font-size:24px;line-height:1.2;padding:12px 0;text-align:center;color:#6E685B">Прилёт</p>
+</div>
+<p style="position:absolute;left:128px;top:195px;width:900px;font-size:26px;font-weight:700;letter-spacing:5px;text-transform:uppercase;color:#A63D2F">В аэропорту · Шаг 2</p>
+<h2 style="position:absolute;left:128px;top:235px;width:1664px;font-family:'Cormorant Garamond', Georgia, serif;font-size:80px;font-weight:600;line-height:1.1;color:#13233F">Досмотр и паспортный контроль</h2>
+<div data-build-in="fade 1 auto" style="position:absolute;left:128px;top:370px;width:780px;display:flex;flex-direction:column;gap:18px">
+<h3 style="font-size:32px;font-weight:800;color:#A63D2F">Досмотр: покажите команды жестами!</h3>
+<div style="display:flex;flex-direction:row;gap:20px;align-items:center"><div style="width:52px;height:52px;background:#13233F;border-radius:50%;display:flex;align-items:center;justify-content:center"><p style="font-size:26px;font-weight:700;color:#F4EEE2">1</p></div><p style="flex:1;font-size:30px;line-height:1.3;color:#2F2F38">Put your bag on the belt.</p></div>
+<div style="display:flex;flex-direction:row;gap:20px;align-items:center"><div style="width:52px;height:52px;background:#13233F;border-radius:50%;display:flex;align-items:center;justify-content:center"><p style="font-size:26px;font-weight:700;color:#F4EEE2">2</p></div><p style="flex:1;font-size:30px;line-height:1.3;color:#2F2F38">Take off your jacket and belt.</p></div>
+<div style="display:flex;flex-direction:row;gap:20px;align-items:center"><div style="width:52px;height:52px;background:#13233F;border-radius:50%;display:flex;align-items:center;justify-content:center"><p style="font-size:26px;font-weight:700;color:#F4EEE2">3</p></div><p style="flex:1;font-size:30px;line-height:1.3;color:#2F2F38">Liquids? Put them in a clear bag.</p></div>
+<div style="display:flex;flex-direction:row;gap:20px;align-items:center"><div style="width:52px;height:52px;background:#13233F;border-radius:50%;display:flex;align-items:center;justify-content:center"><p style="font-size:26px;font-weight:700;color:#F4EEE2">4</p></div><p style="flex:1;font-size:30px;line-height:1.3;color:#2F2F38">Walk through the scanner, please.</p></div>
+</div>
+<div data-build-in="rise 2 auto" style="position:absolute;left:128px;top:760px;width:780px;background:#EAE0CD;border-radius:18px;padding:26px 32px">
+<p style="font-size:28px;line-height:1.4;color:#2F2F38"><b>Грамматика:</b> это повелительное наклонение — команды без «you».</p>
+</div>
+<div data-build-in="rise 3 auto" style="position:absolute;left:980px;top:360px;width:812px;height:590px;background:#13233F;border-radius:24px;padding:40px 44px;box-shadow:0 30px 60px rgba(19,35,63,0.22);display:flex;flex-direction:column">
+<p style="font-size:24px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#C9A24D">Паспортный контроль · вопросы офицера</p>
+</div>
+<p data-build-in="fade 4 auto" style="position:absolute;left:1024px;top:440px;width:724px;font-size:30px;font-weight:700;line-height:1.3;color:#F4EEE2">What's the purpose of your visit?</p>
+<p data-build-in="rise 5" style="position:absolute;left:1024px;top:488px;width:724px;font-family:'Caveat', 'Brush Script MT', cursive;font-size:40px;line-height:1.2;color:#E3C27A">Tourism. I'm following old postcards!</p>
+<p data-build-in="fade 6" style="position:absolute;left:1024px;top:580px;width:724px;font-size:30px;font-weight:700;line-height:1.3;color:#F4EEE2">How long are you staying?</p>
+<p data-build-in="rise 7" style="position:absolute;left:1024px;top:628px;width:724px;font-family:'Caveat', 'Brush Script MT', cursive;font-size:40px;line-height:1.2;color:#E3C27A">For ten days.</p>
+<p data-build-in="fade 8" style="position:absolute;left:1024px;top:720px;width:724px;font-size:30px;font-weight:700;line-height:1.3;color:#F4EEE2">Where are you staying?</p>
+<p data-build-in="rise 9" style="position:absolute;left:1024px;top:768px;width:724px;font-family:'Caveat', 'Brush Script MT', cursive;font-size:40px;line-height:1.2;color:#E3C27A">In a little hotel by the river.</p>
+<p data-build-in="pop 10" style="position:absolute;left:1024px;top:860px;width:440px;font-size:28px;font-weight:800;background:#C9A24D;color:#13233F;padding:12px 28px;border-radius:999px">by the river = у реки</p>
+<aside class="notes">~1.5 мин. Досмотр: ученики читают команды и показывают их жестами (кладут сумку на ленту, снимают куртку). Отметьте, что это повелительное наклонение. Паспортный контроль: показывайте вопрос, пусть ученики сначала ответят сами, потом кликайте — появится ответ Мии. Сценка в парах: офицер и Мия. Найдите BY: «a hotel by the river» — у реки.</aside>
+</section>
+<section class="slide" id="gate" data-transition="magic" style="background:#13233F;color:#F4EEE2;font-family:'Manrope', Arial, sans-serif;padding:128px;display:flex;flex-direction:column">
+<div id="jpill" style="position:absolute;left:1079px;top:80px;width:238px;height:53px;background:#C9A24D;border-radius:999px"></div>
+<hr style="position:absolute;left:128px;top:150px;width:1664px;border-top:3px solid #2A3E63">
+<hr id="jprog" style="position:absolute;left:128px;top:150px;width:1189px;border-top:3px solid #C9A24D">
+<div style="position:absolute;left:128px;top:80px;width:1664px;display:flex;flex-direction:row">
+<p style="flex:1;font-size:24px;line-height:1.2;padding:12px 0;text-align:center;color:#8C9BB8">Вход</p>
+<p style="flex:1;font-size:24px;line-height:1.2;padding:12px 0;text-align:center;color:#8C9BB8">Регистрация</p>
+<p style="flex:1;font-size:24px;line-height:1.2;padding:12px 0;text-align:center;color:#8C9BB8">Досмотр</p>
+<p style="flex:1;font-size:24px;line-height:1.2;padding:12px 0;text-align:center;color:#8C9BB8">Паспорт</p>
+<p style="flex:1;font-size:24px;line-height:1.2;padding:12px 0;text-align:center;font-weight:700;color:#13233F">Гейт</p>
+<p style="flex:1;font-size:24px;line-height:1.2;padding:12px 0;text-align:center;color:#8C9BB8">На борту</p>
+<p style="flex:1;font-size:24px;line-height:1.2;padding:12px 0;text-align:center;color:#8C9BB8">Прилёт</p>
+</div>
+<p style="position:absolute;left:128px;top:195px;width:900px;font-size:26px;font-weight:700;letter-spacing:5px;text-transform:uppercase;color:#C9A24D">В аэропорту · Шаг 3</p>
+<h2 style="position:absolute;left:128px;top:235px;width:1664px;font-family:'Cormorant Garamond', Georgia, serif;font-size:80px;font-weight:600;line-height:1.1;color:#F4EEE2">Гейт: «Boarding closes <span style="color:#C9A24D">by</span> 7:30»</h2>
+<iframe class="emb" sandbox="allow-scripts" style="position:absolute;left:128px;top:350px;width:1060px;height:440px;border:0" data-src="&lt;meta charset=&quot;utf-8&quot;&gt;&lt;style&gt;html,body{margin:0;overflow:hidden}&lt;/style&gt;&lt;style&gt;
+html,body{margin:0;background:#13233F;font-family:&quot;Courier New&quot;,ui-monospace,monospace;overflow:hidden}
+#b{background:#0B1426;border-radius:20px;padding:22px 26px;box-sizing:border-box;width:1060px;height:440px;border:2px solid #2E4A78}
+.h{display:flex;color:#C9A24D;font:700 24px/1 Arial,sans-serif;letter-spacing:3px;padding:6px 0 16px}
+.r{display:flex;padding:7px 0;border-top:1px solid #1E2E4D}
+.col{display:flex;margin-right:24px}
+.c{display:inline-block;width:25px;height:44px;margin-right:2px;background:#16233D;border-radius:4px;color:#F4EEE2;font-size:30px;line-height:44px;text-align:center;font-weight:700}
+@keyframes bl{50%{opacity:.25}}.blink .c{animation:bl 1.2s infinite}
+&lt;/style&gt;&lt;div id=&quot;b&quot;&gt;&lt;/div&gt;
+&lt;script&gt;
+const R=[[&quot;07:15&quot;,&quot;DUBLIN&quot;,&quot;EN 101&quot;,&quot;B12&quot;,&quot;BOARDING&quot;],[&quot;09:40&quot;,&quot;TORONTO&quot;,&quot;EN 207&quot;,&quot;C07&quot;,&quot;ON TIME&quot;],[&quot;11:05&quot;,&quot;CAPE TOWN&quot;,&quot;EN 318&quot;,&quot;D04&quot;,&quot;DELAYED&quot;],[&quot;13:30&quot;,&quot;SINGAPORE&quot;,&quot;EN 422&quot;,&quot;E05&quot;,&quot;ON TIME&quot;],[&quot;16:50&quot;,&quot;SYDNEY&quot;,&quot;EN 535&quot;,&quot;F09&quot;,&quot;ON TIME&quot;]];
+const W=[5,10,6,3,8],HD=[&quot;TIME&quot;,&quot;DESTINATION&quot;,&quot;FLIGHT&quot;,&quot;GATE&quot;,&quot;STATUS&quot;],A=&quot;ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789:&quot;;
+const b=document.getElementById(&#x27;b&#x27;);const h=document.createElement(&#x27;div&#x27;);h.className=&#x27;h&#x27;;
+HD.forEach((t,i)=&gt;{const d=document.createElement(&#x27;div&#x27;);d.style.width=(W[i]*27)+&#x27;px&#x27;;d.style.marginRight=&#x27;24px&#x27;;d.textContent=t;h.appendChild(d)});b.appendChild(h);
+const rows=[];
+R.forEach((r,ri)=&gt;{const row=document.createElement(&#x27;div&#x27;);row.className=&#x27;r&#x27;;const cells=[];
+r.forEach((v,ci)=&gt;{const col=document.createElement(&#x27;div&#x27;);col.className=&#x27;col&#x27;;if(ci===4&amp;&amp;v===&#x27;BOARDING&#x27;)col.classList.add(&#x27;blink&#x27;);
+const s=v.padEnd(W[ci],&#x27; &#x27;);for(let k=0;k&lt;W[ci];k++){const c=document.createElement(&#x27;span&#x27;);c.className=&#x27;c&#x27;;
+if(ci===4)c.style.color=v===&#x27;BOARDING&#x27;?&#x27;#7FD18B&#x27;:v===&#x27;DELAYED&#x27;?&#x27;#F0A35E&#x27;:&#x27;#F4EEE2&#x27;;
+c.textContent=&#x27; &#x27;;col.appendChild(c);cells.push([c,s[k]])}row.appendChild(col)});b.appendChild(row);rows.push(cells)});
+function flip(c,ch,delay){let n=0;const st=5+Math.floor(Math.random()*10);setTimeout(function t(){if(n++&lt;st){c.textContent=A[Math.random()*A.length|0];setTimeout(t,55)}else c.textContent=ch===&#x27; &#x27;?&#x27; &#x27;:ch},delay)}
+function flipRow(i,base){rows[i].forEach((p,k)=&gt;flip(p[0],p[1],base+k*30))}
+rows.forEach((r,i)=&gt;flipRow(i,300+i*350));
+setInterval(()=&gt;flipRow(Math.floor(Math.random()*5),0),5000);
+&lt;/script&gt;"></iframe>
+<p data-build-in="fade 1 auto" style="position:absolute;left:128px;top:820px;width:1060px;font-size:28px;line-height:1.4;color:#C9D2E0"><b><span style="color:#C9A24D">Прочитайте табло:</span></b> Which flight is delayed? What gate is the flight to Singapore? When does Mia's flight leave?</p>
+<div data-build-in="rise 2 auto" style="position:absolute;left:1240px;top:350px;width:552px;height:600px;background:#1C3157;border:1px solid #2E4A78;border-radius:24px;padding:40px;display:flex;flex-direction:column;gap:20px">
+<svg viewBox="0 0 24 24" style="color:#C9A24D;width:56px;height:56px" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+<p style="font-size:24px;font-weight:700;letter-spacing:5px;text-transform:uppercase;color:#C9A24D">Объявление</p>
+<p style="font-size:32px;line-height:1.4;color:#F4EEE2">“Flight EN 101 to Dublin is now boarding at Gate B12. Boarding closes <b><span style="color:#C9A24D">by 7:30</span></b>. Passengers board <b><span style="color:#C9A24D">row by row</span></b>.”</p>
+</div>
+<p data-build-in="pop 3" style="position:absolute;left:1280px;top:790px;width:472px;font-size:26px;font-weight:700;color:#E3C27A">by 7:30 = не позже 7:30</p>
+<p data-build-in="pop 4" style="position:absolute;left:1280px;top:856px;width:472px;font-size:26px;font-weight:700;color:#E3C27A">row by row = ряд за рядом</p>
+<aside class="notes">~1.5 мин. Табло вылетов «живое» — буквы перелистываются. Ученики читают его и отвечают: Which flight is delayed? (Cape Town) What gate is the flight to Singapore? (E05) Which flight is boarding now? (Dublin, EN 101). Прочитайте объявление голосом настоящего аэропорта. По кликам — два новых значения BY: by 7:30 = не позже 7:30; row by row = ряд за рядом. Вопрос: What time does boarding close? Can Mia arrive at 7:40?</aside>
+</section>
+<section class="slide" id="safety" data-transition="magic" style="background:#F4EEE2;color:#13233F;font-family:'Manrope', Arial, sans-serif;padding:128px;display:flex;flex-direction:column">
+<div id="jpill" style="position:absolute;left:1317px;top:80px;width:238px;height:53px;background:#A63D2F;border-radius:999px"></div>
+<hr style="position:absolute;left:128px;top:150px;width:1664px;border-top:3px solid #DDD3C2">
+<hr id="jprog" style="position:absolute;left:128px;top:150px;width:1426px;border-top:3px solid #A63D2F">
+<div style="position:absolute;left:128px;top:80px;width:1664px;display:flex;flex-direction:row">
+<p style="flex:1;font-size:24px;line-height:1.2;padding:12px 0;text-align:center;color:#6E685B">Вход</p>
+<p style="flex:1;font-size:24px;line-height:1.2;padding:12px 0;text-align:center;color:#6E685B">Регистрация</p>
+<p style="flex:1;font-size:24px;line-height:1.2;padding:12px 0;text-align:center;color:#6E685B">Досмотр</p>
+<p style="flex:1;font-size:24px;line-height:1.2;padding:12px 0;text-align:center;color:#6E685B">Паспорт</p>
+<p style="flex:1;font-size:24px;line-height:1.2;padding:12px 0;text-align:center;color:#6E685B">Гейт</p>
+<p style="flex:1;font-size:24px;line-height:1.2;padding:12px 0;text-align:center;font-weight:700;color:#F4EEE2">На борту</p>
+<p style="flex:1;font-size:24px;line-height:1.2;padding:12px 0;text-align:center;color:#6E685B">Прилёт</p>
+</div>
+<p style="position:absolute;left:128px;top:195px;width:1664px;font-size:26px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:#A63D2F">Игра · Стюардесса показывает жест — класс угадывает фразу</p>
+<h2 style="position:absolute;left:128px;top:235px;width:1000px;font-family:'Cormorant Garamond', Georgia, serif;font-size:80px;font-weight:600;line-height:1.1;color:#13233F">Инструктаж перед взлётом</h2>
+<p data-build-in="fade 1 auto" style="position:absolute;left:1120px;top:258px;width:672px;font-family:'Caveat', 'Brush Script MT', cursive;font-size:48px;font-weight:700;text-align:right;color:#A63D2F">“Ladies and gentlemen…”</p>
+<div style="position:absolute;left:128px;top:370px;width:533px;height:265px;background:#13233F;border-radius:20px;box-shadow:0 18px 40px rgba(19,35,63,0.18)"></div>
+<div style="position:absolute;left:693px;top:370px;width:533px;height:265px;background:#13233F;border-radius:20px;box-shadow:0 18px 40px rgba(19,35,63,0.18)"></div>
+<div style="position:absolute;left:1258px;top:370px;width:533px;height:265px;background:#13233F;border-radius:20px;box-shadow:0 18px 40px rgba(19,35,63,0.18)"></div>
+<div style="position:absolute;left:128px;top:655px;width:533px;height:265px;background:#13233F;border-radius:20px;box-shadow:0 18px 40px rgba(19,35,63,0.18)"></div>
+<div style="position:absolute;left:693px;top:655px;width:533px;height:265px;background:#13233F;border-radius:20px;box-shadow:0 18px 40px rgba(19,35,63,0.18)"></div>
+<div style="position:absolute;left:1258px;top:655px;width:533px;height:265px;background:#13233F;border-radius:20px;box-shadow:0 18px 40px rgba(19,35,63,0.18)"></div>
+<iframe class="emb" sandbox="allow-scripts" style="position:absolute;left:144px;top:386px;width:501px;height:233px;border:0" data-src="&lt;meta charset=&quot;utf-8&quot;&gt;&lt;style&gt;html,body{margin:0;overflow:hidden}&lt;/style&gt;&lt;canvas id=&quot;c&quot; width=&quot;501&quot; height=&quot;233&quot; style=&quot;position:fixed;left:0;top:0;width:100%;height:100%&quot;&gt;&lt;/canvas&gt;&lt;script&gt;
+const G=1;
+const c=document.getElementById(&#x27;c&#x27;),x=c.getContext(&#x27;2d&#x27;),cx=250,SK=&#x27;#E8C4A0&#x27;;
+const K={1:[[0,198,206,302,206],[.3,240,202,260,202],[.42,240,202,260,202],[.6,242,202,312,192],[.8,242,202,312,192],[1,198,206,302,206]],2:[[0,198,218,302,218],[.15,226,150,274,150],[.35,226,150,274,150],[.5,150,118,350,118],[.68,150,118,350,118],[.8,214,96,286,96],[.92,214,96,286,96],[1,198,218,302,218]],3:[[0,198,218,302,218],[.2,198,218,302,218],[.36,198,218,318,62],[.56,198,218,252,88],[.68,226,60,252,88],[.88,226,60,252,88],[1,198,218,302,218]],4:[[0,198,218,302,218],[.1,236,92,302,218],[.22,236,92,302,218],[.32,198,218,360,64],[.5,198,218,384,156],[.74,198,218,384,156],[.88,198,218,302,218],[1,198,218,302,218]],5:[[0,198,218,302,218],[.15,226,28,274,28],[.3,226,28,274,28],[.45,214,128,286,128],[.55,232,196,268,196],[.65,232,222,268,222],[.85,232,222,268,222],[1,198,218,302,218]],6:[[0,198,218,302,218],[.18,198,218,276,150],[.32,250,170,276,150],[.4,266,146,276,150],[.46,250,170,276,150],[.82,250,170,276,150],[1,198,218,302,218]]}[G];
+function cl(v){return v&lt;0?0:v&gt;1?1:v}
+function sm(a){a=cl(a);return a*a*(3-2*a)}
+function pose(t){for(let i=0;i&lt;K.length-1;i++){const a=K[i],b=K[i+1];if(t&lt;=b[0]){const u=sm((t-a[0])/((b[0]-a[0])||1));return[a[1]+(b[1]-a[1])*u,a[2]+(b[2]-a[2])*u,a[3]+(b[3]-a[3])*u,a[4]+(b[4]-a[4])*u]}}const z=K[K.length-1];return[z[1],z[2],z[3],z[4]]}
+function rr(a,b,w,h,r){x.beginPath();x.moveTo(a+r,b);x.arcTo(a+w,b,a+w,b+h,r);x.arcTo(a+w,b+h,a,b+h,r);x.arcTo(a,b+h,a,b,r);x.arcTo(a,b,a+w,b,r);x.closePath();x.fill()}
+function ln(a,b,c2,d,col,w){x.strokeStyle=col;x.lineWidth=w;x.lineCap=&#x27;round&#x27;;x.beginPath();x.moveTo(a,b);x.lineTo(c2,d);x.stroke()}
+function arm(sx,sy,tx,ty,sd){const l1=52,l2=50,dx=tx-sx,dy=ty-sy,d=Math.max(8,Math.min(Math.hypot(dx,dy),l1+l2-1)),th=Math.atan2(dy,dx),q=(l1*l1+d*d-l2*l2)/(2*l1*d),al=Math.acos(Math.max(-1,Math.min(1,q)));const e1=[sx+l1*Math.cos(th+al),sy+l1*Math.sin(th+al)],e2=[sx+l1*Math.cos(th-al),sy+l1*Math.sin(th-al)];const e=(sd&lt;0?e1[0]&lt;e2[0]:e1[0]&gt;e2[0])?e1:e2;const hx=sx+d*Math.cos(th),hy=sy+d*Math.sin(th);x.strokeStyle=&#x27;#3A66A6&#x27;;x.lineWidth=15;x.lineCap=&#x27;round&#x27;;x.lineJoin=&#x27;round&#x27;;x.beginPath();x.moveTo(sx,sy);x.lineTo(e[0],e[1]);x.lineTo(hx,hy);x.stroke();x.fillStyle=SK;x.beginPath();x.arc(hx,hy,9,0,7);x.fill();return[hx,hy]}
+function body(){x.fillStyle=&#x27;#2B4C7E&#x27;;x.beginPath();x.moveTo(cx-48,114);x.lineTo(cx+48,114);x.lineTo(cx+60,233);x.lineTo(cx-60,233);x.closePath();x.fill();x.fillStyle=SK;x.fillRect(cx-9,92,18,24);x.fillStyle=&#x27;#C9A24D&#x27;;x.beginPath();x.moveTo(cx-15,112);x.lineTo(cx+15,112);x.lineTo(cx,138);x.closePath();x.fill();x.beginPath();x.arc(cx,168,4,0,7);x.fill();x.beginPath();x.arc(cx,198,4,0,7);x.fill();x.fillStyle=&#x27;#3B2A20&#x27;;x.beginPath();x.arc(cx-27,62,11,0,7);x.fill();x.beginPath();x.arc(cx,72,29,Math.PI,0);x.fill();x.fillStyle=SK;x.beginPath();x.arc(cx,76,26,0,7);x.fill();x.fillStyle=&#x27;#3B2A20&#x27;;x.beginPath();x.ellipse(cx,56,26,10,0,0,7);x.fill();x.fillStyle=&#x27;#13233F&#x27;;x.beginPath();x.arc(cx-9,78,3,0,7);x.fill();x.beginPath();x.arc(cx+9,78,3,0,7);x.fill();x.strokeStyle=&#x27;#A0522D&#x27;;x.lineWidth=2.5;x.beginPath();x.arc(cx,84,8,.2*Math.PI,.8*Math.PI);x.stroke();x.save();x.translate(cx+6,44);x.rotate(-.15);x.fillStyle=&#x27;#1E3A66&#x27;;x.fillRect(-22,-9,44,16);x.fillStyle=&#x27;#C9A24D&#x27;;x.fillRect(-22,3,44,4);x.restore()}
+function mask(mx,my){x.fillStyle=&#x27;#F2C14E&#x27;;x.beginPath();x.ellipse(mx,my,15,11,0,0,7);x.fill();x.fillStyle=&#x27;#D9A63A&#x27;;x.beginPath();x.ellipse(mx,my+2,8,5,0,0,7);x.fill()}
+function tube(ax,ay,bx,by){x.strokeStyle=&#x27;rgba(244,238,226,.65)&#x27;;x.lineWidth=2;x.beginPath();x.moveTo(ax,ay);x.quadraticCurveTo(ax,(ay+by)/2,bx,by);x.stroke()}
+function chev(px,py,dr){x.strokeStyle=&#x27;#C9A24D&#x27;;x.lineWidth=4;x.lineCap=&#x27;round&#x27;;x.beginPath();x.moveTo(px,py-10);x.lineTo(px+10*dr,py);x.lineTo(px,py+10);x.stroke()}
+function up(px,py){x.strokeStyle=&#x27;#C9A24D&#x27;;x.lineWidth=4;x.lineCap=&#x27;round&#x27;;x.beginPath();x.moveTo(px-10,py+6);x.lineTo(px,py-4);x.lineTo(px+10,py+6);x.stroke()}
+function vest(v){x.save();x.globalAlpha=v[3];x.translate(v[0],v[1]);x.scale(v[2],v[2]);x.fillStyle=&#x27;#F08A24&#x27;;rr(-46,-44,40,86,14);rr(6,-44,40,86,14);x.fillStyle=&#x27;#C0392B&#x27;;x.fillRect(-22,40,8,14);x.fillRect(14,40,8,14);x.restore()}
+function vs(t,p){const vy=t&lt;.45?(p[1]+p[3])/2+44:165;const s=(t&lt;.45?.85+.15*sm((t-.3)/.15):1)+.15*sm((t-.58)/.08);const a=t&lt;.06?t/.06:t&gt;.9?cl(1-(t-.9)/.1):1;return[cx,vy,s,a]}
+function pl(px,py,k,col){x.save();x.translate(px,py);x.rotate(-Math.PI/2);x.scale(k,k);x.fillStyle=col;x.beginPath();x.moveTo(28,0);x.lineTo(14,-5);x.lineTo(-22,-5);x.lineTo(-28,0);x.lineTo(-22,5);x.lineTo(14,5);x.closePath();x.fill();x.beginPath();x.moveTo(7,-4);x.lineTo(-9,-30);x.lineTo(-16,-30);x.lineTo(-7,-4);x.closePath();x.fill();x.beginPath();x.moveTo(7,4);x.lineTo(-9,30);x.lineTo(-16,30);x.lineTo(-7,4);x.closePath();x.fill();x.restore()}
+function child(){x.fillStyle=&#x27;#7FB48F&#x27;;rr(368,170,34,63,10);x.fillStyle=SK;x.beginPath();x.arc(385,154,15,0,7);x.fill();x.fillStyle=&#x27;#3B2A20&#x27;;x.beginPath();x.arc(385,150,16,Math.PI,0);x.fill()}
+const s0=performance.now(),T=5200;
+function f(n){const t=(Math.max(0,n-s0)%T)/T;x.fillStyle=&#x27;#13233F&#x27;;x.fillRect(0,0,501,233);const p=pose(t);
+if(G===4)child();
+body();
+if(G===5&amp;&amp;t&gt;=.3)vest(vs(t,p));
+const L=arm(cx-40,120,p[0],p[1],-1),R=arm(cx+40,120,p[2],p[3],1);
+if(G===1){const by=204;if(t&gt;.42&amp;&amp;t&lt;.95){ln(cx-60,by,cx,by,&#x27;#8A93A3&#x27;,8);ln(cx+60,by,cx,by,&#x27;#8A93A3&#x27;,8);if(R[0]&gt;cx+14)ln(cx,by,R[0],R[1],&#x27;#8A93A3&#x27;,6);x.fillStyle=&#x27;#C9A24D&#x27;;x.fillRect(cx-10,by-9,20,18);if(t&lt;.56){x.strokeStyle=&#x27;rgba(201,162,77,&#x27;+cl(1-(t-.42)/.14)+&#x27;)&#x27;;x.lineWidth=3;x.beginPath();x.arc(cx,by,12+(t-.42)*260,0,7);x.stroke()}}else{ln(cx-60,by,L[0],L[1],&#x27;#8A93A3&#x27;,8);ln(cx+60,by,R[0],R[1],&#x27;#8A93A3&#x27;,8);x.fillStyle=&#x27;#D5DAE2&#x27;;x.fillRect(L[0]-7,L[1]-5,14,10);x.fillStyle=&#x27;#C9A24D&#x27;;x.fillRect(R[0]-9,R[1]-8,18,16)}}
+if(G===2){if(t&gt;.13&amp;&amp;t&lt;.4){x.strokeStyle=&#x27;#C9A24D&#x27;;x.lineWidth=3;[L,R].forEach(h=&gt;{x.beginPath();x.arc(h[0],h[1],15+3*Math.sin(n/120),0,7);x.stroke()})}if(t&gt;.47&amp;&amp;t&lt;.72){chev(L[0]-22,L[1],-1);chev(R[0]+22,R[1],1)}if(t&gt;.78&amp;&amp;t&lt;.94){up(L[0],L[1]-20);up(R[0],R[1]-20)}}
+if(G===3){const at=t&gt;=.36&amp;&amp;t&lt;.92;const m=at?[R[0],R[1]-2]:[318,t&lt;.18?-20+78*sm(t/.18):58+3*Math.sin(t*40)];tube(318,0,m[0],m[1]-9);mask(m[0],m[1]);if(t&gt;.66&amp;&amp;t&lt;.9)ln(m[0]-14,m[1]-2,L[0],L[1],&#x27;#E7E2D6&#x27;,2)}
+if(G===4){tube(300,0,cx,79);mask(cx,88);let m=null;if(t&lt;.32)m=[360,t&lt;.15?-20+84*sm(t/.15):64+3*Math.sin(t*40)];else if(t&lt;.74)m=[R[0],R[1]-2];else if(t&lt;.88)m=[384,160];if(m){tube(360,0,m[0],m[1]-9);mask(m[0],m[1])}}
+if(G===5&amp;&amp;t&lt;.3)vest(vs(t,p));
+if(G===6){const px=R[0],py=R[1]-16,on=t&gt;.42&amp;&amp;t&lt;.88;x.fillStyle=&#x27;#1B1F2A&#x27;;rr(px-14,py-23,28,46,5);x.fillStyle=on?&#x27;#C9A24D&#x27;:&#x27;#5B6B86&#x27;;rr(px-11,py-18,22,34,3);if(on)pl(px,py-1,.32,&#x27;#13233F&#x27;);if(t&gt;.42&amp;&amp;t&lt;.58){x.strokeStyle=&#x27;rgba(201,162,77,&#x27;+cl(1-(t-.42)/.16)+&#x27;)&#x27;;x.lineWidth=3;x.beginPath();x.arc(px,py,26+(t-.42)*200,0,7);x.stroke()}}
+x.fillStyle=&#x27;#C9A24D&#x27;;x.beginPath();x.arc(36,36,24,0,7);x.fill();x.fillStyle=&#x27;#13233F&#x27;;x.font=&#x27;800 28px Arial,sans-serif&#x27;;x.textAlign=&#x27;center&#x27;;x.textBaseline=&#x27;middle&#x27;;x.fillText(String(G),36,37);
+requestAnimationFrame(f)}
+requestAnimationFrame(f);
+&lt;/script&gt;"></iframe>
+<iframe class="emb" sandbox="allow-scripts" style="position:absolute;left:709px;top:386px;width:501px;height:233px;border:0" data-src="&lt;meta charset=&quot;utf-8&quot;&gt;&lt;style&gt;html,body{margin:0;overflow:hidden}&lt;/style&gt;&lt;canvas id=&quot;c&quot; width=&quot;501&quot; height=&quot;233&quot; style=&quot;position:fixed;left:0;top:0;width:100%;height:100%&quot;&gt;&lt;/canvas&gt;&lt;script&gt;
+const G=2;
+const c=document.getElementById(&#x27;c&#x27;),x=c.getContext(&#x27;2d&#x27;),cx=250,SK=&#x27;#E8C4A0&#x27;;
+const K={1:[[0,198,206,302,206],[.3,240,202,260,202],[.42,240,202,260,202],[.6,242,202,312,192],[.8,242,202,312,192],[1,198,206,302,206]],2:[[0,198,218,302,218],[.15,226,150,274,150],[.35,226,150,274,150],[.5,150,118,350,118],[.68,150,118,350,118],[.8,214,96,286,96],[.92,214,96,286,96],[1,198,218,302,218]],3:[[0,198,218,302,218],[.2,198,218,302,218],[.36,198,218,318,62],[.56,198,218,252,88],[.68,226,60,252,88],[.88,226,60,252,88],[1,198,218,302,218]],4:[[0,198,218,302,218],[.1,236,92,302,218],[.22,236,92,302,218],[.32,198,218,360,64],[.5,198,218,384,156],[.74,198,218,384,156],[.88,198,218,302,218],[1,198,218,302,218]],5:[[0,198,218,302,218],[.15,226,28,274,28],[.3,226,28,274,28],[.45,214,128,286,128],[.55,232,196,268,196],[.65,232,222,268,222],[.85,232,222,268,222],[1,198,218,302,218]],6:[[0,198,218,302,218],[.18,198,218,276,150],[.32,250,170,276,150],[.4,266,146,276,150],[.46,250,170,276,150],[.82,250,170,276,150],[1,198,218,302,218]]}[G];
+function cl(v){return v&lt;0?0:v&gt;1?1:v}
+function sm(a){a=cl(a);return a*a*(3-2*a)}
+function pose(t){for(let i=0;i&lt;K.length-1;i++){const a=K[i],b=K[i+1];if(t&lt;=b[0]){const u=sm((t-a[0])/((b[0]-a[0])||1));return[a[1]+(b[1]-a[1])*u,a[2]+(b[2]-a[2])*u,a[3]+(b[3]-a[3])*u,a[4]+(b[4]-a[4])*u]}}const z=K[K.length-1];return[z[1],z[2],z[3],z[4]]}
+function rr(a,b,w,h,r){x.beginPath();x.moveTo(a+r,b);x.arcTo(a+w,b,a+w,b+h,r);x.arcTo(a+w,b+h,a,b+h,r);x.arcTo(a,b+h,a,b,r);x.arcTo(a,b,a+w,b,r);x.closePath();x.fill()}
+function ln(a,b,c2,d,col,w){x.strokeStyle=col;x.lineWidth=w;x.lineCap=&#x27;round&#x27;;x.beginPath();x.moveTo(a,b);x.lineTo(c2,d);x.stroke()}
+function arm(sx,sy,tx,ty,sd){const l1=52,l2=50,dx=tx-sx,dy=ty-sy,d=Math.max(8,Math.min(Math.hypot(dx,dy),l1+l2-1)),th=Math.atan2(dy,dx),q=(l1*l1+d*d-l2*l2)/(2*l1*d),al=Math.acos(Math.max(-1,Math.min(1,q)));const e1=[sx+l1*Math.cos(th+al),sy+l1*Math.sin(th+al)],e2=[sx+l1*Math.cos(th-al),sy+l1*Math.sin(th-al)];const e=(sd&lt;0?e1[0]&lt;e2[0]:e1[0]&gt;e2[0])?e1:e2;const hx=sx+d*Math.cos(th),hy=sy+d*Math.sin(th);x.strokeStyle=&#x27;#3A66A6&#x27;;x.lineWidth=15;x.lineCap=&#x27;round&#x27;;x.lineJoin=&#x27;round&#x27;;x.beginPath();x.moveTo(sx,sy);x.lineTo(e[0],e[1]);x.lineTo(hx,hy);x.stroke();x.fillStyle=SK;x.beginPath();x.arc(hx,hy,9,0,7);x.fill();return[hx,hy]}
+function body(){x.fillStyle=&#x27;#2B4C7E&#x27;;x.beginPath();x.moveTo(cx-48,114);x.lineTo(cx+48,114);x.lineTo(cx+60,233);x.lineTo(cx-60,233);x.closePath();x.fill();x.fillStyle=SK;x.fillRect(cx-9,92,18,24);x.fillStyle=&#x27;#C9A24D&#x27;;x.beginPath();x.moveTo(cx-15,112);x.lineTo(cx+15,112);x.lineTo(cx,138);x.closePath();x.fill();x.beginPath();x.arc(cx,168,4,0,7);x.fill();x.beginPath();x.arc(cx,198,4,0,7);x.fill();x.fillStyle=&#x27;#3B2A20&#x27;;x.beginPath();x.arc(cx-27,62,11,0,7);x.fill();x.beginPath();x.arc(cx,72,29,Math.PI,0);x.fill();x.fillStyle=SK;x.beginPath();x.arc(cx,76,26,0,7);x.fill();x.fillStyle=&#x27;#3B2A20&#x27;;x.beginPath();x.ellipse(cx,56,26,10,0,0,7);x.fill();x.fillStyle=&#x27;#13233F&#x27;;x.beginPath();x.arc(cx-9,78,3,0,7);x.fill();x.beginPath();x.arc(cx+9,78,3,0,7);x.fill();x.strokeStyle=&#x27;#A0522D&#x27;;x.lineWidth=2.5;x.beginPath();x.arc(cx,84,8,.2*Math.PI,.8*Math.PI);x.stroke();x.save();x.translate(cx+6,44);x.rotate(-.15);x.fillStyle=&#x27;#1E3A66&#x27;;x.fillRect(-22,-9,44,16);x.fillStyle=&#x27;#C9A24D&#x27;;x.fillRect(-22,3,44,4);x.restore()}
+function mask(mx,my){x.fillStyle=&#x27;#F2C14E&#x27;;x.beginPath();x.ellipse(mx,my,15,11,0,0,7);x.fill();x.fillStyle=&#x27;#D9A63A&#x27;;x.beginPath();x.ellipse(mx,my+2,8,5,0,0,7);x.fill()}
+function tube(ax,ay,bx,by){x.strokeStyle=&#x27;rgba(244,238,226,.65)&#x27;;x.lineWidth=2;x.beginPath();x.moveTo(ax,ay);x.quadraticCurveTo(ax,(ay+by)/2,bx,by);x.stroke()}
+function chev(px,py,dr){x.strokeStyle=&#x27;#C9A24D&#x27;;x.lineWidth=4;x.lineCap=&#x27;round&#x27;;x.beginPath();x.moveTo(px,py-10);x.lineTo(px+10*dr,py);x.lineTo(px,py+10);x.stroke()}
+function up(px,py){x.strokeStyle=&#x27;#C9A24D&#x27;;x.lineWidth=4;x.lineCap=&#x27;round&#x27;;x.beginPath();x.moveTo(px-10,py+6);x.lineTo(px,py-4);x.lineTo(px+10,py+6);x.stroke()}
+function vest(v){x.save();x.globalAlpha=v[3];x.translate(v[0],v[1]);x.scale(v[2],v[2]);x.fillStyle=&#x27;#F08A24&#x27;;rr(-46,-44,40,86,14);rr(6,-44,40,86,14);x.fillStyle=&#x27;#C0392B&#x27;;x.fillRect(-22,40,8,14);x.fillRect(14,40,8,14);x.restore()}
+function vs(t,p){const vy=t&lt;.45?(p[1]+p[3])/2+44:165;const s=(t&lt;.45?.85+.15*sm((t-.3)/.15):1)+.15*sm((t-.58)/.08);const a=t&lt;.06?t/.06:t&gt;.9?cl(1-(t-.9)/.1):1;return[cx,vy,s,a]}
+function pl(px,py,k,col){x.save();x.translate(px,py);x.rotate(-Math.PI/2);x.scale(k,k);x.fillStyle=col;x.beginPath();x.moveTo(28,0);x.lineTo(14,-5);x.lineTo(-22,-5);x.lineTo(-28,0);x.lineTo(-22,5);x.lineTo(14,5);x.closePath();x.fill();x.beginPath();x.moveTo(7,-4);x.lineTo(-9,-30);x.lineTo(-16,-30);x.lineTo(-7,-4);x.closePath();x.fill();x.beginPath();x.moveTo(7,4);x.lineTo(-9,30);x.lineTo(-16,30);x.lineTo(-7,4);x.closePath();x.fill();x.restore()}
+function child(){x.fillStyle=&#x27;#7FB48F&#x27;;rr(368,170,34,63,10);x.fillStyle=SK;x.beginPath();x.arc(385,154,15,0,7);x.fill();x.fillStyle=&#x27;#3B2A20&#x27;;x.beginPath();x.arc(385,150,16,Math.PI,0);x.fill()}
+const s0=performance.now(),T=5200;
+function f(n){const t=(Math.max(0,n-s0)%T)/T;x.fillStyle=&#x27;#13233F&#x27;;x.fillRect(0,0,501,233);const p=pose(t);
+if(G===4)child();
+body();
+if(G===5&amp;&amp;t&gt;=.3)vest(vs(t,p));
+const L=arm(cx-40,120,p[0],p[1],-1),R=arm(cx+40,120,p[2],p[3],1);
+if(G===1){const by=204;if(t&gt;.42&amp;&amp;t&lt;.95){ln(cx-60,by,cx,by,&#x27;#8A93A3&#x27;,8);ln(cx+60,by,cx,by,&#x27;#8A93A3&#x27;,8);if(R[0]&gt;cx+14)ln(cx,by,R[0],R[1],&#x27;#8A93A3&#x27;,6);x.fillStyle=&#x27;#C9A24D&#x27;;x.fillRect(cx-10,by-9,20,18);if(t&lt;.56){x.strokeStyle=&#x27;rgba(201,162,77,&#x27;+cl(1-(t-.42)/.14)+&#x27;)&#x27;;x.lineWidth=3;x.beginPath();x.arc(cx,by,12+(t-.42)*260,0,7);x.stroke()}}else{ln(cx-60,by,L[0],L[1],&#x27;#8A93A3&#x27;,8);ln(cx+60,by,R[0],R[1],&#x27;#8A93A3&#x27;,8);x.fillStyle=&#x27;#D5DAE2&#x27;;x.fillRect(L[0]-7,L[1]-5,14,10);x.fillStyle=&#x27;#C9A24D&#x27;;x.fillRect(R[0]-9,R[1]-8,18,16)}}
+if(G===2){if(t&gt;.13&amp;&amp;t&lt;.4){x.strokeStyle=&#x27;#C9A24D&#x27;;x.lineWidth=3;[L,R].forEach(h=&gt;{x.beginPath();x.arc(h[0],h[1],15+3*Math.sin(n/120),0,7);x.stroke()})}if(t&gt;.47&amp;&amp;t&lt;.72){chev(L[0]-22,L[1],-1);chev(R[0]+22,R[1],1)}if(t&gt;.78&amp;&amp;t&lt;.94){up(L[0],L[1]-20);up(R[0],R[1]-20)}}
+if(G===3){const at=t&gt;=.36&amp;&amp;t&lt;.92;const m=at?[R[0],R[1]-2]:[318,t&lt;.18?-20+78*sm(t/.18):58+3*Math.sin(t*40)];tube(318,0,m[0],m[1]-9);mask(m[0],m[1]);if(t&gt;.66&amp;&amp;t&lt;.9)ln(m[0]-14,m[1]-2,L[0],L[1],&#x27;#E7E2D6&#x27;,2)}
+if(G===4){tube(300,0,cx,79);mask(cx,88);let m=null;if(t&lt;.32)m=[360,t&lt;.15?-20+84*sm(t/.15):64+3*Math.sin(t*40)];else if(t&lt;.74)m=[R[0],R[1]-2];else if(t&lt;.88)m=[384,160];if(m){tube(360,0,m[0],m[1]-9);mask(m[0],m[1])}}
+if(G===5&amp;&amp;t&lt;.3)vest(vs(t,p));
+if(G===6){const px=R[0],py=R[1]-16,on=t&gt;.42&amp;&amp;t&lt;.88;x.fillStyle=&#x27;#1B1F2A&#x27;;rr(px-14,py-23,28,46,5);x.fillStyle=on?&#x27;#C9A24D&#x27;:&#x27;#5B6B86&#x27;;rr(px-11,py-18,22,34,3);if(on)pl(px,py-1,.32,&#x27;#13233F&#x27;);if(t&gt;.42&amp;&amp;t&lt;.58){x.strokeStyle=&#x27;rgba(201,162,77,&#x27;+cl(1-(t-.42)/.16)+&#x27;)&#x27;;x.lineWidth=3;x.beginPath();x.arc(px,py,26+(t-.42)*200,0,7);x.stroke()}}
+x.fillStyle=&#x27;#C9A24D&#x27;;x.beginPath();x.arc(36,36,24,0,7);x.fill();x.fillStyle=&#x27;#13233F&#x27;;x.font=&#x27;800 28px Arial,sans-serif&#x27;;x.textAlign=&#x27;center&#x27;;x.textBaseline=&#x27;middle&#x27;;x.fillText(String(G),36,37);
+requestAnimationFrame(f)}
+requestAnimationFrame(f);
+&lt;/script&gt;"></iframe>
+<iframe class="emb" sandbox="allow-scripts" style="position:absolute;left:1274px;top:386px;width:501px;height:233px;border:0" data-src="&lt;meta charset=&quot;utf-8&quot;&gt;&lt;style&gt;html,body{margin:0;overflow:hidden}&lt;/style&gt;&lt;canvas id=&quot;c&quot; width=&quot;501&quot; height=&quot;233&quot; style=&quot;position:fixed;left:0;top:0;width:100%;height:100%&quot;&gt;&lt;/canvas&gt;&lt;script&gt;
+const G=3;
+const c=document.getElementById(&#x27;c&#x27;),x=c.getContext(&#x27;2d&#x27;),cx=250,SK=&#x27;#E8C4A0&#x27;;
+const K={1:[[0,198,206,302,206],[.3,240,202,260,202],[.42,240,202,260,202],[.6,242,202,312,192],[.8,242,202,312,192],[1,198,206,302,206]],2:[[0,198,218,302,218],[.15,226,150,274,150],[.35,226,150,274,150],[.5,150,118,350,118],[.68,150,118,350,118],[.8,214,96,286,96],[.92,214,96,286,96],[1,198,218,302,218]],3:[[0,198,218,302,218],[.2,198,218,302,218],[.36,198,218,318,62],[.56,198,218,252,88],[.68,226,60,252,88],[.88,226,60,252,88],[1,198,218,302,218]],4:[[0,198,218,302,218],[.1,236,92,302,218],[.22,236,92,302,218],[.32,198,218,360,64],[.5,198,218,384,156],[.74,198,218,384,156],[.88,198,218,302,218],[1,198,218,302,218]],5:[[0,198,218,302,218],[.15,226,28,274,28],[.3,226,28,274,28],[.45,214,128,286,128],[.55,232,196,268,196],[.65,232,222,268,222],[.85,232,222,268,222],[1,198,218,302,218]],6:[[0,198,218,302,218],[.18,198,218,276,150],[.32,250,170,276,150],[.4,266,146,276,150],[.46,250,170,276,150],[.82,250,170,276,150],[1,198,218,302,218]]}[G];
+function cl(v){return v&lt;0?0:v&gt;1?1:v}
+function sm(a){a=cl(a);return a*a*(3-2*a)}
+function pose(t){for(let i=0;i&lt;K.length-1;i++){const a=K[i],b=K[i+1];if(t&lt;=b[0]){const u=sm((t-a[0])/((b[0]-a[0])||1));return[a[1]+(b[1]-a[1])*u,a[2]+(b[2]-a[2])*u,a[3]+(b[3]-a[3])*u,a[4]+(b[4]-a[4])*u]}}const z=K[K.length-1];return[z[1],z[2],z[3],z[4]]}
+function rr(a,b,w,h,r){x.beginPath();x.moveTo(a+r,b);x.arcTo(a+w,b,a+w,b+h,r);x.arcTo(a+w,b+h,a,b+h,r);x.arcTo(a,b+h,a,b,r);x.arcTo(a,b,a+w,b,r);x.closePath();x.fill()}
+function ln(a,b,c2,d,col,w){x.strokeStyle=col;x.lineWidth=w;x.lineCap=&#x27;round&#x27;;x.beginPath();x.moveTo(a,b);x.lineTo(c2,d);x.stroke()}
+function arm(sx,sy,tx,ty,sd){const l1=52,l2=50,dx=tx-sx,dy=ty-sy,d=Math.max(8,Math.min(Math.hypot(dx,dy),l1+l2-1)),th=Math.atan2(dy,dx),q=(l1*l1+d*d-l2*l2)/(2*l1*d),al=Math.acos(Math.max(-1,Math.min(1,q)));const e1=[sx+l1*Math.cos(th+al),sy+l1*Math.sin(th+al)],e2=[sx+l1*Math.cos(th-al),sy+l1*Math.sin(th-al)];const e=(sd&lt;0?e1[0]&lt;e2[0]:e1[0]&gt;e2[0])?e1:e2;const hx=sx+d*Math.cos(th),hy=sy+d*Math.sin(th);x.strokeStyle=&#x27;#3A66A6&#x27;;x.lineWidth=15;x.lineCap=&#x27;round&#x27;;x.lineJoin=&#x27;round&#x27;;x.beginPath();x.moveTo(sx,sy);x.lineTo(e[0],e[1]);x.lineTo(hx,hy);x.stroke();x.fillStyle=SK;x.beginPath();x.arc(hx,hy,9,0,7);x.fill();return[hx,hy]}
+function body(){x.fillStyle=&#x27;#2B4C7E&#x27;;x.beginPath();x.moveTo(cx-48,114);x.lineTo(cx+48,114);x.lineTo(cx+60,233);x.lineTo(cx-60,233);x.closePath();x.fill();x.fillStyle=SK;x.fillRect(cx-9,92,18,24);x.fillStyle=&#x27;#C9A24D&#x27;;x.beginPath();x.moveTo(cx-15,112);x.lineTo(cx+15,112);x.lineTo(cx,138);x.closePath();x.fill();x.beginPath();x.arc(cx,168,4,0,7);x.fill();x.beginPath();x.arc(cx,198,4,0,7);x.fill();x.fillStyle=&#x27;#3B2A20&#x27;;x.beginPath();x.arc(cx-27,62,11,0,7);x.fill();x.beginPath();x.arc(cx,72,29,Math.PI,0);x.fill();x.fillStyle=SK;x.beginPath();x.arc(cx,76,26,0,7);x.fill();x.fillStyle=&#x27;#3B2A20&#x27;;x.beginPath();x.ellipse(cx,56,26,10,0,0,7);x.fill();x.fillStyle=&#x27;#13233F&#x27;;x.beginPath();x.arc(cx-9,78,3,0,7);x.fill();x.beginPath();x.arc(cx+9,78,3,0,7);x.fill();x.strokeStyle=&#x27;#A0522D&#x27;;x.lineWidth=2.5;x.beginPath();x.arc(cx,84,8,.2*Math.PI,.8*Math.PI);x.stroke();x.save();x.translate(cx+6,44);x.rotate(-.15);x.fillStyle=&#x27;#1E3A66&#x27;;x.fillRect(-22,-9,44,16);x.fillStyle=&#x27;#C9A24D&#x27;;x.fillRect(-22,3,44,4);x.restore()}
+function mask(mx,my){x.fillStyle=&#x27;#F2C14E&#x27;;x.beginPath();x.ellipse(mx,my,15,11,0,0,7);x.fill();x.fillStyle=&#x27;#D9A63A&#x27;;x.beginPath();x.ellipse(mx,my+2,8,5,0,0,7);x.fill()}
+function tube(ax,ay,bx,by){x.strokeStyle=&#x27;rgba(244,238,226,.65)&#x27;;x.lineWidth=2;x.beginPath();x.moveTo(ax,ay);x.quadraticCurveTo(ax,(ay+by)/2,bx,by);x.stroke()}
+function chev(px,py,dr){x.strokeStyle=&#x27;#C9A24D&#x27;;x.lineWidth=4;x.lineCap=&#x27;round&#x27;;x.beginPath();x.moveTo(px,py-10);x.lineTo(px+10*dr,py);x.lineTo(px,py+10);x.stroke()}
+function up(px,py){x.strokeStyle=&#x27;#C9A24D&#x27;;x.lineWidth=4;x.lineCap=&#x27;round&#x27;;x.beginPath();x.moveTo(px-10,py+6);x.lineTo(px,py-4);x.lineTo(px+10,py+6);x.stroke()}
+function vest(v){x.save();x.globalAlpha=v[3];x.translate(v[0],v[1]);x.scale(v[2],v[2]);x.fillStyle=&#x27;#F08A24&#x27;;rr(-46,-44,40,86,14);rr(6,-44,40,86,14);x.fillStyle=&#x27;#C0392B&#x27;;x.fillRect(-22,40,8,14);x.fillRect(14,40,8,14);x.restore()}
+function vs(t,p){const vy=t&lt;.45?(p[1]+p[3])/2+44:165;const s=(t&lt;.45?.85+.15*sm((t-.3)/.15):1)+.15*sm((t-.58)/.08);const a=t&lt;.06?t/.06:t&gt;.9?cl(1-(t-.9)/.1):1;return[cx,vy,s,a]}
+function pl(px,py,k,col){x.save();x.translate(px,py);x.rotate(-Math.PI/2);x.scale(k,k);x.fillStyle=col;x.beginPath();x.moveTo(28,0);x.lineTo(14,-5);x.lineTo(-22,-5);x.lineTo(-28,0);x.lineTo(-22,5);x.lineTo(14,5);x.closePath();x.fill();x.beginPath();x.moveTo(7,-4);x.lineTo(-9,-30);x.lineTo(-16,-30);x.lineTo(-7,-4);x.closePath();x.fill();x.beginPath();x.moveTo(7,4);x.lineTo(-9,30);x.lineTo(-16,30);x.lineTo(-7,4);x.closePath();x.fill();x.restore()}
+function child(){x.fillStyle=&#x27;#7FB48F&#x27;;rr(368,170,34,63,10);x.fillStyle=SK;x.beginPath();x.arc(385,154,15,0,7);x.fill();x.fillStyle=&#x27;#3B2A20&#x27;;x.beginPath();x.arc(385,150,16,Math.PI,0);x.fill()}
+const s0=performance.now(),T=5200;
+function f(n){const t=(Math.max(0,n-s0)%T)/T;x.fillStyle=&#x27;#13233F&#x27;;x.fillRect(0,0,501,233);const p=pose(t);
+if(G===4)child();
+body();
+if(G===5&amp;&amp;t&gt;=.3)vest(vs(t,p));
+const L=arm(cx-40,120,p[0],p[1],-1),R=arm(cx+40,120,p[2],p[3],1);
+if(G===1){const by=204;if(t&gt;.42&amp;&amp;t&lt;.95){ln(cx-60,by,cx,by,&#x27;#8A93A3&#x27;,8);ln(cx+60,by,cx,by,&#x27;#8A93A3&#x27;,8);if(R[0]&gt;cx+14)ln(cx,by,R[0],R[1],&#x27;#8A93A3&#x27;,6);x.fillStyle=&#x27;#C9A24D&#x27;;x.fillRect(cx-10,by-9,20,18);if(t&lt;.56){x.strokeStyle=&#x27;rgba(201,162,77,&#x27;+cl(1-(t-.42)/.14)+&#x27;)&#x27;;x.lineWidth=3;x.beginPath();x.arc(cx,by,12+(t-.42)*260,0,7);x.stroke()}}else{ln(cx-60,by,L[0],L[1],&#x27;#8A93A3&#x27;,8);ln(cx+60,by,R[0],R[1],&#x27;#8A93A3&#x27;,8);x.fillStyle=&#x27;#D5DAE2&#x27;;x.fillRect(L[0]-7,L[1]-5,14,10);x.fillStyle=&#x27;#C9A24D&#x27;;x.fillRect(R[0]-9,R[1]-8,18,16)}}
+if(G===2){if(t&gt;.13&amp;&amp;t&lt;.4){x.strokeStyle=&#x27;#C9A24D&#x27;;x.lineWidth=3;[L,R].forEach(h=&gt;{x.beginPath();x.arc(h[0],h[1],15+3*Math.sin(n/120),0,7);x.stroke()})}if(t&gt;.47&amp;&amp;t&lt;.72){chev(L[0]-22,L[1],-1);chev(R[0]+22,R[1],1)}if(t&gt;.78&amp;&amp;t&lt;.94){up(L[0],L[1]-20);up(R[0],R[1]-20)}}
+if(G===3){const at=t&gt;=.36&amp;&amp;t&lt;.92;const m=at?[R[0],R[1]-2]:[318,t&lt;.18?-20+78*sm(t/.18):58+3*Math.sin(t*40)];tube(318,0,m[0],m[1]-9);mask(m[0],m[1]);if(t&gt;.66&amp;&amp;t&lt;.9)ln(m[0]-14,m[1]-2,L[0],L[1],&#x27;#E7E2D6&#x27;,2)}
+if(G===4){tube(300,0,cx,79);mask(cx,88);let m=null;if(t&lt;.32)m=[360,t&lt;.15?-20+84*sm(t/.15):64+3*Math.sin(t*40)];else if(t&lt;.74)m=[R[0],R[1]-2];else if(t&lt;.88)m=[384,160];if(m){tube(360,0,m[0],m[1]-9);mask(m[0],m[1])}}
+if(G===5&amp;&amp;t&lt;.3)vest(vs(t,p));
+if(G===6){const px=R[0],py=R[1]-16,on=t&gt;.42&amp;&amp;t&lt;.88;x.fillStyle=&#x27;#1B1F2A&#x27;;rr(px-14,py-23,28,46,5);x.fillStyle=on?&#x27;#C9A24D&#x27;:&#x27;#5B6B86&#x27;;rr(px-11,py-18,22,34,3);if(on)pl(px,py-1,.32,&#x27;#13233F&#x27;);if(t&gt;.42&amp;&amp;t&lt;.58){x.strokeStyle=&#x27;rgba(201,162,77,&#x27;+cl(1-(t-.42)/.16)+&#x27;)&#x27;;x.lineWidth=3;x.beginPath();x.arc(px,py,26+(t-.42)*200,0,7);x.stroke()}}
+x.fillStyle=&#x27;#C9A24D&#x27;;x.beginPath();x.arc(36,36,24,0,7);x.fill();x.fillStyle=&#x27;#13233F&#x27;;x.font=&#x27;800 28px Arial,sans-serif&#x27;;x.textAlign=&#x27;center&#x27;;x.textBaseline=&#x27;middle&#x27;;x.fillText(String(G),36,37);
+requestAnimationFrame(f)}
+requestAnimationFrame(f);
+&lt;/script&gt;"></iframe>
+<iframe class="emb" sandbox="allow-scripts" style="position:absolute;left:144px;top:671px;width:501px;height:233px;border:0" data-src="&lt;meta charset=&quot;utf-8&quot;&gt;&lt;style&gt;html,body{margin:0;overflow:hidden}&lt;/style&gt;&lt;canvas id=&quot;c&quot; width=&quot;501&quot; height=&quot;233&quot; style=&quot;position:fixed;left:0;top:0;width:100%;height:100%&quot;&gt;&lt;/canvas&gt;&lt;script&gt;
+const G=4;
+const c=document.getElementById(&#x27;c&#x27;),x=c.getContext(&#x27;2d&#x27;),cx=250,SK=&#x27;#E8C4A0&#x27;;
+const K={1:[[0,198,206,302,206],[.3,240,202,260,202],[.42,240,202,260,202],[.6,242,202,312,192],[.8,242,202,312,192],[1,198,206,302,206]],2:[[0,198,218,302,218],[.15,226,150,274,150],[.35,226,150,274,150],[.5,150,118,350,118],[.68,150,118,350,118],[.8,214,96,286,96],[.92,214,96,286,96],[1,198,218,302,218]],3:[[0,198,218,302,218],[.2,198,218,302,218],[.36,198,218,318,62],[.56,198,218,252,88],[.68,226,60,252,88],[.88,226,60,252,88],[1,198,218,302,218]],4:[[0,198,218,302,218],[.1,236,92,302,218],[.22,236,92,302,218],[.32,198,218,360,64],[.5,198,218,384,156],[.74,198,218,384,156],[.88,198,218,302,218],[1,198,218,302,218]],5:[[0,198,218,302,218],[.15,226,28,274,28],[.3,226,28,274,28],[.45,214,128,286,128],[.55,232,196,268,196],[.65,232,222,268,222],[.85,232,222,268,222],[1,198,218,302,218]],6:[[0,198,218,302,218],[.18,198,218,276,150],[.32,250,170,276,150],[.4,266,146,276,150],[.46,250,170,276,150],[.82,250,170,276,150],[1,198,218,302,218]]}[G];
+function cl(v){return v&lt;0?0:v&gt;1?1:v}
+function sm(a){a=cl(a);return a*a*(3-2*a)}
+function pose(t){for(let i=0;i&lt;K.length-1;i++){const a=K[i],b=K[i+1];if(t&lt;=b[0]){const u=sm((t-a[0])/((b[0]-a[0])||1));return[a[1]+(b[1]-a[1])*u,a[2]+(b[2]-a[2])*u,a[3]+(b[3]-a[3])*u,a[4]+(b[4]-a[4])*u]}}const z=K[K.length-1];return[z[1],z[2],z[3],z[4]]}
+function rr(a,b,w,h,r){x.beginPath();x.moveTo(a+r,b);x.arcTo(a+w,b,a+w,b+h,r);x.arcTo(a+w,b+h,a,b+h,r);x.arcTo(a,b+h,a,b,r);x.arcTo(a,b,a+w,b,r);x.closePath();x.fill()}
+function ln(a,b,c2,d,col,w){x.strokeStyle=col;x.lineWidth=w;x.lineCap=&#x27;round&#x27;;x.beginPath();x.moveTo(a,b);x.lineTo(c2,d);x.stroke()}
+function arm(sx,sy,tx,ty,sd){const l1=52,l2=50,dx=tx-sx,dy=ty-sy,d=Math.max(8,Math.min(Math.hypot(dx,dy),l1+l2-1)),th=Math.atan2(dy,dx),q=(l1*l1+d*d-l2*l2)/(2*l1*d),al=Math.acos(Math.max(-1,Math.min(1,q)));const e1=[sx+l1*Math.cos(th+al),sy+l1*Math.sin(th+al)],e2=[sx+l1*Math.cos(th-al),sy+l1*Math.sin(th-al)];const e=(sd&lt;0?e1[0]&lt;e2[0]:e1[0]&gt;e2[0])?e1:e2;const hx=sx+d*Math.cos(th),hy=sy+d*Math.sin(th);x.strokeStyle=&#x27;#3A66A6&#x27;;x.lineWidth=15;x.lineCap=&#x27;round&#x27;;x.lineJoin=&#x27;round&#x27;;x.beginPath();x.moveTo(sx,sy);x.lineTo(e[0],e[1]);x.lineTo(hx,hy);x.stroke();x.fillStyle=SK;x.beginPath();x.arc(hx,hy,9,0,7);x.fill();return[hx,hy]}
+function body(){x.fillStyle=&#x27;#2B4C7E&#x27;;x.beginPath();x.moveTo(cx-48,114);x.lineTo(cx+48,114);x.lineTo(cx+60,233);x.lineTo(cx-60,233);x.closePath();x.fill();x.fillStyle=SK;x.fillRect(cx-9,92,18,24);x.fillStyle=&#x27;#C9A24D&#x27;;x.beginPath();x.moveTo(cx-15,112);x.lineTo(cx+15,112);x.lineTo(cx,138);x.closePath();x.fill();x.beginPath();x.arc(cx,168,4,0,7);x.fill();x.beginPath();x.arc(cx,198,4,0,7);x.fill();x.fillStyle=&#x27;#3B2A20&#x27;;x.beginPath();x.arc(cx-27,62,11,0,7);x.fill();x.beginPath();x.arc(cx,72,29,Math.PI,0);x.fill();x.fillStyle=SK;x.beginPath();x.arc(cx,76,26,0,7);x.fill();x.fillStyle=&#x27;#3B2A20&#x27;;x.beginPath();x.ellipse(cx,56,26,10,0,0,7);x.fill();x.fillStyle=&#x27;#13233F&#x27;;x.beginPath();x.arc(cx-9,78,3,0,7);x.fill();x.beginPath();x.arc(cx+9,78,3,0,7);x.fill();x.strokeStyle=&#x27;#A0522D&#x27;;x.lineWidth=2.5;x.beginPath();x.arc(cx,84,8,.2*Math.PI,.8*Math.PI);x.stroke();x.save();x.translate(cx+6,44);x.rotate(-.15);x.fillStyle=&#x27;#1E3A66&#x27;;x.fillRect(-22,-9,44,16);x.fillStyle=&#x27;#C9A24D&#x27;;x.fillRect(-22,3,44,4);x.restore()}
+function mask(mx,my){x.fillStyle=&#x27;#F2C14E&#x27;;x.beginPath();x.ellipse(mx,my,15,11,0,0,7);x.fill();x.fillStyle=&#x27;#D9A63A&#x27;;x.beginPath();x.ellipse(mx,my+2,8,5,0,0,7);x.fill()}
+function tube(ax,ay,bx,by){x.strokeStyle=&#x27;rgba(244,238,226,.65)&#x27;;x.lineWidth=2;x.beginPath();x.moveTo(ax,ay);x.quadraticCurveTo(ax,(ay+by)/2,bx,by);x.stroke()}
+function chev(px,py,dr){x.strokeStyle=&#x27;#C9A24D&#x27;;x.lineWidth=4;x.lineCap=&#x27;round&#x27;;x.beginPath();x.moveTo(px,py-10);x.lineTo(px+10*dr,py);x.lineTo(px,py+10);x.stroke()}
+function up(px,py){x.strokeStyle=&#x27;#C9A24D&#x27;;x.lineWidth=4;x.lineCap=&#x27;round&#x27;;x.beginPath();x.moveTo(px-10,py+6);x.lineTo(px,py-4);x.lineTo(px+10,py+6);x.stroke()}
+function vest(v){x.save();x.globalAlpha=v[3];x.translate(v[0],v[1]);x.scale(v[2],v[2]);x.fillStyle=&#x27;#F08A24&#x27;;rr(-46,-44,40,86,14);rr(6,-44,40,86,14);x.fillStyle=&#x27;#C0392B&#x27;;x.fillRect(-22,40,8,14);x.fillRect(14,40,8,14);x.restore()}
+function vs(t,p){const vy=t&lt;.45?(p[1]+p[3])/2+44:165;const s=(t&lt;.45?.85+.15*sm((t-.3)/.15):1)+.15*sm((t-.58)/.08);const a=t&lt;.06?t/.06:t&gt;.9?cl(1-(t-.9)/.1):1;return[cx,vy,s,a]}
+function pl(px,py,k,col){x.save();x.translate(px,py);x.rotate(-Math.PI/2);x.scale(k,k);x.fillStyle=col;x.beginPath();x.moveTo(28,0);x.lineTo(14,-5);x.lineTo(-22,-5);x.lineTo(-28,0);x.lineTo(-22,5);x.lineTo(14,5);x.closePath();x.fill();x.beginPath();x.moveTo(7,-4);x.lineTo(-9,-30);x.lineTo(-16,-30);x.lineTo(-7,-4);x.closePath();x.fill();x.beginPath();x.moveTo(7,4);x.lineTo(-9,30);x.lineTo(-16,30);x.lineTo(-7,4);x.closePath();x.fill();x.restore()}
+function child(){x.fillStyle=&#x27;#7FB48F&#x27;;rr(368,170,34,63,10);x.fillStyle=SK;x.beginPath();x.arc(385,154,15,0,7);x.fill();x.fillStyle=&#x27;#3B2A20&#x27;;x.beginPath();x.arc(385,150,16,Math.PI,0);x.fill()}
+const s0=performance.now(),T=5200;
+function f(n){const t=(Math.max(0,n-s0)%T)/T;x.fillStyle=&#x27;#13233F&#x27;;x.fillRect(0,0,501,233);const p=pose(t);
+if(G===4)child();
+body();
+if(G===5&amp;&amp;t&gt;=.3)vest(vs(t,p));
+const L=arm(cx-40,120,p[0],p[1],-1),R=arm(cx+40,120,p[2],p[3],1);
+if(G===1){const by=204;if(t&gt;.42&amp;&amp;t&lt;.95){ln(cx-60,by,cx,by,&#x27;#8A93A3&#x27;,8);ln(cx+60,by,cx,by,&#x27;#8A93A3&#x27;,8);if(R[0]&gt;cx+14)ln(cx,by,R[0],R[1],&#x27;#8A93A3&#x27;,6);x.fillStyle=&#x27;#C9A24D&#x27;;x.fillRect(cx-10,by-9,20,18);if(t&lt;.56){x.strokeStyle=&#x27;rgba(201,162,77,&#x27;+cl(1-(t-.42)/.14)+&#x27;)&#x27;;x.lineWidth=3;x.beginPath();x.arc(cx,by,12+(t-.42)*260,0,7);x.stroke()}}else{ln(cx-60,by,L[0],L[1],&#x27;#8A93A3&#x27;,8);ln(cx+60,by,R[0],R[1],&#x27;#8A93A3&#x27;,8);x.fillStyle=&#x27;#D5DAE2&#x27;;x.fillRect(L[0]-7,L[1]-5,14,10);x.fillStyle=&#x27;#C9A24D&#x27;;x.fillRect(R[0]-9,R[1]-8,18,16)}}
+if(G===2){if(t&gt;.13&amp;&amp;t&lt;.4){x.strokeStyle=&#x27;#C9A24D&#x27;;x.lineWidth=3;[L,R].forEach(h=&gt;{x.beginPath();x.arc(h[0],h[1],15+3*Math.sin(n/120),0,7);x.stroke()})}if(t&gt;.47&amp;&amp;t&lt;.72){chev(L[0]-22,L[1],-1);chev(R[0]+22,R[1],1)}if(t&gt;.78&amp;&amp;t&lt;.94){up(L[0],L[1]-20);up(R[0],R[1]-20)}}
+if(G===3){const at=t&gt;=.36&amp;&amp;t&lt;.92;const m=at?[R[0],R[1]-2]:[318,t&lt;.18?-20+78*sm(t/.18):58+3*Math.sin(t*40)];tube(318,0,m[0],m[1]-9);mask(m[0],m[1]);if(t&gt;.66&amp;&amp;t&lt;.9)ln(m[0]-14,m[1]-2,L[0],L[1],&#x27;#E7E2D6&#x27;,2)}
+if(G===4){tube(300,0,cx,79);mask(cx,88);let m=null;if(t&lt;.32)m=[360,t&lt;.15?-20+84*sm(t/.15):64+3*Math.sin(t*40)];else if(t&lt;.74)m=[R[0],R[1]-2];else if(t&lt;.88)m=[384,160];if(m){tube(360,0,m[0],m[1]-9);mask(m[0],m[1])}}
+if(G===5&amp;&amp;t&lt;.3)vest(vs(t,p));
+if(G===6){const px=R[0],py=R[1]-16,on=t&gt;.42&amp;&amp;t&lt;.88;x.fillStyle=&#x27;#1B1F2A&#x27;;rr(px-14,py-23,28,46,5);x.fillStyle=on?&#x27;#C9A24D&#x27;:&#x27;#5B6B86&#x27;;rr(px-11,py-18,22,34,3);if(on)pl(px,py-1,.32,&#x27;#13233F&#x27;);if(t&gt;.42&amp;&amp;t&lt;.58){x.strokeStyle=&#x27;rgba(201,162,77,&#x27;+cl(1-(t-.42)/.16)+&#x27;)&#x27;;x.lineWidth=3;x.beginPath();x.arc(px,py,26+(t-.42)*200,0,7);x.stroke()}}
+x.fillStyle=&#x27;#C9A24D&#x27;;x.beginPath();x.arc(36,36,24,0,7);x.fill();x.fillStyle=&#x27;#13233F&#x27;;x.font=&#x27;800 28px Arial,sans-serif&#x27;;x.textAlign=&#x27;center&#x27;;x.textBaseline=&#x27;middle&#x27;;x.fillText(String(G),36,37);
+requestAnimationFrame(f)}
+requestAnimationFrame(f);
+&lt;/script&gt;"></iframe>
+<iframe class="emb" sandbox="allow-scripts" style="position:absolute;left:709px;top:671px;width:501px;height:233px;border:0" data-src="&lt;meta charset=&quot;utf-8&quot;&gt;&lt;style&gt;html,body{margin:0;overflow:hidden}&lt;/style&gt;&lt;canvas id=&quot;c&quot; width=&quot;501&quot; height=&quot;233&quot; style=&quot;position:fixed;left:0;top:0;width:100%;height:100%&quot;&gt;&lt;/canvas&gt;&lt;script&gt;
+const G=5;
+const c=document.getElementById(&#x27;c&#x27;),x=c.getContext(&#x27;2d&#x27;),cx=250,SK=&#x27;#E8C4A0&#x27;;
+const K={1:[[0,198,206,302,206],[.3,240,202,260,202],[.42,240,202,260,202],[.6,242,202,312,192],[.8,242,202,312,192],[1,198,206,302,206]],2:[[0,198,218,302,218],[.15,226,150,274,150],[.35,226,150,274,150],[.5,150,118,350,118],[.68,150,118,350,118],[.8,214,96,286,96],[.92,214,96,286,96],[1,198,218,302,218]],3:[[0,198,218,302,218],[.2,198,218,302,218],[.36,198,218,318,62],[.56,198,218,252,88],[.68,226,60,252,88],[.88,226,60,252,88],[1,198,218,302,218]],4:[[0,198,218,302,218],[.1,236,92,302,218],[.22,236,92,302,218],[.32,198,218,360,64],[.5,198,218,384,156],[.74,198,218,384,156],[.88,198,218,302,218],[1,198,218,302,218]],5:[[0,198,218,302,218],[.15,226,28,274,28],[.3,226,28,274,28],[.45,214,128,286,128],[.55,232,196,268,196],[.65,232,222,268,222],[.85,232,222,268,222],[1,198,218,302,218]],6:[[0,198,218,302,218],[.18,198,218,276,150],[.32,250,170,276,150],[.4,266,146,276,150],[.46,250,170,276,150],[.82,250,170,276,150],[1,198,218,302,218]]}[G];
+function cl(v){return v&lt;0?0:v&gt;1?1:v}
+function sm(a){a=cl(a);return a*a*(3-2*a)}
+function pose(t){for(let i=0;i&lt;K.length-1;i++){const a=K[i],b=K[i+1];if(t&lt;=b[0]){const u=sm((t-a[0])/((b[0]-a[0])||1));return[a[1]+(b[1]-a[1])*u,a[2]+(b[2]-a[2])*u,a[3]+(b[3]-a[3])*u,a[4]+(b[4]-a[4])*u]}}const z=K[K.length-1];return[z[1],z[2],z[3],z[4]]}
+function rr(a,b,w,h,r){x.beginPath();x.moveTo(a+r,b);x.arcTo(a+w,b,a+w,b+h,r);x.arcTo(a+w,b+h,a,b+h,r);x.arcTo(a,b+h,a,b,r);x.arcTo(a,b,a+w,b,r);x.closePath();x.fill()}
+function ln(a,b,c2,d,col,w){x.strokeStyle=col;x.lineWidth=w;x.lineCap=&#x27;round&#x27;;x.beginPath();x.moveTo(a,b);x.lineTo(c2,d);x.stroke()}
+function arm(sx,sy,tx,ty,sd){const l1=52,l2=50,dx=tx-sx,dy=ty-sy,d=Math.max(8,Math.min(Math.hypot(dx,dy),l1+l2-1)),th=Math.atan2(dy,dx),q=(l1*l1+d*d-l2*l2)/(2*l1*d),al=Math.acos(Math.max(-1,Math.min(1,q)));const e1=[sx+l1*Math.cos(th+al),sy+l1*Math.sin(th+al)],e2=[sx+l1*Math.cos(th-al),sy+l1*Math.sin(th-al)];const e=(sd&lt;0?e1[0]&lt;e2[0]:e1[0]&gt;e2[0])?e1:e2;const hx=sx+d*Math.cos(th),hy=sy+d*Math.sin(th);x.strokeStyle=&#x27;#3A66A6&#x27;;x.lineWidth=15;x.lineCap=&#x27;round&#x27;;x.lineJoin=&#x27;round&#x27;;x.beginPath();x.moveTo(sx,sy);x.lineTo(e[0],e[1]);x.lineTo(hx,hy);x.stroke();x.fillStyle=SK;x.beginPath();x.arc(hx,hy,9,0,7);x.fill();return[hx,hy]}
+function body(){x.fillStyle=&#x27;#2B4C7E&#x27;;x.beginPath();x.moveTo(cx-48,114);x.lineTo(cx+48,114);x.lineTo(cx+60,233);x.lineTo(cx-60,233);x.closePath();x.fill();x.fillStyle=SK;x.fillRect(cx-9,92,18,24);x.fillStyle=&#x27;#C9A24D&#x27;;x.beginPath();x.moveTo(cx-15,112);x.lineTo(cx+15,112);x.lineTo(cx,138);x.closePath();x.fill();x.beginPath();x.arc(cx,168,4,0,7);x.fill();x.beginPath();x.arc(cx,198,4,0,7);x.fill();x.fillStyle=&#x27;#3B2A20&#x27;;x.beginPath();x.arc(cx-27,62,11,0,7);x.fill();x.beginPath();x.arc(cx,72,29,Math.PI,0);x.fill();x.fillStyle=SK;x.beginPath();x.arc(cx,76,26,0,7);x.fill();x.fillStyle=&#x27;#3B2A20&#x27;;x.beginPath();x.ellipse(cx,56,26,10,0,0,7);x.fill();x.fillStyle=&#x27;#13233F&#x27;;x.beginPath();x.arc(cx-9,78,3,0,7);x.fill();x.beginPath();x.arc(cx+9,78,3,0,7);x.fill();x.strokeStyle=&#x27;#A0522D&#x27;;x.lineWidth=2.5;x.beginPath();x.arc(cx,84,8,.2*Math.PI,.8*Math.PI);x.stroke();x.save();x.translate(cx+6,44);x.rotate(-.15);x.fillStyle=&#x27;#1E3A66&#x27;;x.fillRect(-22,-9,44,16);x.fillStyle=&#x27;#C9A24D&#x27;;x.fillRect(-22,3,44,4);x.restore()}
+function mask(mx,my){x.fillStyle=&#x27;#F2C14E&#x27;;x.beginPath();x.ellipse(mx,my,15,11,0,0,7);x.fill();x.fillStyle=&#x27;#D9A63A&#x27;;x.beginPath();x.ellipse(mx,my+2,8,5,0,0,7);x.fill()}
+function tube(ax,ay,bx,by){x.strokeStyle=&#x27;rgba(244,238,226,.65)&#x27;;x.lineWidth=2;x.beginPath();x.moveTo(ax,ay);x.quadraticCurveTo(ax,(ay+by)/2,bx,by);x.stroke()}
+function chev(px,py,dr){x.strokeStyle=&#x27;#C9A24D&#x27;;x.lineWidth=4;x.lineCap=&#x27;round&#x27;;x.beginPath();x.moveTo(px,py-10);x.lineTo(px+10*dr,py);x.lineTo(px,py+10);x.stroke()}
+function up(px,py){x.strokeStyle=&#x27;#C9A24D&#x27;;x.lineWidth=4;x.lineCap=&#x27;round&#x27;;x.beginPath();x.moveTo(px-10,py+6);x.lineTo(px,py-4);x.lineTo(px+10,py+6);x.stroke()}
+function vest(v){x.save();x.globalAlpha=v[3];x.translate(v[0],v[1]);x.scale(v[2],v[2]);x.fillStyle=&#x27;#F08A24&#x27;;rr(-46,-44,40,86,14);rr(6,-44,40,86,14);x.fillStyle=&#x27;#C0392B&#x27;;x.fillRect(-22,40,8,14);x.fillRect(14,40,8,14);x.restore()}
+function vs(t,p){const vy=t&lt;.45?(p[1]+p[3])/2+44:165;const s=(t&lt;.45?.85+.15*sm((t-.3)/.15):1)+.15*sm((t-.58)/.08);const a=t&lt;.06?t/.06:t&gt;.9?cl(1-(t-.9)/.1):1;return[cx,vy,s,a]}
+function pl(px,py,k,col){x.save();x.translate(px,py);x.rotate(-Math.PI/2);x.scale(k,k);x.fillStyle=col;x.beginPath();x.moveTo(28,0);x.lineTo(14,-5);x.lineTo(-22,-5);x.lineTo(-28,0);x.lineTo(-22,5);x.lineTo(14,5);x.closePath();x.fill();x.beginPath();x.moveTo(7,-4);x.lineTo(-9,-30);x.lineTo(-16,-30);x.lineTo(-7,-4);x.closePath();x.fill();x.beginPath();x.moveTo(7,4);x.lineTo(-9,30);x.lineTo(-16,30);x.lineTo(-7,4);x.closePath();x.fill();x.restore()}
+function child(){x.fillStyle=&#x27;#7FB48F&#x27;;rr(368,170,34,63,10);x.fillStyle=SK;x.beginPath();x.arc(385,154,15,0,7);x.fill();x.fillStyle=&#x27;#3B2A20&#x27;;x.beginPath();x.arc(385,150,16,Math.PI,0);x.fill()}
+const s0=performance.now(),T=5200;
+function f(n){const t=(Math.max(0,n-s0)%T)/T;x.fillStyle=&#x27;#13233F&#x27;;x.fillRect(0,0,501,233);const p=pose(t);
+if(G===4)child();
+body();
+if(G===5&amp;&amp;t&gt;=.3)vest(vs(t,p));
+const L=arm(cx-40,120,p[0],p[1],-1),R=arm(cx+40,120,p[2],p[3],1);
+if(G===1){const by=204;if(t&gt;.42&amp;&amp;t&lt;.95){ln(cx-60,by,cx,by,&#x27;#8A93A3&#x27;,8);ln(cx+60,by,cx,by,&#x27;#8A93A3&#x27;,8);if(R[0]&gt;cx+14)ln(cx,by,R[0],R[1],&#x27;#8A93A3&#x27;,6);x.fillStyle=&#x27;#C9A24D&#x27;;x.fillRect(cx-10,by-9,20,18);if(t&lt;.56){x.strokeStyle=&#x27;rgba(201,162,77,&#x27;+cl(1-(t-.42)/.14)+&#x27;)&#x27;;x.lineWidth=3;x.beginPath();x.arc(cx,by,12+(t-.42)*260,0,7);x.stroke()}}else{ln(cx-60,by,L[0],L[1],&#x27;#8A93A3&#x27;,8);ln(cx+60,by,R[0],R[1],&#x27;#8A93A3&#x27;,8);x.fillStyle=&#x27;#D5DAE2&#x27;;x.fillRect(L[0]-7,L[1]-5,14,10);x.fillStyle=&#x27;#C9A24D&#x27;;x.fillRect(R[0]-9,R[1]-8,18,16)}}
+if(G===2){if(t&gt;.13&amp;&amp;t&lt;.4){x.strokeStyle=&#x27;#C9A24D&#x27;;x.lineWidth=3;[L,R].forEach(h=&gt;{x.beginPath();x.arc(h[0],h[1],15+3*Math.sin(n/120),0,7);x.stroke()})}if(t&gt;.47&amp;&amp;t&lt;.72){chev(L[0]-22,L[1],-1);chev(R[0]+22,R[1],1)}if(t&gt;.78&amp;&amp;t&lt;.94){up(L[0],L[1]-20);up(R[0],R[1]-20)}}
+if(G===3){const at=t&gt;=.36&amp;&amp;t&lt;.92;const m=at?[R[0],R[1]-2]:[318,t&lt;.18?-20+78*sm(t/.18):58+3*Math.sin(t*40)];tube(318,0,m[0],m[1]-9);mask(m[0],m[1]);if(t&gt;.66&amp;&amp;t&lt;.9)ln(m[0]-14,m[1]-2,L[0],L[1],&#x27;#E7E2D6&#x27;,2)}
+if(G===4){tube(300,0,cx,79);mask(cx,88);let m=null;if(t&lt;.32)m=[360,t&lt;.15?-20+84*sm(t/.15):64+3*Math.sin(t*40)];else if(t&lt;.74)m=[R[0],R[1]-2];else if(t&lt;.88)m=[384,160];if(m){tube(360,0,m[0],m[1]-9);mask(m[0],m[1])}}
+if(G===5&amp;&amp;t&lt;.3)vest(vs(t,p));
+if(G===6){const px=R[0],py=R[1]-16,on=t&gt;.42&amp;&amp;t&lt;.88;x.fillStyle=&#x27;#1B1F2A&#x27;;rr(px-14,py-23,28,46,5);x.fillStyle=on?&#x27;#C9A24D&#x27;:&#x27;#5B6B86&#x27;;rr(px-11,py-18,22,34,3);if(on)pl(px,py-1,.32,&#x27;#13233F&#x27;);if(t&gt;.42&amp;&amp;t&lt;.58){x.strokeStyle=&#x27;rgba(201,162,77,&#x27;+cl(1-(t-.42)/.16)+&#x27;)&#x27;;x.lineWidth=3;x.beginPath();x.arc(px,py,26+(t-.42)*200,0,7);x.stroke()}}
+x.fillStyle=&#x27;#C9A24D&#x27;;x.beginPath();x.arc(36,36,24,0,7);x.fill();x.fillStyle=&#x27;#13233F&#x27;;x.font=&#x27;800 28px Arial,sans-serif&#x27;;x.textAlign=&#x27;center&#x27;;x.textBaseline=&#x27;middle&#x27;;x.fillText(String(G),36,37);
+requestAnimationFrame(f)}
+requestAnimationFrame(f);
+&lt;/script&gt;"></iframe>
+<iframe class="emb" sandbox="allow-scripts" style="position:absolute;left:1274px;top:671px;width:501px;height:233px;border:0" data-src="&lt;meta charset=&quot;utf-8&quot;&gt;&lt;style&gt;html,body{margin:0;overflow:hidden}&lt;/style&gt;&lt;canvas id=&quot;c&quot; width=&quot;501&quot; height=&quot;233&quot; style=&quot;position:fixed;left:0;top:0;width:100%;height:100%&quot;&gt;&lt;/canvas&gt;&lt;script&gt;
+const G=6;
+const c=document.getElementById(&#x27;c&#x27;),x=c.getContext(&#x27;2d&#x27;),cx=250,SK=&#x27;#E8C4A0&#x27;;
+const K={1:[[0,198,206,302,206],[.3,240,202,260,202],[.42,240,202,260,202],[.6,242,202,312,192],[.8,242,202,312,192],[1,198,206,302,206]],2:[[0,198,218,302,218],[.15,226,150,274,150],[.35,226,150,274,150],[.5,150,118,350,118],[.68,150,118,350,118],[.8,214,96,286,96],[.92,214,96,286,96],[1,198,218,302,218]],3:[[0,198,218,302,218],[.2,198,218,302,218],[.36,198,218,318,62],[.56,198,218,252,88],[.68,226,60,252,88],[.88,226,60,252,88],[1,198,218,302,218]],4:[[0,198,218,302,218],[.1,236,92,302,218],[.22,236,92,302,218],[.32,198,218,360,64],[.5,198,218,384,156],[.74,198,218,384,156],[.88,198,218,302,218],[1,198,218,302,218]],5:[[0,198,218,302,218],[.15,226,28,274,28],[.3,226,28,274,28],[.45,214,128,286,128],[.55,232,196,268,196],[.65,232,222,268,222],[.85,232,222,268,222],[1,198,218,302,218]],6:[[0,198,218,302,218],[.18,198,218,276,150],[.32,250,170,276,150],[.4,266,146,276,150],[.46,250,170,276,150],[.82,250,170,276,150],[1,198,218,302,218]]}[G];
+function cl(v){return v&lt;0?0:v&gt;1?1:v}
+function sm(a){a=cl(a);return a*a*(3-2*a)}
+function pose(t){for(let i=0;i&lt;K.length-1;i++){const a=K[i],b=K[i+1];if(t&lt;=b[0]){const u=sm((t-a[0])/((b[0]-a[0])||1));return[a[1]+(b[1]-a[1])*u,a[2]+(b[2]-a[2])*u,a[3]+(b[3]-a[3])*u,a[4]+(b[4]-a[4])*u]}}const z=K[K.length-1];return[z[1],z[2],z[3],z[4]]}
+function rr(a,b,w,h,r){x.beginPath();x.moveTo(a+r,b);x.arcTo(a+w,b,a+w,b+h,r);x.arcTo(a+w,b+h,a,b+h,r);x.arcTo(a,b+h,a,b,r);x.arcTo(a,b,a+w,b,r);x.closePath();x.fill()}
+function ln(a,b,c2,d,col,w){x.strokeStyle=col;x.lineWidth=w;x.lineCap=&#x27;round&#x27;;x.beginPath();x.moveTo(a,b);x.lineTo(c2,d);x.stroke()}
+function arm(sx,sy,tx,ty,sd){const l1=52,l2=50,dx=tx-sx,dy=ty-sy,d=Math.max(8,Math.min(Math.hypot(dx,dy),l1+l2-1)),th=Math.atan2(dy,dx),q=(l1*l1+d*d-l2*l2)/(2*l1*d),al=Math.acos(Math.max(-1,Math.min(1,q)));const e1=[sx+l1*Math.cos(th+al),sy+l1*Math.sin(th+al)],e2=[sx+l1*Math.cos(th-al),sy+l1*Math.sin(th-al)];const e=(sd&lt;0?e1[0]&lt;e2[0]:e1[0]&gt;e2[0])?e1:e2;const hx=sx+d*Math.cos(th),hy=sy+d*Math.sin(th);x.strokeStyle=&#x27;#3A66A6&#x27;;x.lineWidth=15;x.lineCap=&#x27;round&#x27;;x.lineJoin=&#x27;round&#x27;;x.beginPath();x.moveTo(sx,sy);x.lineTo(e[0],e[1]);x.lineTo(hx,hy);x.stroke();x.fillStyle=SK;x.beginPath();x.arc(hx,hy,9,0,7);x.fill();return[hx,hy]}
+function body(){x.fillStyle=&#x27;#2B4C7E&#x27;;x.beginPath();x.moveTo(cx-48,114);x.lineTo(cx+48,114);x.lineTo(cx+60,233);x.lineTo(cx-60,233);x.closePath();x.fill();x.fillStyle=SK;x.fillRect(cx-9,92,18,24);x.fillStyle=&#x27;#C9A24D&#x27;;x.beginPath();x.moveTo(cx-15,112);x.lineTo(cx+15,112);x.lineTo(cx,138);x.closePath();x.fill();x.beginPath();x.arc(cx,168,4,0,7);x.fill();x.beginPath();x.arc(cx,198,4,0,7);x.fill();x.fillStyle=&#x27;#3B2A20&#x27;;x.beginPath();x.arc(cx-27,62,11,0,7);x.fill();x.beginPath();x.arc(cx,72,29,Math.PI,0);x.fill();x.fillStyle=SK;x.beginPath();x.arc(cx,76,26,0,7);x.fill();x.fillStyle=&#x27;#3B2A20&#x27;;x.beginPath();x.ellipse(cx,56,26,10,0,0,7);x.fill();x.fillStyle=&#x27;#13233F&#x27;;x.beginPath();x.arc(cx-9,78,3,0,7);x.fill();x.beginPath();x.arc(cx+9,78,3,0,7);x.fill();x.strokeStyle=&#x27;#A0522D&#x27;;x.lineWidth=2.5;x.beginPath();x.arc(cx,84,8,.2*Math.PI,.8*Math.PI);x.stroke();x.save();x.translate(cx+6,44);x.rotate(-.15);x.fillStyle=&#x27;#1E3A66&#x27;;x.fillRect(-22,-9,44,16);x.fillStyle=&#x27;#C9A24D&#x27;;x.fillRect(-22,3,44,4);x.restore()}
+function mask(mx,my){x.fillStyle=&#x27;#F2C14E&#x27;;x.beginPath();x.ellipse(mx,my,15,11,0,0,7);x.fill();x.fillStyle=&#x27;#D9A63A&#x27;;x.beginPath();x.ellipse(mx,my+2,8,5,0,0,7);x.fill()}
+function tube(ax,ay,bx,by){x.strokeStyle=&#x27;rgba(244,238,226,.65)&#x27;;x.lineWidth=2;x.beginPath();x.moveTo(ax,ay);x.quadraticCurveTo(ax,(ay+by)/2,bx,by);x.stroke()}
+function chev(px,py,dr){x.strokeStyle=&#x27;#C9A24D&#x27;;x.lineWidth=4;x.lineCap=&#x27;round&#x27;;x.beginPath();x.moveTo(px,py-10);x.lineTo(px+10*dr,py);x.lineTo(px,py+10);x.stroke()}
+function up(px,py){x.strokeStyle=&#x27;#C9A24D&#x27;;x.lineWidth=4;x.lineCap=&#x27;round&#x27;;x.beginPath();x.moveTo(px-10,py+6);x.lineTo(px,py-4);x.lineTo(px+10,py+6);x.stroke()}
+function vest(v){x.save();x.globalAlpha=v[3];x.translate(v[0],v[1]);x.scale(v[2],v[2]);x.fillStyle=&#x27;#F08A24&#x27;;rr(-46,-44,40,86,14);rr(6,-44,40,86,14);x.fillStyle=&#x27;#C0392B&#x27;;x.fillRect(-22,40,8,14);x.fillRect(14,40,8,14);x.restore()}
+function vs(t,p){const vy=t&lt;.45?(p[1]+p[3])/2+44:165;const s=(t&lt;.45?.85+.15*sm((t-.3)/.15):1)+.15*sm((t-.58)/.08);const a=t&lt;.06?t/.06:t&gt;.9?cl(1-(t-.9)/.1):1;return[cx,vy,s,a]}
+function pl(px,py,k,col){x.save();x.translate(px,py);x.rotate(-Math.PI/2);x.scale(k,k);x.fillStyle=col;x.beginPath();x.moveTo(28,0);x.lineTo(14,-5);x.lineTo(-22,-5);x.lineTo(-28,0);x.lineTo(-22,5);x.lineTo(14,5);x.closePath();x.fill();x.beginPath();x.moveTo(7,-4);x.lineTo(-9,-30);x.lineTo(-16,-30);x.lineTo(-7,-4);x.closePath();x.fill();x.beginPath();x.moveTo(7,4);x.lineTo(-9,30);x.lineTo(-16,30);x.lineTo(-7,4);x.closePath();x.fill();x.restore()}
+function child(){x.fillStyle=&#x27;#7FB48F&#x27;;rr(368,170,34,63,10);x.fillStyle=SK;x.beginPath();x.arc(385,154,15,0,7);x.fill();x.fillStyle=&#x27;#3B2A20&#x27;;x.beginPath();x.arc(385,150,16,Math.PI,0);x.fill()}
+const s0=performance.now(),T=5200;
+function f(n){const t=(Math.max(0,n-s0)%T)/T;x.fillStyle=&#x27;#13233F&#x27;;x.fillRect(0,0,501,233);const p=pose(t);
+if(G===4)child();
+body();
+if(G===5&amp;&amp;t&gt;=.3)vest(vs(t,p));
+const L=arm(cx-40,120,p[0],p[1],-1),R=arm(cx+40,120,p[2],p[3],1);
+if(G===1){const by=204;if(t&gt;.42&amp;&amp;t&lt;.95){ln(cx-60,by,cx,by,&#x27;#8A93A3&#x27;,8);ln(cx+60,by,cx,by,&#x27;#8A93A3&#x27;,8);if(R[0]&gt;cx+14)ln(cx,by,R[0],R[1],&#x27;#8A93A3&#x27;,6);x.fillStyle=&#x27;#C9A24D&#x27;;x.fillRect(cx-10,by-9,20,18);if(t&lt;.56){x.strokeStyle=&#x27;rgba(201,162,77,&#x27;+cl(1-(t-.42)/.14)+&#x27;)&#x27;;x.lineWidth=3;x.beginPath();x.arc(cx,by,12+(t-.42)*260,0,7);x.stroke()}}else{ln(cx-60,by,L[0],L[1],&#x27;#8A93A3&#x27;,8);ln(cx+60,by,R[0],R[1],&#x27;#8A93A3&#x27;,8);x.fillStyle=&#x27;#D5DAE2&#x27;;x.fillRect(L[0]-7,L[1]-5,14,10);x.fillStyle=&#x27;#C9A24D&#x27;;x.fillRect(R[0]-9,R[1]-8,18,16)}}
+if(G===2){if(t&gt;.13&amp;&amp;t&lt;.4){x.strokeStyle=&#x27;#C9A24D&#x27;;x.lineWidth=3;[L,R].forEach(h=&gt;{x.beginPath();x.arc(h[0],h[1],15+3*Math.sin(n/120),0,7);x.stroke()})}if(t&gt;.47&amp;&amp;t&lt;.72){chev(L[0]-22,L[1],-1);chev(R[0]+22,R[1],1)}if(t&gt;.78&amp;&amp;t&lt;.94){up(L[0],L[1]-20);up(R[0],R[1]-20)}}
+if(G===3){const at=t&gt;=.36&amp;&amp;t&lt;.92;const m=at?[R[0],R[1]-2]:[318,t&lt;.18?-20+78*sm(t/.18):58+3*Math.sin(t*40)];tube(318,0,m[0],m[1]-9);mask(m[0],m[1]);if(t&gt;.66&amp;&amp;t&lt;.9)ln(m[0]-14,m[1]-2,L[0],L[1],&#x27;#E7E2D6&#x27;,2)}
+if(G===4){tube(300,0,cx,79);mask(cx,88);let m=null;if(t&lt;.32)m=[360,t&lt;.15?-20+84*sm(t/.15):64+3*Math.sin(t*40)];else if(t&lt;.74)m=[R[0],R[1]-2];else if(t&lt;.88)m=[384,160];if(m){tube(360,0,m[0],m[1]-9);mask(m[0],m[1])}}
+if(G===5&amp;&amp;t&lt;.3)vest(vs(t,p));
+if(G===6){const px=R[0],py=R[1]-16,on=t&gt;.42&amp;&amp;t&lt;.88;x.fillStyle=&#x27;#1B1F2A&#x27;;rr(px-14,py-23,28,46,5);x.fillStyle=on?&#x27;#C9A24D&#x27;:&#x27;#5B6B86&#x27;;rr(px-11,py-18,22,34,3);if(on)pl(px,py-1,.32,&#x27;#13233F&#x27;);if(t&gt;.42&amp;&amp;t&lt;.58){x.strokeStyle=&#x27;rgba(201,162,77,&#x27;+cl(1-(t-.42)/.16)+&#x27;)&#x27;;x.lineWidth=3;x.beginPath();x.arc(px,py,26+(t-.42)*200,0,7);x.stroke()}}
+x.fillStyle=&#x27;#C9A24D&#x27;;x.beginPath();x.arc(36,36,24,0,7);x.fill();x.fillStyle=&#x27;#13233F&#x27;;x.font=&#x27;800 28px Arial,sans-serif&#x27;;x.textAlign=&#x27;center&#x27;;x.textBaseline=&#x27;middle&#x27;;x.fillText(String(G),36,37);
+requestAnimationFrame(f)}
+requestAnimationFrame(f);
+&lt;/script&gt;"></iframe>
+<div data-build-in="pop 2" data-build-out="fade 8" style="position:absolute;left:128px;top:370px;width:533px;height:265px;background:#FBF7EF;border:3px solid #C9A24D;border-radius:20px;padding:26px 32px;display:flex;flex-direction:column;justify-content:center;gap:12px">
+<p style="font-size:24px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:#A63D2F">1 · Ремень</p>
+<p style="font-size:28px;font-weight:700;line-height:1.3;color:#13233F">Fasten your seat belt and pull it tight.</p>
+<p style="font-size:24px;font-style:italic;line-height:1.3;color:#6E685B">Пристегните ремень и затяните его.</p>
+</div>
+<div data-build-in="pop 3" data-build-out="fade 8" style="position:absolute;left:693px;top:370px;width:533px;height:265px;background:#FBF7EF;border:3px solid #C9A24D;border-radius:20px;padding:26px 32px;display:flex;flex-direction:column;justify-content:center;gap:12px">
+<p style="font-size:24px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:#A63D2F">2 · Аварийные выходы</p>
+<p style="font-size:28px;font-weight:700;line-height:1.3;color:#13233F">The emergency exits are here, here and here.</p>
+<p style="font-size:24px;font-style:italic;line-height:1.3;color:#6E685B">Аварийные выходы — здесь, здесь и здесь.</p>
+</div>
+<div data-build-in="pop 4" data-build-out="fade 8" style="position:absolute;left:1258px;top:370px;width:533px;height:265px;background:#FBF7EF;border:3px solid #C9A24D;border-radius:20px;padding:26px 32px;display:flex;flex-direction:column;justify-content:center;gap:12px">
+<p style="font-size:24px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:#A63D2F">3 · Кислородная маска</p>
+<p style="font-size:28px;font-weight:700;line-height:1.3;color:#13233F">Pull the mask down and put it over your nose and mouth.</p>
+<p style="font-size:24px;font-style:italic;line-height:1.3;color:#6E685B">Потяните маску вниз и наденьте на нос и рот.</p>
+</div>
+<div data-build-in="pop 5" data-build-out="fade 8" style="position:absolute;left:128px;top:655px;width:533px;height:265px;background:#FBF7EF;border:3px solid #C9A24D;border-radius:20px;padding:26px 32px;display:flex;flex-direction:column;justify-content:center;gap:12px">
+<p style="font-size:24px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:#A63D2F">4 · Сначала себе</p>
+<p style="font-size:28px;font-weight:700;line-height:1.3;color:#13233F">Put on your own mask before helping others.</p>
+<p style="font-size:24px;font-style:italic;line-height:1.3;color:#6E685B">Сначала маску себе, потом помогайте другим.</p>
+</div>
+<div data-build-in="pop 6" data-build-out="fade 8" style="position:absolute;left:693px;top:655px;width:533px;height:265px;background:#FBF7EF;border:3px solid #C9A24D;border-radius:20px;padding:26px 32px;display:flex;flex-direction:column;justify-content:center;gap:12px">
+<p style="font-size:24px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:#A63D2F">5 · Спасательный жилет</p>
+<p style="font-size:28px;font-weight:700;line-height:1.3;color:#13233F">Your life jacket is under your seat.</p>
+<p style="font-size:24px;font-style:italic;line-height:1.3;color:#6E685B">Спасательный жилет — под вашим креслом.</p>
+</div>
+<div data-build-in="pop 7" data-build-out="fade 8" style="position:absolute;left:1258px;top:655px;width:533px;height:265px;background:#FBF7EF;border:3px solid #C9A24D;border-radius:20px;padding:26px 32px;display:flex;flex-direction:column;justify-content:center;gap:12px">
+<p style="font-size:24px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:#A63D2F">6 · Телефон</p>
+<p style="font-size:28px;font-weight:700;line-height:1.3;color:#13233F">Please switch your phone to flight mode.</p>
+<p style="font-size:24px;font-style:italic;line-height:1.3;color:#6E685B">Переведите телефон в авиарежим.</p>
+</div>
+<p data-build-in="pop 8" style="position:absolute;left:410px;top:604px;width:1100px;font-size:32px;font-weight:800;text-align:center;background:#C9A24D;color:#13233F;padding:18px 36px;border-radius:999px;box-shadow:0 20px 40px rgba(19,35,63,0.3)">А теперь по памяти! Жест — и фраза по-английски</p>
+<aside class="notes">~2–3 мин. Игра «Угадай инструктаж». В каждой из шести карточек анимированная стюардесса без слов показывает один жест по кругу: 1 — пристёгивает ремень, 2 — показывает выходы вперёд, в стороны и назад, 3 — тянет кислородную маску к лицу, 4 — надевает маску себе, потом ребёнку, 5 — надевает спасательный жилет и дёргает шнурки, 6 — включает авиарежим на телефоне.
+
+Как играть: класс смотрит на карточку, угадывает, что делает стюардесса, и пробует сказать фразу по-английски. Клик — открывается правильная фраза с переводом, все повторяют её хором и показывают жест вместе со стюардессой.
+
+Последний клик: фразы прячутся, снова видны только анимации — раунд «по памяти». Указывайте на любую карточку, класс вспоминает фразу. Вариант: ученик выходит к доске и повторяет жесты за стюардессой, а класс говорит фразы.</aside>
+</section>
+<section class="slide" id="onboard" data-transition="magic" style="background:#F4EEE2;color:#13233F;font-family:'Manrope', Arial, sans-serif;padding:128px;display:flex;flex-direction:column">
+<div id="jpill" style="position:absolute;left:1317px;top:80px;width:238px;height:53px;background:#A63D2F;border-radius:999px"></div>
+<hr style="position:absolute;left:128px;top:150px;width:1664px;border-top:3px solid #DDD3C2">
+<hr id="jprog" style="position:absolute;left:128px;top:150px;width:1426px;border-top:3px solid #A63D2F">
+<div style="position:absolute;left:128px;top:80px;width:1664px;display:flex;flex-direction:row">
+<p style="flex:1;font-size:24px;line-height:1.2;padding:12px 0;text-align:center;color:#6E685B">Вход</p>
+<p style="flex:1;font-size:24px;line-height:1.2;padding:12px 0;text-align:center;color:#6E685B">Регистрация</p>
+<p style="flex:1;font-size:24px;line-height:1.2;padding:12px 0;text-align:center;color:#6E685B">Досмотр</p>
+<p style="flex:1;font-size:24px;line-height:1.2;padding:12px 0;text-align:center;color:#6E685B">Паспорт</p>
+<p style="flex:1;font-size:24px;line-height:1.2;padding:12px 0;text-align:center;color:#6E685B">Гейт</p>
+<p style="flex:1;font-size:24px;line-height:1.2;padding:12px 0;text-align:center;font-weight:700;color:#F4EEE2">На борту</p>
+<p style="flex:1;font-size:24px;line-height:1.2;padding:12px 0;text-align:center;color:#6E685B">Прилёт</p>
+</div>
+<p style="position:absolute;left:128px;top:195px;width:1200px;font-size:26px;font-weight:700;letter-spacing:5px;text-transform:uppercase;color:#A63D2F">В полёте · Шаг 4 · Вставьте пропущенное слово</p>
+<h2 style="position:absolute;left:128px;top:235px;width:1100px;font-family:'Cormorant Garamond', Georgia, serif;font-size:80px;font-weight:600;line-height:1.1;color:#13233F">На борту: «Chicken or pasta?»</h2>
+<iframe class="emb" sandbox="allow-scripts" style="position:absolute;left:1300px;top:300px;width:492px;height:640px;border:0" data-src="&lt;meta charset=&quot;utf-8&quot;&gt;&lt;style&gt;html,body{margin:0;overflow:hidden}&lt;/style&gt;&lt;canvas id=&quot;c&quot; width=&quot;492&quot; height=&quot;640&quot; style=&quot;position:fixed;left:0;top:0;width:100%;height:100%&quot;&gt;&lt;/canvas&gt;
+&lt;script&gt;
+const cv=document.getElementById(&#x27;c&#x27;),g=cv.getContext(&#x27;2d&#x27;);
+function rr(x,y,w,h,r){g.beginPath();g.moveTo(x+r,y);g.arcTo(x+w,y,x+w,y+h,r);g.arcTo(x+w,y+h,x,y+h,r);g.arcTo(x,y+h,x,y,r);g.arcTo(x,y,x+w,y,r);g.closePath()}
+const C=[];for(let i=0;i&lt;8;i++)C.push({x:Math.random()*520,y:150+Math.random()*300,s:.5+Math.random()*.9,v:18+Math.random()*40});
+function cloud(o){g.fillStyle=&#x27;rgba(255,255,255,.93)&#x27;;[[0,0,30],[30,-14,38],[64,0,30],[32,10,32]].forEach(c=&gt;{g.beginPath();g.arc(o.x+c[0]*o.s,o.y+c[1]*o.s,c[2]*o.s,0,7);g.fill()})}
+let last=performance.now();
+function f(n){const dt=Math.max(0,(n-last)/1000);last=n;g.fillStyle=&#x27;#F4EEE2&#x27;;g.fillRect(0,0,492,640);
+g.save();g.shadowColor=&#x27;rgba(19,35,63,.25)&#x27;;g.shadowBlur=30;g.shadowOffsetY=14;rr(30,20,432,600,200);
+const fr=g.createLinearGradient(0,20,0,620);fr.addColorStop(0,&#x27;#F1EBDF&#x27;);fr.addColorStop(1,&#x27;#D6CCBA&#x27;);g.fillStyle=fr;g.fill();g.restore();
+rr(64,54,364,532,176);g.fillStyle=&#x27;#CFC5B2&#x27;;g.fill();
+g.save();rr(78,68,336,504,160);g.clip();
+const sk=g.createLinearGradient(0,68,0,572);sk.addColorStop(0,&#x27;#4F86C6&#x27;);sk.addColorStop(.7,&#x27;#A9CDEB&#x27;);sk.addColorStop(1,&#x27;#E4F0F8&#x27;);g.fillStyle=sk;g.fillRect(78,68,336,504);
+g.fillStyle=&#x27;#F6E7C1&#x27;;g.globalAlpha=.6;g.beginPath();g.arc(330,190,26,0,7);g.fill();g.globalAlpha=1;
+C.forEach(o=&gt;{o.x-=o.v*dt;if(o.x&lt;-60)o.x=470+Math.random()*80;cloud(o)});
+const wg=g.createLinearGradient(150,470,414,572);wg.addColorStop(0,&#x27;#E3E7ED&#x27;);wg.addColorStop(1,&#x27;#9EA7B4&#x27;);g.fillStyle=wg;
+g.beginPath();g.moveTo(420,440);g.lineTo(130,580);g.lineTo(420,580);g.closePath();g.fill();
+g.fillStyle=&#x27;#A63D2F&#x27;;g.beginPath();g.moveTo(420,440);g.lineTo(398,452);g.lineTo(420,470);g.closePath();g.fill();
+g.fillStyle=&#x27;#F3EDE1&#x27;;g.fillRect(78,68,336,118);g.fillStyle=&#x27;#D9CFBE&#x27;;g.fillRect(78,180,336,8);
+g.fillStyle=&#x27;#BFB4A0&#x27;;rr(220,192,52,10,5);g.fill();
+g.restore();
+rr(78,68,336,504,160);g.lineWidth=10;g.strokeStyle=&#x27;rgba(19,35,63,.16)&#x27;;g.stroke();
+requestAnimationFrame(f)}
+requestAnimationFrame(f);
+&lt;/script&gt;"></iframe>
+<div style="position:absolute;left:128px;top:340px;width:1110px;height:92px;background:#FBF7EF;border:1px solid #E3D9C6;border-radius:18px;box-shadow:0 10px 24px rgba(19,35,63,0.07)"></div>
+<p style="position:absolute;left:164px;top:364px;width:760px;font-size:30px;line-height:1.3;color:#2F2F38">Please fasten your ________ .</p>
+<p data-build-in="pop 1" style="position:absolute;left:940px;top:358px;width:270px;font-size:28px;font-weight:700;text-align:center;background:#A63D2F;color:#F4EEE2;padding:10px 20px;border-radius:999px">seat belt</p>
+<div style="position:absolute;left:128px;top:450px;width:1110px;height:92px;background:#FBF7EF;border:1px solid #E3D9C6;border-radius:18px;box-shadow:0 10px 24px rgba(19,35,63,0.07)"></div>
+<p style="position:absolute;left:164px;top:474px;width:760px;font-size:30px;line-height:1.3;color:#2F2F38">Put your bag in the overhead ________ .</p>
+<p data-build-in="pop 2" style="position:absolute;left:940px;top:468px;width:270px;font-size:28px;font-weight:700;text-align:center;background:#A63D2F;color:#F4EEE2;padding:10px 20px;border-radius:999px">locker</p>
+<div style="position:absolute;left:128px;top:560px;width:1110px;height:92px;background:#FBF7EF;border:1px solid #E3D9C6;border-radius:18px;box-shadow:0 10px 24px rgba(19,35,63,0.07)"></div>
+<p style="position:absolute;left:164px;top:584px;width:760px;font-size:30px;line-height:1.3;color:#2F2F38">Please fold your tray ________ .</p>
+<p data-build-in="pop 3" style="position:absolute;left:940px;top:578px;width:270px;font-size:28px;font-weight:700;text-align:center;background:#A63D2F;color:#F4EEE2;padding:10px 20px;border-radius:999px">table</p>
+<div style="position:absolute;left:128px;top:670px;width:1110px;height:92px;background:#FBF7EF;border:1px solid #E3D9C6;border-radius:18px;box-shadow:0 10px 24px rgba(19,35,63,0.07)"></div>
+<p style="position:absolute;left:164px;top:694px;width:760px;font-size:30px;line-height:1.3;color:#2F2F38">A juice, please. Can I pay ____ card?</p>
+<p data-build-in="pop 4" style="position:absolute;left:940px;top:688px;width:270px;font-size:28px;font-weight:700;text-align:center;background:#13233F;color:#E3C27A;padding:10px 20px;border-radius:999px">by</p>
+<div style="position:absolute;left:128px;top:780px;width:1110px;height:92px;background:#FBF7EF;border:1px solid #E3D9C6;border-radius:18px;box-shadow:0 10px 24px rgba(19,35,63,0.07)"></div>
+<p style="position:absolute;left:164px;top:804px;width:760px;font-size:30px;line-height:1.3;color:#2F2F38">This flight is operated ____ Postcard Air.</p>
+<p data-build-in="pop 5" style="position:absolute;left:940px;top:798px;width:270px;font-size:28px;font-weight:700;text-align:center;background:#13233F;color:#E3C27A;padding:10px 20px;border-radius:999px">by</p>
+<aside class="notes">~1.5 мин. Это настоящие фразы бортпроводников. Ученики угадывают пропущенное слово, клик — проверка. Слова: seat belt (ремень безопасности), overhead locker (багажная полка), tray table (откидной столик). Два новых BY: pay by card — как платишь; operated by — кем выполняется. Доп. вопрос: Chicken or pasta? What do you usually choose on a plane? Do you like plane food?</aside>
+</section>
+<section class="slide" id="arrival" data-transition="fade" style="background:#13233F;color:#F4EEE2;font-family:'Manrope', Arial, sans-serif;padding:128px;display:flex;flex-direction:column">
+<div id="jpill" style="position:absolute;left:1554px;top:80px;width:238px;height:53px;background:#C9A24D;border-radius:999px"></div>
+<hr style="position:absolute;left:128px;top:150px;width:1664px;border-top:3px solid #2A3E63">
+<hr id="jprog" style="position:absolute;left:128px;top:150px;width:1664px;border-top:3px solid #C9A24D">
+<div style="position:absolute;left:128px;top:80px;width:1664px;display:flex;flex-direction:row">
+<p style="flex:1;font-size:24px;line-height:1.2;padding:12px 0;text-align:center;color:#8C9BB8">Вход</p>
+<p style="flex:1;font-size:24px;line-height:1.2;padding:12px 0;text-align:center;color:#8C9BB8">Регистрация</p>
+<p style="flex:1;font-size:24px;line-height:1.2;padding:12px 0;text-align:center;color:#8C9BB8">Досмотр</p>
+<p style="flex:1;font-size:24px;line-height:1.2;padding:12px 0;text-align:center;color:#8C9BB8">Паспорт</p>
+<p style="flex:1;font-size:24px;line-height:1.2;padding:12px 0;text-align:center;color:#8C9BB8">Гейт</p>
+<p style="flex:1;font-size:24px;line-height:1.2;padding:12px 0;text-align:center;color:#8C9BB8">На борту</p>
+<p style="flex:1;font-size:24px;line-height:1.2;padding:12px 0;text-align:center;font-weight:700;color:#13233F">Прилёт</p>
+</div>
+<p style="position:absolute;left:128px;top:195px;width:900px;font-size:26px;font-weight:700;letter-spacing:5px;text-transform:uppercase;color:#C9A24D">Посадка · Шаг 5</p>
+<h2 style="position:absolute;left:128px;top:235px;width:1664px;font-family:'Cormorant Garamond', Georgia, serif;font-size:80px;font-weight:600;line-height:1.1;color:#F4EEE2">Прилёт: от самолёта до выхода</h2>
+<div data-build-in="rise 1" style="position:absolute;left:128px;top:360px;width:386px;height:470px;background:#1C3157;border:1px solid #2E4A78;border-top:6px solid #C9A24D;border-radius:22px;padding:36px;display:flex;flex-direction:column;gap:16px">
+<p style="font-family:'Cormorant Garamond', Georgia, serif;font-size:72px;font-weight:600;line-height:1;color:#C9A24D">01</p>
+<h3 style="font-size:34px;font-weight:800;color:#F4EEE2">Baggage claim</h3>
+<p style="font-size:26px;line-height:1.4;color:#C9D2E0">Получение багажа: ждём чемодан у ленты.</p>
+<p style="font-family:'Caveat', 'Brush Script MT', cursive;font-size:40px;line-height:1.2;color:#E3C27A">“That's mine!”</p>
+</div>
+<div data-build-in="rise 2" style="position:absolute;left:554px;top:360px;width:386px;height:470px;background:#1C3157;border:1px solid #2E4A78;border-top:6px solid #C9A24D;border-radius:22px;padding:36px;display:flex;flex-direction:column;gap:16px">
+<p style="font-family:'Cormorant Garamond', Georgia, serif;font-size:72px;font-weight:600;line-height:1;color:#C9A24D">02</p>
+<h3 style="font-size:34px;font-weight:800;color:#F4EEE2">Customs</h3>
+<p style="font-size:26px;line-height:1.4;color:#C9D2E0">Таможня: идём по зелёному коридору.</p>
+<p style="font-family:'Caveat', 'Brush Script MT', cursive;font-size:40px;line-height:1.2;color:#E3C27A">“Nothing to declare.”</p>
+</div>
+<div data-build-in="rise 3" style="position:absolute;left:980px;top:360px;width:386px;height:470px;background:#1C3157;border:1px solid #2E4A78;border-top:6px solid #C9A24D;border-radius:22px;padding:36px;display:flex;flex-direction:column;gap:16px">
+<p style="font-family:'Cormorant Garamond', Georgia, serif;font-size:72px;font-weight:600;line-height:1;color:#C9A24D">03</p>
+<h3 style="font-size:34px;font-weight:800;color:#F4EEE2">Arrivals hall</h3>
+<p style="font-size:26px;line-height:1.4;color:#C9D2E0">Зал прилёта: здесь встречают с табличкой.</p>
+<p style="font-family:'Caveat', 'Brush Script MT', cursive;font-size:40px;line-height:1.2;color:#E3C27A">“Welcome, Mia!”</p>
+</div>
+<div data-build-in="rise 4" style="position:absolute;left:1406px;top:360px;width:386px;height:470px;background:#1C3157;border:1px solid #2E4A78;border-top:6px solid #C9A24D;border-radius:22px;padding:36px;display:flex;flex-direction:column;gap:16px">
+<p style="font-family:'Cormorant Garamond', Georgia, serif;font-size:72px;font-weight:600;line-height:1;color:#C9A24D">04</p>
+<h3 style="font-size:34px;font-weight:800;color:#F4EEE2">Exit</h3>
+<p style="font-size:26px;line-height:1.4;color:#C9D2E0">Выход: в город на автобусе, поезде или такси.</p>
+<p style="font-family:'Caveat', 'Brush Script MT', cursive;font-size:40px;line-height:1.2;color:#E3C27A">“By bus, please!”</p>
+</div>
+<p data-build-in="fade 5" style="position:absolute;left:128px;top:860px;width:1664px;font-size:30px;line-height:1.3;color:#F4EEE2"><b><span style="color:#C9A24D">Обсудим:</span></b> What's the first thing you do after you land?</p>
+<p data-build-in="fade 6 auto" style="position:absolute;left:128px;top:910px;width:1664px;font-size:24px;font-style:italic;color:#8FA0BD">Что вы делаете первым делом после посадки?</p>
+<aside class="notes">~1 мин. Последняя часть пути по аэропорту: получение багажа, таможня, зал прилёта, выход. Кликайте по карточкам, ученики читают фразы. Ещё два BY: by bus — как добираемся. В конце — вопрос для обсуждения. Переход: Мия приземлилась и открывает первую открытку… где же она?</aside>
+</section>
+<section class="slide" id="card-ireland" data-transition="fade" style="background:#F4EEE2;color:#13233F;font-family:'Manrope', Arial, sans-serif;padding:128px;display:flex;flex-direction:column">
+<p style="position:absolute;left:128px;top:128px;width:800px;font-size:26px;font-weight:700;letter-spacing:5px;text-transform:uppercase;color:#A63D2F">Открытка 1 из 5</p>
+<h2 style="position:absolute;left:128px;top:168px;width:700px;font-family:'Cormorant Garamond', Georgia, serif;font-size:80px;font-weight:600;line-height:1.1;color:#13233F">Где дедушка?</h2>
+<p style="position:absolute;left:840px;top:196px;width:952px;font-size:28px;font-style:italic;text-align:right;color:#6E685B">Прочитайте открытку и угадайте страну</p>
+<div data-build-in="drop 1 auto" style="position:absolute;left:260px;top:290px;width:1400px;transform:rotate(-1.5deg);background:#FBF7EF;border-radius:10px;box-shadow:0 40px 80px rgba(19,35,63,0.22);overflow:hidden;display:flex;flex-direction:column">
+<div style="height:16px;background:repeating-linear-gradient(90deg, #A63D2F 0px, #A63D2F 40px, #FBF7EF 40px, #FBF7EF 60px, #2B4C7E 60px, #2B4C7E 100px, #FBF7EF 100px, #FBF7EF 120px)"></div>
+<div style="display:flex;flex-direction:row;gap:48px;padding:48px 56px">
+<p style="flex:1;font-family:'Caveat', 'Brush Script MT', cursive;font-size:44px;line-height:1.2;color:#2B4C7E">Dear Mia,<br>It rains here almost every day — that's why everything is so green! In the evening people play the harp and the fiddle and dance really fast. They say Halloween was born here.<br>Where am I?<br>— Grandpa Jack</p>
+<div style="width:2px;background:#D9CFBE"></div>
+<div style="width:340px;display:flex;flex-direction:column;gap:28px">
+<div style="width:220px;height:260px;background:#3E7C59;border:8px dashed #FBF7EF;border-radius:6px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px"><p style="font-family:'Cormorant Garamond', Georgia, serif;font-size:150px;font-weight:700;line-height:1;color:#FBF7EF">?</p><p style="font-size:24px;font-weight:700;letter-spacing:4px;color:#FBF7EF">AIR MAIL</p></div>
+<p style="font-family:'Caveat', 'Brush Script MT', cursive;font-size:40px;line-height:1.1;color:#2B4C7E">To: Mia</p>
+<hr style="border-top:2px solid #D9CFBE">
+<hr style="border-top:2px solid #D9CFBE">
+</div>
+</div>
+</div>
+<p data-build-in="pop 2" style="position:absolute;left:1100px;top:430px;width:660px;transform:rotate(-12deg);font-size:64px;font-weight:700;letter-spacing:4px;text-transform:uppercase;text-align:center;color:#A63D2F;border:8px double #A63D2F;border-radius:16px;padding:10px 20px;background:rgba(251,247,239,0.88)">Ireland</p>
+<p data-build-in="fade 3 auto" style="position:absolute;left:1260px;top:580px;width:400px;transform:rotate(-8deg);font-family:'Caveat', 'Brush Script MT', cursive;font-size:56px;font-weight:700;text-align:center;color:#A63D2F">Dublin!</p>
+<aside class="notes">~45 сек. Ученик читает открытку вслух. Спросите: какие слова — подсказки? (rain, green, harp, fiddle, Halloween). Класс угадывает страну, затем клик — штамп с ответом: IRELAND, Dublin. Перевод, если нужен: «Здесь почти каждый день идёт дождь — поэтому всё такое зелёное! По вечерам люди играют на арфе и скрипке и очень быстро танцуют. Говорят, Хэллоуин родился здесь. Где я?»</aside>
+</section>
+<section class="slide" id="ireland" data-transition="fade" style="background:#13233F;color:#F4EEE2;font-family:'Manrope', Arial, sans-serif;padding:128px;display:flex;flex-direction:column">
+<p style="position:absolute;left:100px;top:640px;width:1720px;font-family:'Cormorant Garamond', Georgia, serif;font-size:300px;font-weight:700;line-height:1;letter-spacing:10px;white-space:nowrap;color:transparent;-webkit-text-stroke:2px #2C4572">DUBLIN</p>
+<p style="position:absolute;left:128px;top:150px;width:780px;font-size:26px;font-weight:700;letter-spacing:5px;text-transform:uppercase;color:#C9A24D">Остановка 1 · Ирландия, Дублин</p>
+<h1 style="position:absolute;left:128px;top:195px;width:800px;font-family:'Cormorant Garamond', Georgia, serif;font-size:120px;font-weight:600;line-height:1;color:#F4EEE2">Ireland</h1>
+<hr style="position:absolute;left:128px;top:345px;width:120px;border-top:6px solid #5FA77B">
+<p style="position:absolute;left:128px;top:385px;width:720px;font-size:30px;line-height:1.45;color:#C9D2E0">Остров в Атлантическом океане: зелёные холмы, старинные замки, музыка и очень дружелюбные люди.</p>
+<div data-build-in="fade 1 auto" style="position:absolute;left:128px;top:610px;width:760px;display:flex;flex-direction:row;flex-wrap:wrap;gap:16px">
+<p style="font-size:26px;background:#1E355E;border:1px solid #34507F;color:#F4EEE2;padding:12px 24px;border-radius:999px">Языки: английский и ирландский</p>
+<p style="font-size:26px;background:#1E355E;border:1px solid #34507F;color:#F4EEE2;padding:12px 24px;border-radius:999px">Столица: Дублин</p>
+</div>
+<div data-build-in="rise 2" style="position:absolute;left:940px;top:190px;width:852px;height:200px;background:#1C3157;border-left:8px solid #5FA77B;border-radius:22px;padding:28px 36px;display:flex;flex-direction:row;align-items:center;gap:28px">
+<p style="width:200px;font-family:'Cormorant Garamond', Georgia, serif;font-size:56px;font-weight:600;line-height:1;color:#7CC196">Harp</p>
+<p style="flex:1;font-size:30px;line-height:1.35;color:#E3E8F0">Арфа — национальный символ Ирландии. Она есть даже на ирландских монетах евро.</p>
+</div>
+<div data-build-in="rise 3" style="position:absolute;left:940px;top:410px;width:852px;height:200px;background:#1C3157;border-left:8px solid #5FA77B;border-radius:22px;padding:28px 36px;display:flex;flex-direction:row;align-items:center;gap:28px">
+<p style="width:200px;font-family:'Cormorant Garamond', Georgia, serif;font-size:56px;font-weight:600;line-height:1;color:#7CC196">Oct 31</p>
+<p style="flex:1;font-size:30px;line-height:1.35;color:#E3E8F0">Хэллоуин вырос из Самайна — древнего кельтского праздника Ирландии.</p>
+</div>
+<div data-build-in="rise 4" style="position:absolute;left:940px;top:630px;width:852px;height:200px;background:#1C3157;border-left:8px solid #5FA77B;border-radius:22px;padding:28px 36px;display:flex;flex-direction:row;align-items:center;gap:28px">
+<p style="width:200px;font-family:'Cormorant Garamond', Georgia, serif;font-size:56px;font-weight:600;line-height:1;color:#7CC196">Green</p>
+<p style="flex:1;font-size:30px;line-height:1.35;color:#E3E8F0">Ирландию называют «Изумрудным островом» — она очень зелёная.</p>
+</div>
+<p data-build-in="pop 5" style="position:absolute;left:128px;top:842px;width:1280px;font-size:30px;font-weight:800;background:#C9A24D;color:#13233F;padding:14px 32px;border-radius:999px">Let's talk: Would you like to live where it rains almost every day?</p>
+<p data-build-in="fade 6 auto" style="position:absolute;left:160px;top:918px;width:1500px;font-size:24px;font-style:italic;color:#8FA0BD">Обсудим: хотели бы вы жить там, где дождь идёт почти каждый день?</p>
+<aside class="notes">~1 мин. Коротко расскажите о стране, кликами откройте три факта. Доп. вопрос: Do you celebrate Halloween? Did you know it started in Ireland? В конце — вопрос для обсуждения (ученики отвечают по-английски).</aside>
+</section>
+<section class="slide" id="card-canada" data-transition="fade" style="background:#F4EEE2;color:#13233F;font-family:'Manrope', Arial, sans-serif;padding:128px;display:flex;flex-direction:column">
+<p style="position:absolute;left:128px;top:128px;width:800px;font-size:26px;font-weight:700;letter-spacing:5px;text-transform:uppercase;color:#A63D2F">Открытка 2 из 5</p>
+<h2 style="position:absolute;left:128px;top:168px;width:700px;font-family:'Cormorant Garamond', Georgia, serif;font-size:80px;font-weight:600;line-height:1.1;color:#13233F">Где дедушка?</h2>
+<p style="position:absolute;left:840px;top:196px;width:952px;font-size:28px;font-style:italic;text-align:right;color:#6E685B">Прочитайте открытку и угадайте страну</p>
+<div data-build-in="drop 1 auto" style="position:absolute;left:260px;top:290px;width:1400px;transform:rotate(1.5deg);background:#FBF7EF;border-radius:10px;box-shadow:0 40px 80px rgba(19,35,63,0.22);overflow:hidden;display:flex;flex-direction:column">
+<div style="height:16px;background:repeating-linear-gradient(90deg, #A63D2F 0px, #A63D2F 40px, #FBF7EF 40px, #FBF7EF 60px, #2B4C7E 60px, #2B4C7E 100px, #FBF7EF 100px, #FBF7EF 120px)"></div>
+<div style="display:flex;flex-direction:row;gap:48px;padding:48px 56px">
+<p style="flex:1;font-family:'Caveat', 'Brush Script MT', cursive;font-size:44px;line-height:1.2;color:#2B4C7E">Dear Mia,<br>This country is HUGE — the second biggest in the world! People speak English and French here. In winter it's −30 °C, but everyone goes out to play ice hockey. There's a red leaf on the flag.<br>Where am I?<br>— Grandpa Jack</p>
+<div style="width:2px;background:#D9CFBE"></div>
+<div style="width:340px;display:flex;flex-direction:column;gap:28px">
+<div style="width:220px;height:260px;background:#A63D2F;border:8px dashed #FBF7EF;border-radius:6px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px"><p style="font-family:'Cormorant Garamond', Georgia, serif;font-size:150px;font-weight:700;line-height:1;color:#FBF7EF">?</p><p style="font-size:24px;font-weight:700;letter-spacing:4px;color:#FBF7EF">AIR MAIL</p></div>
+<p style="font-family:'Caveat', 'Brush Script MT', cursive;font-size:40px;line-height:1.1;color:#2B4C7E">To: Mia</p>
+<hr style="border-top:2px solid #D9CFBE">
+<hr style="border-top:2px solid #D9CFBE">
+</div>
+</div>
+</div>
+<p data-build-in="pop 2" style="position:absolute;left:1100px;top:430px;width:660px;transform:rotate(-12deg);font-size:64px;font-weight:700;letter-spacing:4px;text-transform:uppercase;text-align:center;color:#A63D2F;border:8px double #A63D2F;border-radius:16px;padding:10px 20px;background:rgba(251,247,239,0.88)">Canada</p>
+<p data-build-in="fade 3 auto" style="position:absolute;left:1260px;top:580px;width:400px;transform:rotate(-8deg);font-family:'Caveat', 'Brush Script MT', cursive;font-size:56px;font-weight:700;text-align:center;color:#A63D2F">Toronto!</p>
+<aside class="notes">~45 сек. Мия летит дальше: из Дублина в Торонто. Ученик читает открытку. Подсказки: вторая по величине страна, английский и французский, хоккей, красный лист на флаге (кленовый). Угадываем, клик: CANADA, Toronto. Перевод: «Эта страна ОГРОМНАЯ — вторая по величине в мире! Здесь говорят по-английски и по-французски. Зимой −30 °C, но все выходят играть в хоккей. На флаге — красный лист. Где я?»</aside>
+</section>
+<section class="slide" id="canada" data-transition="fade" style="background:#13233F;color:#F4EEE2;font-family:'Manrope', Arial, sans-serif;padding:128px;display:flex;flex-direction:column">
+<p style="position:absolute;left:100px;top:640px;width:1720px;font-family:'Cormorant Garamond', Georgia, serif;font-size:300px;font-weight:700;line-height:1;letter-spacing:10px;white-space:nowrap;color:transparent;-webkit-text-stroke:2px #2C4572">TORONTO</p>
+<p style="position:absolute;left:128px;top:150px;width:780px;font-size:26px;font-weight:700;letter-spacing:5px;text-transform:uppercase;color:#C9A24D">Остановка 2 · Канада, Торонто</p>
+<h1 style="position:absolute;left:128px;top:195px;width:800px;font-family:'Cormorant Garamond', Georgia, serif;font-size:120px;font-weight:600;line-height:1;color:#F4EEE2">Canada</h1>
+<hr style="position:absolute;left:128px;top:345px;width:120px;border-top:6px solid #D2604C">
+<p style="position:absolute;left:128px;top:385px;width:720px;font-size:30px;line-height:1.45;color:#C9D2E0">Огромная страна в Северной Америке: бесконечные леса, тысячи озёр и очень холодные зимы.</p>
+<div data-build-in="fade 1 auto" style="position:absolute;left:128px;top:610px;width:760px;display:flex;flex-direction:row;flex-wrap:wrap;gap:16px">
+<p style="font-size:26px;background:#1E355E;border:1px solid #34507F;color:#F4EEE2;padding:12px 24px;border-radius:999px">Языки: английский и французский</p>
+<p style="font-size:26px;background:#1E355E;border:1px solid #34507F;color:#F4EEE2;padding:12px 24px;border-radius:999px">Столица: Оттава (не Торонто!)</p>
+</div>
+<div data-build-in="rise 2" style="position:absolute;left:940px;top:190px;width:852px;height:200px;background:#1C3157;border-left:8px solid #D2604C;border-radius:22px;padding:28px 36px;display:flex;flex-direction:row;align-items:center;gap:28px">
+<p style="width:200px;font-family:'Cormorant Garamond', Georgia, serif;font-size:56px;font-weight:600;line-height:1;color:#E8806C">No. 2</p>
+<p style="flex:1;font-size:30px;line-height:1.35;color:#E3E8F0">Вторая по площади страна в мире. А первая — Россия!</p>
+</div>
+<div data-build-in="rise 3" style="position:absolute;left:940px;top:410px;width:852px;height:200px;background:#1C3157;border-left:8px solid #D2604C;border-radius:22px;padding:28px 36px;display:flex;flex-direction:row;align-items:center;gap:28px">
+<p style="width:200px;font-family:'Cormorant Garamond', Georgia, serif;font-size:56px;font-weight:600;line-height:1;color:#E8806C">EN + FR</p>
+<p style="flex:1;font-size:30px;line-height:1.35;color:#E3E8F0">Два официальных языка: вывески и упаковки — на английском и французском.</p>
+</div>
+<div data-build-in="rise 4" style="position:absolute;left:940px;top:630px;width:852px;height:200px;background:#1C3157;border-left:8px solid #D2604C;border-radius:22px;padding:28px 36px;display:flex;flex-direction:row;align-items:center;gap:28px">
+<p style="width:200px;font-family:'Cormorant Garamond', Georgia, serif;font-size:56px;font-weight:600;line-height:1;color:#E8806C">Sorry!</p>
+<p style="flex:1;font-size:30px;line-height:1.35;color:#E3E8F0">Канадцы славятся вежливостью и постоянно говорят «sorry».</p>
+</div>
+<p data-build-in="pop 5" style="position:absolute;left:128px;top:842px;width:1100px;font-size:30px;font-weight:800;background:#C9A24D;color:#13233F;padding:14px 32px;border-radius:999px">Let's talk: Could you survive a Canadian winter at −30 °C?</p>
+<p data-build-in="fade 6 auto" style="position:absolute;left:160px;top:918px;width:1500px;font-size:24px;font-style:italic;color:#8FA0BD">Обсудим: вы бы пережили канадскую зиму при −30 °C?</p>
+<aside class="notes">~1 мин. Расскажите о стране, кликами откройте факты. Интересное сравнение: Россия — первая по площади, Канада — вторая. Доп. вопрос: How many languages do you speak? Would you like to live in a country with two official languages? В конце — вопрос для обсуждения.</aside>
+</section>
+<section class="slide" id="card-safrica" data-transition="fade" style="background:#F4EEE2;color:#13233F;font-family:'Manrope', Arial, sans-serif;padding:128px;display:flex;flex-direction:column">
+<p style="position:absolute;left:128px;top:128px;width:800px;font-size:26px;font-weight:700;letter-spacing:5px;text-transform:uppercase;color:#A63D2F">Открытка 3 из 5</p>
+<h2 style="position:absolute;left:128px;top:168px;width:700px;font-family:'Cormorant Garamond', Georgia, serif;font-size:80px;font-weight:600;line-height:1.1;color:#13233F">Где дедушка?</h2>
+<p style="position:absolute;left:840px;top:196px;width:952px;font-size:28px;font-style:italic;text-align:right;color:#6E685B">Прочитайте открытку и угадайте страну</p>
+<div data-build-in="drop 1 auto" style="position:absolute;left:260px;top:290px;width:1400px;transform:rotate(-1deg);background:#FBF7EF;border-radius:10px;box-shadow:0 40px 80px rgba(19,35,63,0.22);overflow:hidden;display:flex;flex-direction:column">
+<div style="height:16px;background:repeating-linear-gradient(90deg, #A63D2F 0px, #A63D2F 40px, #FBF7EF 40px, #FBF7EF 60px, #2B4C7E 60px, #2B4C7E 100px, #FBF7EF 100px, #FBF7EF 120px)"></div>
+<div style="display:flex;flex-direction:row;gap:48px;padding:48px 56px">
+<p style="flex:1;font-family:'Caveat', 'Brush Script MT', cursive;font-size:44px;line-height:1.2;color:#2B4C7E">Dear Mia,<br>Today I saw penguins on a sunny beach — in Africa! Behind the city there is a mountain as flat as a table. This country has more than ten official languages and THREE capital cities.<br>Where am I?<br>— Grandpa Jack</p>
+<div style="width:2px;background:#D9CFBE"></div>
+<div style="width:340px;display:flex;flex-direction:column;gap:28px">
+<div style="width:220px;height:260px;background:#C9A24D;border:8px dashed #FBF7EF;border-radius:6px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px"><p style="font-family:'Cormorant Garamond', Georgia, serif;font-size:150px;font-weight:700;line-height:1;color:#13233F">?</p><p style="font-size:24px;font-weight:700;letter-spacing:4px;color:#13233F">AIR MAIL</p></div>
+<p style="font-family:'Caveat', 'Brush Script MT', cursive;font-size:40px;line-height:1.1;color:#2B4C7E">To: Mia</p>
+<hr style="border-top:2px solid #D9CFBE">
+<hr style="border-top:2px solid #D9CFBE">
+</div>
+</div>
+</div>
+<p data-build-in="pop 2" style="position:absolute;left:1080px;top:430px;width:700px;transform:rotate(-12deg);font-size:56px;font-weight:700;letter-spacing:2px;text-transform:uppercase;text-align:center;color:#A63D2F;border:8px double #A63D2F;border-radius:16px;padding:10px 20px;background:rgba(251,247,239,0.88)">South Africa</p>
+<p data-build-in="fade 3 auto" style="position:absolute;left:1260px;top:580px;width:400px;transform:rotate(-8deg);font-family:'Caveat', 'Brush Script MT', cursive;font-size:56px;font-weight:700;text-align:center;color:#A63D2F">Cape Town!</p>
+<aside class="notes">~45 сек. Долгий перелёт из Торонто через Атлантику. Подсказки: пингвины в Африке, гора, плоская как стол (Столовая гора), много официальных языков, три столицы. Угадываем, клик: SOUTH AFRICA, Cape Town. Перевод: «Сегодня я видел пингвинов на солнечном пляже — в Африке! За городом стоит гора, плоская как стол. В этой стране больше десяти официальных языков и ТРИ столицы. Где я?»</aside>
+</section>
+<section class="slide" id="safrica" data-transition="fade" style="background:#13233F;color:#F4EEE2;font-family:'Manrope', Arial, sans-serif;padding:128px;display:flex;flex-direction:column">
+<p style="position:absolute;left:100px;top:640px;width:1720px;font-family:'Cormorant Garamond', Georgia, serif;font-size:300px;font-weight:700;line-height:1;letter-spacing:10px;white-space:nowrap;color:transparent;-webkit-text-stroke:2px #2C4572">CAPE TOWN</p>
+<p style="position:absolute;left:128px;top:150px;width:780px;font-size:26px;font-weight:700;letter-spacing:5px;text-transform:uppercase;color:#C9A24D">Остановка 3 · ЮАР, Кейптаун</p>
+<h1 style="position:absolute;left:128px;top:195px;width:800px;font-family:'Cormorant Garamond', Georgia, serif;font-size:120px;font-weight:600;line-height:1;color:#F4EEE2">South Africa</h1>
+<hr style="position:absolute;left:128px;top:345px;width:120px;border-top:6px solid #C9A24D">
+<p style="position:absolute;left:128px;top:385px;width:720px;font-size:30px;line-height:1.45;color:#C9D2E0">Самый юг Африки, между двумя океанами: дикие животные, горы, пляжи и большие современные города.</p>
+<div data-build-in="fade 1 auto" style="position:absolute;left:128px;top:610px;width:760px;display:flex;flex-direction:row;flex-wrap:wrap;gap:16px">
+<p style="font-size:26px;background:#1E355E;border:1px solid #34507F;color:#F4EEE2;padding:12px 24px;border-radius:999px">12 официальных языков</p>
+<p style="font-size:26px;background:#1E355E;border:1px solid #34507F;color:#F4EEE2;padding:12px 24px;border-radius:999px">3 столицы</p>
+</div>
+<div data-build-in="rise 2" style="position:absolute;left:940px;top:190px;width:852px;height:200px;background:#1C3157;border-left:8px solid #C9A24D;border-radius:22px;padding:28px 36px;display:flex;flex-direction:row;align-items:center;gap:28px">
+<p style="width:200px;font-family:'Cormorant Garamond', Georgia, serif;font-size:56px;font-weight:600;line-height:1;color:#E3C27A">12</p>
+<p style="flex:1;font-size:30px;line-height:1.35;color:#E3E8F0">В ЮАР 12 официальных языков — английский лишь один из них.</p>
+</div>
+<div data-build-in="rise 3" style="position:absolute;left:940px;top:410px;width:852px;height:200px;background:#1C3157;border-left:8px solid #C9A24D;border-radius:22px;padding:28px 36px;display:flex;flex-direction:row;align-items:center;gap:28px">
+<p style="width:200px;font-family:'Cormorant Garamond', Georgia, serif;font-size:56px;font-weight:600;line-height:1;color:#E3C27A">3</p>
+<p style="flex:1;font-size:30px;line-height:1.35;color:#E3E8F0">Три столицы: Претория, Кейптаун и Блумфонтейн.</p>
+</div>
+<div data-build-in="rise 4" style="position:absolute;left:940px;top:630px;width:852px;height:200px;background:#1C3157;border-left:8px solid #C9A24D;border-radius:22px;padding:28px 36px;display:flex;flex-direction:row;align-items:center;gap:28px">
+<p style="width:200px;font-family:'Cormorant Garamond', Georgia, serif;font-size:50px;font-weight:600;line-height:1;color:#E3C27A">Penguins</p>
+<p style="flex:1;font-size:30px;line-height:1.35;color:#E3E8F0">На пляже Боулдерс рядом с Кейптауном живут африканские пингвины.</p>
+</div>
+<p data-build-in="pop 5" style="position:absolute;left:128px;top:842px;width:1560px;font-size:30px;font-weight:800;background:#C9A24D;color:#13233F;padding:14px 32px;border-radius:999px">Let's talk: Nelson Mandela believed education can change the world. Do you agree?</p>
+<p data-build-in="fade 6 auto" style="position:absolute;left:160px;top:918px;width:1500px;font-size:24px;font-style:italic;color:#8FA0BD">Обсудим: Нельсон Мандела верил, что образование может изменить мир. Вы согласны?</p>
+<aside class="notes">~1 мин. Расскажите о стране, кликами откройте факты. Вопросы: How many official languages does our country have? Can you imagine a country with three capitals? Кто такой Нельсон Мандела? (первый темнокожий президент ЮАР, символ борьбы за свободу). В конце — вопрос для обсуждения.</aside>
+</section>
+<section class="slide" id="card-singapore" data-transition="fade" style="background:#F4EEE2;color:#13233F;font-family:'Manrope', Arial, sans-serif;padding:128px;display:flex;flex-direction:column">
+<p style="position:absolute;left:128px;top:128px;width:800px;font-size:26px;font-weight:700;letter-spacing:5px;text-transform:uppercase;color:#A63D2F">Открытка 4 из 5</p>
+<h2 style="position:absolute;left:128px;top:168px;width:700px;font-family:'Cormorant Garamond', Georgia, serif;font-size:80px;font-weight:600;line-height:1.1;color:#13233F">Где дедушка?</h2>
+<p style="position:absolute;left:840px;top:196px;width:952px;font-size:28px;font-style:italic;text-align:right;color:#6E685B">Прочитайте открытку и угадайте страну</p>
+<div data-build-in="drop 1 auto" style="position:absolute;left:260px;top:290px;width:1400px;transform:rotate(1deg);background:#FBF7EF;border-radius:10px;box-shadow:0 40px 80px rgba(19,35,63,0.22);overflow:hidden;display:flex;flex-direction:column">
+<div style="height:16px;background:repeating-linear-gradient(90deg, #A63D2F 0px, #A63D2F 40px, #FBF7EF 40px, #FBF7EF 60px, #2B4C7E 60px, #2B4C7E 100px, #FBF7EF 100px, #FBF7EF 120px)"></div>
+<div style="display:flex;flex-direction:row;gap:48px;padding:48px 56px">
+<p style="flex:1;font-family:'Caveat', 'Brush Script MT', cursive;font-size:44px;line-height:1.2;color:#2B4C7E">Dear Mia,<br>This place is a city AND a country at the same time. It's hot and rainy all year. The symbol here is half lion, half fish. And shh… you can't buy chewing gum in the shops!<br>Where am I?<br>— Grandpa Jack</p>
+<div style="width:2px;background:#D9CFBE"></div>
+<div style="width:340px;display:flex;flex-direction:column;gap:28px">
+<div style="width:220px;height:260px;background:#2F7F86;border:8px dashed #FBF7EF;border-radius:6px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px"><p style="font-family:'Cormorant Garamond', Georgia, serif;font-size:150px;font-weight:700;line-height:1;color:#FBF7EF">?</p><p style="font-size:24px;font-weight:700;letter-spacing:4px;color:#FBF7EF">AIR MAIL</p></div>
+<p style="font-family:'Caveat', 'Brush Script MT', cursive;font-size:40px;line-height:1.1;color:#2B4C7E">To: Mia</p>
+<hr style="border-top:2px solid #D9CFBE">
+<hr style="border-top:2px solid #D9CFBE">
+</div>
+</div>
+</div>
+<p data-build-in="pop 2" style="position:absolute;left:1100px;top:430px;width:660px;transform:rotate(-12deg);font-size:64px;font-weight:700;letter-spacing:4px;text-transform:uppercase;text-align:center;color:#A63D2F;border:8px double #A63D2F;border-radius:16px;padding:10px 20px;background:rgba(251,247,239,0.88)">Singapore</p>
+<p data-build-in="fade 3 auto" style="position:absolute;left:1200px;top:580px;width:520px;transform:rotate(-8deg);font-family:'Caveat', 'Brush Script MT', cursive;font-size:56px;font-weight:700;text-align:center;color:#A63D2F">City and country!</p>
+<aside class="notes">~45 сек. Из Африки в Азию. Подсказки: город и страна одновременно, жарко круглый год, наполовину лев, наполовину рыба (Мерлион), нельзя купить жвачку. Угадываем, клик: SINGAPORE. Перевод: «Это место — одновременно город И страна. Здесь жарко и дождливо круглый год. Символ — наполовину лев, наполовину рыба. И тсс… жвачку в магазинах не купить! Где я?»</aside>
+</section>
+<section class="slide" id="singapore" data-transition="fade" style="background:#13233F;color:#F4EEE2;font-family:'Manrope', Arial, sans-serif;padding:128px;display:flex;flex-direction:column">
+<p style="position:absolute;left:100px;top:640px;width:1720px;font-family:'Cormorant Garamond', Georgia, serif;font-size:300px;font-weight:700;line-height:1;letter-spacing:10px;white-space:nowrap;color:transparent;-webkit-text-stroke:2px #2C4572">SINGAPORE</p>
+<p style="position:absolute;left:128px;top:150px;width:780px;font-size:26px;font-weight:700;letter-spacing:5px;text-transform:uppercase;color:#C9A24D">Остановка 4 · Сингапур</p>
+<h1 style="position:absolute;left:128px;top:195px;width:800px;font-family:'Cormorant Garamond', Georgia, serif;font-size:120px;font-weight:600;line-height:1;color:#F4EEE2">Singapore</h1>
+<hr style="position:absolute;left:128px;top:345px;width:120px;border-top:6px solid #4FB0B8">
+<p style="position:absolute;left:128px;top:385px;width:720px;font-size:30px;line-height:1.45;color:#C9D2E0">Крошечный остров в Азии: вся страна — один большой, современный и очень зелёный город. Жарко круглый год.</p>
+<div data-build-in="fade 1 auto" style="position:absolute;left:128px;top:620px;width:760px;display:flex;flex-direction:row;flex-wrap:wrap;gap:16px">
+<p style="font-size:26px;background:#1E355E;border:1px solid #34507F;color:#F4EEE2;padding:12px 24px;border-radius:999px">4 официальных языка</p>
+<p style="font-size:26px;background:#1E355E;border:1px solid #34507F;color:#F4EEE2;padding:12px 24px;border-radius:999px">Город-государство</p>
+</div>
+<div data-build-in="rise 2" style="position:absolute;left:940px;top:190px;width:852px;height:200px;background:#1C3157;border-left:8px solid #4FB0B8;border-radius:22px;padding:28px 36px;display:flex;flex-direction:row;align-items:center;gap:28px">
+<p style="width:200px;font-family:'Cormorant Garamond', Georgia, serif;font-size:56px;font-weight:600;line-height:1;color:#7FCCD3">Merlion</p>
+<p style="flex:1;font-size:30px;line-height:1.35;color:#E3E8F0">Символ Сингапура — Мерлион: наполовину лев, наполовину рыба.</p>
+</div>
+<div data-build-in="rise 3" style="position:absolute;left:940px;top:410px;width:852px;height:200px;background:#1C3157;border-left:8px solid #4FB0B8;border-radius:22px;padding:28px 36px;display:flex;flex-direction:row;align-items:center;gap:28px">
+<p style="width:200px;font-family:'Cormorant Garamond', Georgia, serif;font-size:56px;font-weight:600;line-height:1;color:#7FCCD3">No gum</p>
+<p style="flex:1;font-size:30px;line-height:1.35;color:#E3E8F0">Продавать жвачку здесь запрещено с 1992 года — ради чистоты улиц.</p>
+</div>
+<div data-build-in="rise 4" style="position:absolute;left:940px;top:630px;width:852px;height:200px;background:#1C3157;border-left:8px solid #4FB0B8;border-radius:22px;padding:28px 36px;display:flex;flex-direction:row;align-items:center;gap:28px">
+<p style="width:200px;font-family:'Cormorant Garamond', Georgia, serif;font-size:56px;font-weight:600;line-height:1;color:#7FCCD3">40 m</p>
+<p style="flex:1;font-size:30px;line-height:1.35;color:#E3E8F0">В аэропорту Чанги — самый высокий в мире водопад внутри здания.</p>
+</div>
+<p data-build-in="pop 5" style="position:absolute;left:128px;top:842px;width:1520px;font-size:30px;font-weight:800;background:#C9A24D;color:#13233F;padding:14px 32px;border-radius:999px">Let's talk: There's a park called Gardens by the Bay. What does “by” mean here?</p>
+<p data-build-in="fade 6 auto" style="position:absolute;left:160px;top:918px;width:1500px;font-size:24px;font-style:italic;color:#8FA0BD">Обсудим: в Сингапуре есть парк Gardens by the Bay. Что здесь значит «by»?</p>
+<aside class="notes">~1 мин. Расскажите о стране, кликами откройте факты. Факт про аэропорт связан с нашей темой: Чанги часто называют лучшим аэропортом мира, в нём даже есть водопад высотой 40 метров. Обсуждение: Gardens by the Bay — by = рядом (сады у залива). Доп. вопрос: Would you like to live in a country where gum is banned?</aside>
+</section>
+<section class="slide" id="card-australia" data-transition="fade" style="background:#F4EEE2;color:#13233F;font-family:'Manrope', Arial, sans-serif;padding:128px;display:flex;flex-direction:column">
+<p style="position:absolute;left:128px;top:128px;width:800px;font-size:26px;font-weight:700;letter-spacing:5px;text-transform:uppercase;color:#A63D2F">Открытка 5 из 5</p>
+<h2 style="position:absolute;left:128px;top:168px;width:700px;font-family:'Cormorant Garamond', Georgia, serif;font-size:80px;font-weight:600;line-height:1.1;color:#13233F">Где дедушка?</h2>
+<p style="position:absolute;left:840px;top:196px;width:952px;font-size:28px;font-style:italic;text-align:right;color:#6E685B">Прочитайте открытку и угадайте страну</p>
+<div data-build-in="drop 1 auto" style="position:absolute;left:260px;top:290px;width:1400px;transform:rotate(-1.5deg);background:#FBF7EF;border-radius:10px;box-shadow:0 40px 80px rgba(19,35,63,0.22);overflow:hidden;display:flex;flex-direction:column">
+<div style="height:16px;background:repeating-linear-gradient(90deg, #A63D2F 0px, #A63D2F 40px, #FBF7EF 40px, #FBF7EF 60px, #2B4C7E 60px, #2B4C7E 100px, #FBF7EF 100px, #FBF7EF 120px)"></div>
+<div style="display:flex;flex-direction:row;gap:48px;padding:48px 56px">
+<p style="flex:1;font-family:'Caveat', 'Brush Script MT', cursive;font-size:44px;line-height:1.2;color:#2B4C7E">Dear Mia,<br>Here Christmas is in summer, so people eat Christmas lunch on the beach! Today I saw a kangaroo with a baby in its pocket. The Opera House looks like a ship with white sails.<br>Where am I?<br>— Grandpa Jack</p>
+<div style="width:2px;background:#D9CFBE"></div>
+<div style="width:340px;display:flex;flex-direction:column;gap:28px">
+<div style="width:220px;height:260px;background:#2B4C7E;border:8px dashed #FBF7EF;border-radius:6px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px"><p style="font-family:'Cormorant Garamond', Georgia, serif;font-size:150px;font-weight:700;line-height:1;color:#FBF7EF">?</p><p style="font-size:24px;font-weight:700;letter-spacing:4px;color:#FBF7EF">AIR MAIL</p></div>
+<p style="font-family:'Caveat', 'Brush Script MT', cursive;font-size:40px;line-height:1.1;color:#2B4C7E">To: Mia</p>
+<hr style="border-top:2px solid #D9CFBE">
+<hr style="border-top:2px solid #D9CFBE">
+</div>
+</div>
+</div>
+<p data-build-in="pop 2" style="position:absolute;left:1100px;top:430px;width:660px;transform:rotate(-12deg);font-size:64px;font-weight:700;letter-spacing:4px;text-transform:uppercase;text-align:center;color:#A63D2F;border:8px double #A63D2F;border-radius:16px;padding:10px 20px;background:rgba(251,247,239,0.88)">Australia</p>
+<p data-build-in="fade 3 auto" style="position:absolute;left:1260px;top:580px;width:400px;transform:rotate(-8deg);font-family:'Caveat', 'Brush Script MT', cursive;font-size:56px;font-weight:700;text-align:center;color:#A63D2F">Sydney!</p>
+<aside class="notes">~45 сек. Последняя открытка! Подсказки: Рождество летом, кенгуру с малышом в кармане, Оперный театр как белые паруса. Угадываем, клик: AUSTRALIA, Sydney. Перевод: «Здесь Рождество летом, поэтому люди устраивают праздничный обед на пляже! Сегодня я видел кенгуру с малышом в кармане. Оперный театр похож на корабль с белыми парусами. Где я?»</aside>
+</section>
+<section class="slide" id="australia" data-transition="fade" style="background:#13233F;color:#F4EEE2;font-family:'Manrope', Arial, sans-serif;padding:128px;display:flex;flex-direction:column">
+<p style="position:absolute;left:100px;top:640px;width:1720px;font-family:'Cormorant Garamond', Georgia, serif;font-size:300px;font-weight:700;line-height:1;letter-spacing:10px;white-space:nowrap;color:transparent;-webkit-text-stroke:2px #2C4572">SYDNEY</p>
+<p style="position:absolute;left:128px;top:150px;width:780px;font-size:26px;font-weight:700;letter-spacing:5px;text-transform:uppercase;color:#C9A24D">Остановка 5 · Австралия, Сидней</p>
+<h1 style="position:absolute;left:128px;top:195px;width:800px;font-family:'Cormorant Garamond', Georgia, serif;font-size:120px;font-weight:600;line-height:1;color:#F4EEE2">Australia</h1>
+<hr style="position:absolute;left:128px;top:345px;width:120px;border-top:6px solid #6E9BD6">
+<p style="position:absolute;left:128px;top:385px;width:720px;font-size:30px;line-height:1.45;color:#C9D2E0">Страна и одновременно континент: солнечные пляжи, красные пустыни и животные, которых больше нигде нет.</p>
+<div data-build-in="fade 1 auto" style="position:absolute;left:128px;top:620px;width:760px;display:flex;flex-direction:row;flex-wrap:wrap;gap:16px">
+<p style="font-size:26px;background:#1E355E;border:1px solid #34507F;color:#F4EEE2;padding:12px 24px;border-radius:999px">Столица: Канберра (не Сидней!)</p>
+<p style="font-size:26px;background:#1E355E;border:1px solid #34507F;color:#F4EEE2;padding:12px 24px;border-radius:999px">Рождество — летом</p>
+</div>
+<div data-build-in="rise 2" style="position:absolute;left:940px;top:190px;width:852px;height:200px;background:#1C3157;border-left:8px solid #6E9BD6;border-radius:22px;padding:28px 36px;display:flex;flex-direction:row;align-items:center;gap:28px">
+<p style="width:200px;font-family:'Cormorant Garamond', Georgia, serif;font-size:56px;font-weight:600;line-height:1;color:#9DBDE8">Joey</p>
+<p style="flex:1;font-size:30px;line-height:1.35;color:#E3E8F0">Детёныш кенгуру — joey. Он живёт в мамином кармане-сумке.</p>
+</div>
+<div data-build-in="rise 3" style="position:absolute;left:940px;top:410px;width:852px;height:200px;background:#1C3157;border-left:8px solid #6E9BD6;border-radius:22px;padding:28px 36px;display:flex;flex-direction:row;align-items:center;gap:28px">
+<p style="width:200px;font-family:'Cormorant Garamond', Georgia, serif;font-size:56px;font-weight:600;line-height:1;color:#9DBDE8">Reef</p>
+<p style="flex:1;font-size:30px;line-height:1.35;color:#E3E8F0">Большой Барьерный риф — самая большая система коралловых рифов на Земле.</p>
+</div>
+<div data-build-in="rise 4" style="position:absolute;left:940px;top:630px;width:852px;height:200px;background:#1C3157;border-left:8px solid #6E9BD6;border-radius:22px;padding:28px 36px;display:flex;flex-direction:row;align-items:center;gap:28px">
+<p style="width:200px;font-family:'Cormorant Garamond', Georgia, serif;font-size:56px;font-weight:600;line-height:1;color:#9DBDE8">Sails</p>
+<p style="flex:1;font-size:30px;line-height:1.35;color:#E3E8F0">Крыша Сиднейского оперного театра похожа на белые паруса.</p>
+</div>
+<p data-build-in="pop 5" style="position:absolute;left:128px;top:842px;width:1340px;font-size:30px;font-weight:800;background:#C9A24D;color:#13233F;padding:14px 32px;border-radius:999px">Let's talk: Christmas on the beach or in the snow — which do you prefer?</p>
+<p data-build-in="fade 6 auto" style="position:absolute;left:160px;top:918px;width:1500px;font-size:24px;font-style:italic;color:#8FA0BD">Обсудим: праздники на пляже или в снегу — что вам больше нравится?</p>
+<aside class="notes">~1 мин. Расскажите о стране, кликами откройте факты. Вопросы: What is the capital of Australia? (Canberra — многие думают, что Сидней.) What other Australian animals do you know? (koala, wombat, emu). В конце — вопрос для обсуждения.</aside>
+</section>
+<section class="slide" id="by-meanings" data-transition="fade" style="background:#F4EEE2;color:#13233F;font-family:'Manrope', Arial, sans-serif;padding:128px;display:flex;flex-direction:column">
+<p style="position:absolute;left:128px;top:128px;width:900px;font-size:26px;font-weight:700;letter-spacing:5px;text-transform:uppercase;color:#A63D2F">Грамматика · Что умеет BY</p>
+<h2 style="position:absolute;left:128px;top:168px;width:1664px;font-family:'Cormorant Garamond', Georgia, serif;font-size:80px;font-weight:600;line-height:1.1;color:#13233F">Одно маленькое слово — шесть работ</h2>
+<div data-build-in="pop 1" style="position:absolute;left:128px;top:320px;width:533px;height:250px;background:#FBF7EF;border:1px solid #E3D9C6;border-radius:20px;box-shadow:0 18px 40px rgba(19,35,63,0.10);padding:34px 36px;display:flex;flex-direction:column;justify-content:space-between">
+<p style="font-size:24px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:#A63D2F">1 · Как добираешься</p>
+<p style="font-family:'Cormorant Garamond', Georgia, serif;font-size:46px;font-style:italic;font-weight:600;line-height:1.15;color:#13233F">Mia travels <b><span style="color:#A63D2F">by</span></b> plane.</p>
+</div>
+<div data-build-in="pop 2" style="position:absolute;left:693px;top:320px;width:533px;height:250px;background:#FBF7EF;border:1px solid #E3D9C6;border-radius:20px;box-shadow:0 18px 40px rgba(19,35,63,0.10);padding:34px 36px;display:flex;flex-direction:column;justify-content:space-between">
+<p style="font-size:24px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:#A63D2F">2 · Не позже чем</p>
+<p style="font-family:'Cormorant Garamond', Georgia, serif;font-size:46px;font-style:italic;font-weight:600;line-height:1.15;color:#13233F">Boarding closes <b><span style="color:#A63D2F">by</span></b> 7:30.</p>
+</div>
+<div data-build-in="pop 3" style="position:absolute;left:1258px;top:320px;width:533px;height:250px;background:#FBF7EF;border:1px solid #E3D9C6;border-radius:20px;box-shadow:0 18px 40px rgba(19,35,63,0.10);padding:34px 36px;display:flex;flex-direction:column;justify-content:space-between">
+<p style="font-size:24px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:#A63D2F">3 · Рядом с</p>
+<p style="font-family:'Cormorant Garamond', Georgia, serif;font-size:46px;font-style:italic;font-weight:600;line-height:1.15;color:#13233F">A seat <b><span style="color:#A63D2F">by</span></b> the window, please.</p>
+</div>
+<div data-build-in="pop 4" style="position:absolute;left:128px;top:602px;width:533px;height:250px;background:#FBF7EF;border:1px solid #E3D9C6;border-radius:20px;box-shadow:0 18px 40px rgba(19,35,63,0.10);padding:34px 36px;display:flex;flex-direction:column;justify-content:space-between">
+<p style="font-size:24px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:#A63D2F">4 · Как платишь</p>
+<p style="font-family:'Cormorant Garamond', Georgia, serif;font-size:46px;font-style:italic;font-weight:600;line-height:1.15;color:#13233F">Can I pay <b><span style="color:#A63D2F">by</span></b> card?</p>
+</div>
+<div data-build-in="pop 5" style="position:absolute;left:693px;top:602px;width:533px;height:250px;background:#FBF7EF;border:1px solid #E3D9C6;border-radius:20px;box-shadow:0 18px 40px rgba(19,35,63,0.10);padding:34px 36px;display:flex;flex-direction:column;justify-content:space-between">
+<p style="font-size:24px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:#A63D2F">5 · Кем сделано</p>
+<p style="font-family:'Cormorant Garamond', Georgia, serif;font-size:46px;font-style:italic;font-weight:600;line-height:1.15;color:#13233F">The flight is operated <b><span style="color:#A63D2F">by</span></b> Postcard Air.</p>
+</div>
+<div data-build-in="pop 6" style="position:absolute;left:1258px;top:602px;width:533px;height:250px;background:#FBF7EF;border:1px solid #E3D9C6;border-radius:20px;box-shadow:0 18px 40px rgba(19,35,63,0.10);padding:34px 36px;display:flex;flex-direction:column;justify-content:space-between">
+<p style="font-size:24px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:#A63D2F">6 · Друг за другом</p>
+<p style="font-family:'Cormorant Garamond', Georgia, serif;font-size:46px;font-style:italic;font-weight:600;line-height:1.15;color:#13233F">Passengers board row <b><span style="color:#A63D2F">by</span></b> row.</p>
+</div>
+<p data-build-in="fade 7" style="position:absolute;left:128px;top:884px;width:1320px;font-size:28px;font-weight:700;background:#13233F;color:#F4EEE2;padding:14px 30px;border-radius:999px">Бонус: by mistake — по ошибке · by heart — наизусть · by the way — кстати</p>
+<aside class="notes">~1.5 мин. Собираем всё, что мы встретили по дороге. Перед каждой карточкой спросите: где мы видели этот BY? (у стойки регистрации, на гейте, на борту). Пусть ученики своими словами объяснят значение, потом клик. Бонус: три устойчивых выражения с by — можно попросить придумать с ними предложения.</aside>
+</section>
+<section class="slide" id="by-quiz" data-transition="fade" style="background:#13233F;color:#F4EEE2;font-family:'Manrope', Arial, sans-serif;padding:128px;display:flex;flex-direction:column">
+<p style="position:absolute;left:128px;top:128px;width:900px;font-size:26px;font-weight:700;letter-spacing:5px;text-transform:uppercase;color:#C9A24D">Игра · команда против команды</p>
+<h2 style="position:absolute;left:128px;top:165px;width:1000px;font-family:'Cormorant Garamond', Georgia, serif;font-size:80px;font-weight:600;line-height:1.1;color:#F4EEE2">On, in или by?</h2>
+<p style="position:absolute;left:1100px;top:200px;width:692px;font-size:26px;text-align:right;color:#8FA0BD">За каждый верный ответ — 1 очко</p>
+<div style="position:absolute;left:128px;top:300px;width:1664px;height:84px;background:#1C3157;border-radius:18px"></div>
+<p style="position:absolute;left:160px;top:320px;width:60px;font-size:34px;font-weight:800;color:#C9A24D">1</p>
+<p style="position:absolute;left:240px;top:320px;width:1280px;font-size:34px;line-height:1.3;color:#F4EEE2">Mia flew to Toronto _____ plane.</p>
+<p data-build-in="pop 1" style="position:absolute;left:1580px;top:314px;width:180px;font-size:32px;font-weight:800;text-align:center;background:#C9A24D;color:#13233F;padding:6px 0;border-radius:999px">by</p>
+<div style="position:absolute;left:128px;top:400px;width:1664px;height:84px;background:#1C3157;border-radius:18px"></div>
+<p style="position:absolute;left:160px;top:420px;width:60px;font-size:34px;font-weight:800;color:#C9A24D">2</p>
+<p style="position:absolute;left:240px;top:420px;width:1280px;font-size:34px;line-height:1.3;color:#F4EEE2">At 7:20 she was already _____ the plane.</p>
+<p data-build-in="pop 2" style="position:absolute;left:1580px;top:414px;width:180px;font-size:32px;font-weight:800;text-align:center;background:#C9A24D;color:#13233F;padding:6px 0;border-radius:999px">on</p>
+<div style="position:absolute;left:128px;top:500px;width:1664px;height:84px;background:#1C3157;border-radius:18px"></div>
+<p style="position:absolute;left:160px;top:520px;width:60px;font-size:34px;font-weight:800;color:#C9A24D">3</p>
+<p style="position:absolute;left:240px;top:520px;width:1280px;font-size:34px;line-height:1.3;color:#F4EEE2">Grandpa usually went to work _____ foot.</p>
+<p data-build-in="pop 3" style="position:absolute;left:1580px;top:514px;width:180px;font-size:32px;font-weight:800;text-align:center;background:#C9A24D;color:#13233F;padding:6px 0;border-radius:999px">on</p>
+<div style="position:absolute;left:128px;top:600px;width:1664px;height:84px;background:#1C3157;border-radius:18px"></div>
+<p style="position:absolute;left:160px;top:620px;width:60px;font-size:34px;font-weight:800;color:#C9A24D">4</p>
+<p style="position:absolute;left:240px;top:620px;width:1280px;font-size:34px;line-height:1.3;color:#F4EEE2">Mia sat _____ the taxi for an hour.</p>
+<p data-build-in="pop 4" style="position:absolute;left:1580px;top:614px;width:180px;font-size:32px;font-weight:800;text-align:center;background:#C9A24D;color:#13233F;padding:6px 0;border-radius:999px">in</p>
+<div style="position:absolute;left:128px;top:700px;width:1664px;height:84px;background:#1C3157;border-radius:18px"></div>
+<p style="position:absolute;left:160px;top:720px;width:60px;font-size:34px;font-weight:800;color:#C9A24D">5</p>
+<p style="position:absolute;left:240px;top:720px;width:1280px;font-size:34px;line-height:1.3;color:#F4EEE2">Please be at the gate _____ 7:30.</p>
+<p data-build-in="pop 5" style="position:absolute;left:1580px;top:714px;width:180px;font-size:32px;font-weight:800;text-align:center;background:#C9A24D;color:#13233F;padding:6px 0;border-radius:999px">by</p>
+<div style="position:absolute;left:128px;top:800px;width:1664px;height:84px;background:#1C3157;border-radius:18px"></div>
+<p style="position:absolute;left:160px;top:820px;width:60px;font-size:34px;font-weight:800;color:#C9A24D">6</p>
+<p style="position:absolute;left:240px;top:820px;width:1280px;font-size:34px;line-height:1.3;color:#F4EEE2">Her hotel was _____ the sea, so she swam every day.</p>
+<p data-build-in="pop 6" style="position:absolute;left:1580px;top:814px;width:180px;font-size:32px;font-weight:800;text-align:center;background:#C9A24D;color:#13233F;padding:6px 0;border-radius:999px">by</p>
+<aside class="notes">~2 мин. Разделите класс на две команды. Команды по очереди отвечают на предложения; клик — правильный ответ. За каждый верный ответ — 1 очко. Ловушки: №3 — on foot, №4 — in the taxi (внутри машины — in), №6 — by the sea = у моря.</aside>
+</section>
+<section class="slide" id="last-postcard" data-transition="fade" style="background:#F4EEE2;color:#13233F;font-family:'Manrope', Arial, sans-serif;padding:128px;display:flex;flex-direction:column">
+<p style="position:absolute;left:128px;top:128px;width:800px;font-size:26px;font-weight:700;letter-spacing:5px;text-transform:uppercase;color:#A63D2F">Последняя открытка</p>
+<h2 style="position:absolute;left:128px;top:168px;width:1664px;font-family:'Cormorant Garamond', Georgia, serif;font-size:80px;font-weight:600;line-height:1.1;color:#13233F">Теперь твоя очередь</h2>
+<div data-build-in="drop 1 auto" style="position:absolute;left:128px;top:290px;width:900px;transform:rotate(-2deg);background:#FBF7EF;border-radius:10px;box-shadow:0 40px 80px rgba(19,35,63,0.22);overflow:hidden;display:flex;flex-direction:column">
+<div style="height:16px;background:repeating-linear-gradient(90deg, #A63D2F 0px, #A63D2F 40px, #FBF7EF 40px, #FBF7EF 60px, #2B4C7E 60px, #2B4C7E 100px, #FBF7EF 100px, #FBF7EF 120px)"></div>
+<div style="display:flex;flex-direction:row;gap:32px;padding:40px 48px;align-items:start">
+<p style="flex:1;font-family:'Caveat', 'Brush Script MT', cursive;font-size:42px;line-height:1.2;color:#2B4C7E">Дорогая Мия,<br>если ты читаешь это в Сиднее — у тебя получилось! Ты облетела весь мир и говорила по-английски. Лучшие путешествия — те, которыми делишься. Теперь твоя очередь!<br>Твой дедушка Джек</p>
+<div style="width:150px;height:180px;background:#A63D2F;border:7px dashed #FBF7EF;display:flex;align-items:center;justify-content:center"><p style="font-family:'Cormorant Garamond', Georgia, serif;font-size:52px;font-weight:700;color:#FBF7EF">YOU</p></div>
+</div>
+</div>
+<div data-build-in="rise 2 auto" style="position:absolute;left:1100px;top:290px;width:692px;height:650px;background:#13233F;border-radius:24px;padding:44px;box-shadow:0 30px 60px rgba(19,35,63,0.22);display:flex;flex-direction:column;gap:18px">
+<p style="font-size:24px;font-weight:700;letter-spacing:5px;text-transform:uppercase;color:#C9A24D">Задание</p>
+<h3 style="font-family:'Cormorant Garamond', Georgia, serif;font-size:48px;font-weight:600;line-height:1.1;color:#F4EEE2">Напиши свою открытку из англоязычной страны — на английском!</h3>
+</div>
+<div data-build-in="pop 3" style="position:absolute;left:1144px;top:590px;width:604px;display:flex;flex-direction:row;gap:16px;align-items:center"><svg viewBox="0 0 24 24" style="color:#C9A24D;width:36px;height:36px" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7"/></svg><p style="flex:1;font-size:30px;color:#F4EEE2">3 слова из аэропорта</p></div>
+<div data-build-in="pop 4" style="position:absolute;left:1144px;top:652px;width:604px;display:flex;flex-direction:row;gap:16px;align-items:center"><svg viewBox="0 0 24 24" style="color:#C9A24D;width:36px;height:36px" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7"/></svg><p style="flex:1;font-size:30px;color:#F4EEE2">1 предложение с <b>by</b></p></div>
+<div data-build-in="pop 5" style="position:absolute;left:1144px;top:714px;width:604px;display:flex;flex-direction:row;gap:16px;align-items:center"><svg viewBox="0 0 24 24" style="color:#C9A24D;width:36px;height:36px" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7"/></svg><p style="flex:1;font-size:30px;color:#F4EEE2">1 интересный факт о стране</p></div>
+<div data-build-in="pop 6" style="position:absolute;left:1144px;top:776px;width:604px;display:flex;flex-direction:row;gap:16px;align-items:center"><svg viewBox="0 0 24 24" style="color:#C9A24D;width:36px;height:36px" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7"/></svg><p style="flex:1;font-size:30px;color:#F4EEE2">В конце: «Where am I?»</p></div>
+<p data-build-in="fade 7" style="position:absolute;left:1144px;top:838px;width:604px;font-family:'Caveat', 'Brush Script MT', cursive;font-size:40px;line-height:1.15;color:#E3C27A">Прочитай вслух — класс угадывает страну!</p>
+<aside class="notes">~1.5 мин + домашнее задание. Последняя открытка дедушки: Мия справилась, теперь очередь учеников. Кликами откройте пункты задания. Можно дать 5 минут на уроке или задать на дом. На следующем уроке ученики читают открытки вслух, а класс угадывает страну — как в нашей игре.</aside>
+</section>
+<section class="slide" id="farewell" data-transition="fade" style="background:radial-gradient(circle at 50% 35%, #22396A 0%, #13233F 60%, #0C172C 100%);color:#F4EEE2;font-family:'Manrope', Arial, sans-serif;padding:128px;display:flex;flex-direction:column">
+<h2 data-build-in="rise 1 auto" style="position:absolute;left:128px;top:140px;width:1664px;font-family:'Cormorant Garamond', Georgia, serif;font-size:96px;font-weight:600;line-height:1.1;text-align:center;color:#F4EEE2">Спасибо, что летали с нами!</h2>
+<div data-build-in="rise 2 auto" style="position:absolute;left:330px;top:300px;width:1260px;height:470px;background:#FBF7EF;border-radius:28px;box-shadow:0 40px 80px rgba(5,10,25,0.5);overflow:hidden;display:flex;flex-direction:row">
+<div style="flex:1;display:flex;flex-direction:column">
+<p style="font-size:24px;font-weight:700;letter-spacing:4px;text-transform:uppercase;background:#A63D2F;color:#FBF7EF;padding:22px 44px">Посадочный талон · Postcard Airlines</p>
+<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:36px;padding:44px">
+<div style="display:flex;flex-direction:column;gap:6px"><p style="font-size:24px;letter-spacing:2px;text-transform:uppercase;color:#8A8478">Пассажир</p><p style="font-family:'Cormorant Garamond', Georgia, serif;font-size:42px;font-weight:600;line-height:1.1;color:#13233F">Наш класс</p></div>
+<div style="display:flex;flex-direction:column;gap:6px"><p style="font-size:24px;letter-spacing:2px;text-transform:uppercase;color:#8A8478">Откуда</p><p style="font-family:'Cormorant Garamond', Georgia, serif;font-size:42px;font-weight:600;line-height:1.1;color:#13233F">Из дома</p></div>
+<div style="display:flex;flex-direction:column;gap:6px"><p style="font-size:24px;letter-spacing:2px;text-transform:uppercase;color:#8A8478">Куда</p><p style="font-family:'Cormorant Garamond', Georgia, serif;font-size:42px;font-weight:600;line-height:1.1;color:#13233F">Весь мир</p></div>
+<div style="display:flex;flex-direction:column;gap:6px"><p style="font-size:24px;letter-spacing:2px;text-transform:uppercase;color:#8A8478">Рейс</p><p style="font-family:'Cormorant Garamond', Georgia, serif;font-size:42px;font-weight:600;line-height:1.1;color:#13233F">EN 2026</p></div>
+<div style="display:flex;flex-direction:column;gap:6px"><p style="font-size:24px;letter-spacing:2px;text-transform:uppercase;color:#8A8478">Место</p><p style="font-family:'Cormorant Garamond', Georgia, serif;font-size:42px;font-weight:600;line-height:1.1;color:#A63D2F">By the window</p></div>
+<div style="display:flex;flex-direction:column;gap:6px"><p style="font-size:24px;letter-spacing:2px;text-transform:uppercase;color:#8A8478">Гейт</p><p style="font-family:'Cormorant Garamond', Georgia, serif;font-size:42px;font-weight:600;line-height:1.1;color:#13233F">B12</p></div>
+</div>
+</div>
+<div style="width:330px;border-left:3px dashed #D9CFBE;padding:40px;display:flex;flex-direction:column;gap:20px;align-items:center;justify-content:center">
+<p style="font-size:24px;font-weight:800;letter-spacing:4px;text-transform:uppercase;color:#A63D2F">Посадка</p>
+<p style="font-family:'Cormorant Garamond', Georgia, serif;font-size:56px;font-weight:700;line-height:1;color:#13233F">EN 2026</p>
+<svg aria-label="Штрихкод" width="240" height="110" viewBox="0 0 240 110"><g fill="#13233F"><rect x="20" y="0" width="4" height="110"/><rect x="28" y="0" width="2" height="110"/><rect x="34" y="0" width="6" height="110"/><rect x="44" y="0" width="2" height="110"/><rect x="50" y="0" width="3" height="110"/><rect x="57" y="0" width="5" height="110"/><rect x="66" y="0" width="2" height="110"/><rect x="72" y="0" width="4" height="110"/><rect x="80" y="0" width="2" height="110"/><rect x="86" y="0" width="6" height="110"/><rect x="96" y="0" width="3" height="110"/><rect x="103" y="0" width="2" height="110"/><rect x="109" y="0" width="5" height="110"/><rect x="118" y="0" width="2" height="110"/><rect x="124" y="0" width="4" height="110"/><rect x="132" y="0" width="3" height="110"/><rect x="139" y="0" width="6" height="110"/><rect x="149" y="0" width="2" height="110"/><rect x="155" y="0" width="2" height="110"/><rect x="161" y="0" width="5" height="110"/><rect x="170" y="0" width="3" height="110"/><rect x="177" y="0" width="4" height="110"/><rect x="185" y="0" width="2" height="110"/><rect x="191" y="0" width="6" height="110"/><rect x="201" y="0" width="2" height="110"/><rect x="207" y="0" width="3" height="110"/></g></svg>
+</div>
+</div>
+<p data-build-in="fade 3" style="position:absolute;left:128px;top:820px;width:1664px;font-family:'Caveat', 'Brush Script MT', cursive;font-size:56px;font-weight:700;text-align:center;color:#E3C27A">What was your favourite stop — and why?</p>
+<p data-build-in="fade 4 auto" style="position:absolute;left:128px;top:900px;width:1664px;font-size:26px;font-style:italic;text-align:center;color:#8FA0BD">Какая остановка понравилась больше всего и почему?</p>
+<aside class="notes">~1 мин. Финал. Спросите каждого (по-английски): What was your favourite stop — and why? Можно быстро повторить: назовите три слова из аэропорта и одно предложение с by. Спасибо за урок!</aside>
+</section>
+</div>
+<div id="count"></div>
+<div id="help">Клик или → — дальше · ← — назад · F — полный экран · N — заметки</div>
+<div id="notes"></div>
+<script>
+const stage=document.getElementById('stage');
+const S=[...document.querySelectorAll('.slide')];
+let cur=-1,step=0,steps=[],timers=[];
+function fit(){const k=Math.min(innerWidth/1920,innerHeight/1080);stage.style.transform='translate(-50%,-50%) scale('+k+')'}
+addEventListener('resize',fit);fit();
+function parse(v){const p=v.trim().split(/\s+/);const n=p.find(x=>/^\d+$/.test(x));return{type:p[0],order:n?parseInt(n):1,auto:p.includes('auto')}}
+function getSteps(sl){const ev=[];sl.querySelectorAll('[data-build-in],[data-build-out]').forEach(el=>{['in','out'].forEach(k=>{const v=el.getAttribute('data-build-'+k);if(v){const o=parse(v);o.el=el;o.k=k;ev.push(o)}})});
+const g={};ev.forEach(e=>{(g[e.order]=g[e.order]||[]).push(e)});return Object.keys(g).map(Number).sort((a,b)=>a-b).map(o=>({auto:g[o].every(e=>e.auto),ev:g[o]}))}
+function reset(sl,st){st.forEach(s=>s.ev.forEach(e=>{e.el.classList.add('noanim','anim');if(e.k==='in'){e.el.classList.add('bi-'+e.type,'bh')}}));st.forEach(s=>s.ev.forEach(e=>{if(e.k==='out'&&!st.some(t=>t.ev.some(f=>f.el===e.el&&f.k==='in')))e.el.classList.remove('bh')}));void sl.offsetWidth;st.forEach(s=>s.ev.forEach(e=>e.el.classList.remove('noanim')))}
+function play(s){s.ev.forEach(e=>{if(e.k==='in')e.el.classList.remove('bh');else e.el.classList.add('bh')})}
+function clearT(){timers.forEach(clearTimeout);timers=[]}
+function chain(delay){clearT();let d=delay;let i=step;while(i<steps.length&&steps[i].auto){const idx=i;timers.push(setTimeout(()=>{play(steps[idx]);step=idx+1},d));d+=450;i++}}
+function flushAuto(){if(!timers.length)return false;clearT();let did=false;while(step<steps.length&&steps[step].auto){play(steps[step]);step++;did=true}return did}
+function loadEmb(sl,on){sl.querySelectorAll('iframe.emb').forEach(f=>{if(on){f.srcdoc=f.dataset.src}else{f.removeAttribute('srcdoc');f.src='about:blank'}})}
+function magic(a,b){if(!a||a.dataset.transition!=='magic')return;b.querySelectorAll('[id]').forEach(e=>{const o=a.querySelector('#'+CSS.escape(e.id));if(!o)return;const P=['left','top','width','height','background','borderTop'];const tgt={};P.forEach(p=>{tgt[p]=e.style[p]});e.style.transition='none';P.forEach(p=>{e.style[p]=o.style[p]});void e.offsetWidth;e.style.transition='left .8s cubic-bezier(.65,0,.35,1),top .8s cubic-bezier(.65,0,.35,1),width .8s cubic-bezier(.65,0,.35,1),height .8s,background .8s,border-color .8s';P.forEach(p=>{e.style[p]=tgt[p]})})}
+function go(n,final){if(n<0||n>=S.length)return;clearT();const prev=cur>=0?S[cur]:null;const next=S[n];
+if(prev&&prev!==next){prev.classList.remove('active');const p=prev;setTimeout(()=>{if(!p.classList.contains('active'))loadEmb(p,false)},700)}
+if(prev&&n===cur+1)magic(prev,next);
+cur=n;steps=getSteps(next);reset(next,steps);step=0;next.classList.add('active');loadEmb(next,true);
+if(final){steps.forEach(play);step=steps.length}else chain(450);
+document.getElementById('count').textContent=(n+1)+' / '+S.length;
+const a=next.querySelector('aside');document.getElementById('notes').textContent=a?a.textContent:'';
+history.replaceState(null,'','#'+(n+1))}
+function fwd(){if(flushAuto())return;if(step<steps.length){play(steps[step]);step++;chain(450)}else go(cur+1)}
+function back(){go(cur-1,true)}
+addEventListener('keydown',e=>{if(['ArrowRight','PageDown',' ','Enter'].includes(e.key)){e.preventDefault();fwd()}else if(['ArrowLeft','PageUp','Backspace'].includes(e.key)){e.preventDefault();back()}else if(e.key==='f'||e.key==='F'||e.key==='а'||e.key==='А'){document.fullscreenElement?document.exitFullscreen():document.documentElement.requestFullscreen().catch(()=>{})}else if(e.key==='n'||e.key==='N'||e.key==='т'||e.key==='Т'){const nt=document.getElementById('notes');nt.style.display=nt.style.display==='block'?'none':'block'}});
+addEventListener('click',e=>{if(e.target.closest('#notes'))return;if(e.clientX<innerWidth*0.22)back();else fwd()});
+setTimeout(()=>{document.getElementById('help').style.opacity=0},5000);
+const h=parseInt(location.hash.slice(1));go(h>0&&h<=S.length?h-1:0);
+</script>
+</body></html>
